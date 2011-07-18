@@ -1,0 +1,116 @@
+/**
+ * 100% height layout with header and footer
+ * ----------------------------------------------
+ * Feel free to copy/use/change/improve
+ */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,body {
+	margin:0;
+	padding:0;
+	height:100%; /* needed for container min-height */
+	background-color: #EDEDED;
+
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font: 12px/17px;
+	color: #575757;
+}
+
+
+a { text-decoration:none;}
+
+
+div#container {
+	position:relative; /* needed for footer positioning*/
+	margin:0 auto; /* center, not in IE5 */
+
+/*	background:#fff;*/
+
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+	min-height:100%; /* real browsers */
+
+
+/*  min-width:960px;*/
+/*  width:960px;*/
+}
+
+div#header {
+	padding:1em;
+  color: #888;
+  padding: 20px 0px;
+
+
+  border-width: 0px 0px 0px 0px;
+  border-style: solid;
+  border-color: #fff;
+
+  box-shadow: 0px 0px 2px #aaa inset;
+  background: #00A3D3;
+  background:#2B78C6;
+  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+}
+
+div#header h1 {
+  font-size:40px;
+  line-height:40px;
+  color: #444;
+  color: #fff;
+  text-shadow: 0 -1px 0 #666;
+}
+
+div#navbar {
+	padding:1em 1em 5em;
+	padding:0;
+
+	margin: 0 0 40px 0;
+
+	position:relative;
+
+	border-width: 0px 1px;
+  border-style: solid;
+  border-color: #ddd;
+
+   background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0 0 0 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    background: -moz-linear-gradient(center bottom , #ccc, #ddd) repeat scroll 0 0 transparent;
+
+}
+
+div#content {
+	padding:1em 1em 5em;
+	padding:0;
+/*	margin: 80px auto;*/
+	min-width:960px;
+	width:960px;
+
+	position:relative;
+	margin: 0 auto;
+
+/*	border-width: 0px 1px;*/
+  border-style: solid;
+  border-color: #ddd;
+
+/*   background: none repeat scroll 0 0 #FFFFFF;*/
+/*    border-radius: 0 0 0 0;*/
+/*    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);*/
+
+
+}
+
+div#footer {
+	position:absolute;
+	width:100%;
+	bottom:0; /* stick to bottom */
+	background:#fff;
+	border-top:6px double gray;
+ border-top: 1px solid #E3E3E4;
+ background: -moz-linear-gradient(center bottom , #252525, #444) repeat scroll 0 0 transparent;
+ padding:20px 0px;
+}
+

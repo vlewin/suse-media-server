@@ -1,0 +1,17 @@
+SUSE Media Server is a web front end for samba and dlna configuration
+
+TODO LIST 
+---------------------------------------------------------------------
+[WIP]:
+
+- systen monitoring (CPU, RAM, HDD)
+- provide system action for REBOOT and SHUTDOWN
+- provide mobile view for mobile devices (JQuery Mobile)
+- improve web UI and usability
+- clean up inline javascript and CSS code
+
+NEXT:
+- FTP server configuration*
+- File browser (FTP)*
+- Jquery AjaxTerminal*
+

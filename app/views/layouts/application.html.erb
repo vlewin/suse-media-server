@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <%= stylesheet_link_tag '960.css' %>
+    <%= stylesheet_link_tag 'reset.css' %>
+    <%= stylesheet_link_tag 'application.css' %>
+
+    <%= stylesheet_link_tag 'layout.css' %>
+
+    <%= stylesheet_link_tag 'forms.css' %>
+    <%= stylesheet_link_tag 'module.css' %>
+    
+        
+
+<!--    <%= stylesheet_link_tag 'jquery.textreflection.css' %> -->
+
+    <script type="text/javascript" src="/javascripts/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="/javascripts/jrails.js" ></script>
+    <script type="text/javascript" src="/javascripts/application.js" ></script>
+
+<!--    <script type="text/javascript" src="/javascripts/jquery.textreflection.js" ></script> -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#rtoggle").click(function(){
+      console.log("d");
+      if($(this).hasClass('active')) {
+        $('#rightpanel').animate({width: 1}, {duration: "fast"});
+        $(this).removeClass("active")
+
+        return false;
+      } else {
+        $('#rightpanel').animate({width: 250}, {duration: "fast"});
+        $(this).addClass("active")
+        return false;
+
+      }
+    });
+  });
+  </script>
+
+  </head>
+  <body style="position:relative;">
+  <div id="container">
+
+    <div id="header">
+       <div class="container_12">
+        <div class="grid_3">
+          <!--<img src="images/suse-sticker2.png" style="display:inline-block; float:left; height:100px; width:100px;" alt="" />-->
+
+          <div id="beta">
+<!--           <img src="../images/beta-button.png" class="large_thumb_image" alt="thumb" />-->
+           <img src="../images/alpha-button.png" class="large_thumb_image" alt="thumb" />
+           <div class="shine"></div>
+          </div>
+
+        </div>
+        <div class="grid_9">
+          <a href="/" style="color:#fff;"><h1>SuSE Media Server</h1></a>
+        </div>
+       </div>
+
+
+    </div>
+
+    <div id="navbar">
+      <div class="container_12">
+        <div class="grid_12">
+          <!--<h1>Navbar</h1>-->
+          <a href="/" style="font-weight:bold; color:#666; text-shadow:0px 1px 0px #fff; text-decoration:none;">
+            <img src="/images/home-sym.png" style="margin:5px 0px; width:32px; height:32px; " />
+            <label style="vertical-align:middle; ">Home</label>
+          </a>
+
+          <a href="/" style="font-weight:bold; color:#666; text-shadow:0px 1px 0px #fff; text-decoration:none;">
+            <img src="/images/action-sym2.png" style="margin:5px 0px; width:32px; height:32px; " />
+            <label style="vertical-align:middle; ">Logout</label>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div id="wrapper">
+      <div id="toppanel">
+        <div id="panel">
+          <div id="panel_contents">
+            <div id="dashboard" style="opacity: 1;">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a><img src="/images/bottom.png" />Shutdown</a></li>
+                <li><a><img src="/images/top.png" />Reboot</a></li>
+              </ul>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel_button" style="display: visible;">
+          <a href="#">Dashboard</a>
+          <img class="dashboard_button" src="/images/bottom.png" style="display: visible;" alt="expand"/>
+        </div>
+        <div class="panel_button" id="hide_button" style="display: none;">
+          <a href="#">Dashboard</a>
+          <img src="/images/top2.png" alt="collapse" />
+        </div>
+      </div>
+    </div>-->
+
+
+
+    <div id="content">
+        <%= yield %>
+    </div>
+
+    <div id="footer">
+      <div class="container_12">
+        <div class="counter">P</div>
+        <div class="counter">R</div>
+        <div class="counter">E</div>
+        <div class="counter">-</div>
+        <div class="counter">A</div>
+        <div class="counter">L</div>
+        <div class="counter">P</div>
+        <div class="counter">H</div>
+        <div class="counter">A</div>
+        <div class="counter">&nbsp;</div>
+        <div class="counter">V</div>
+        <div class="counter">E</div>
+        <div class="counter">R</div>
+        <div class="counter">S</div>
+        <div class="counter">I</div>
+        <div class="counter">O</div>
+        <div class="counter">N</div>
+
+        <!--<ul>
+           <li class="grid_3">
+             <a href="http://en.opensuse.org/Portal:WebYaST">
+              <div class="topbox">OPENSUSE WIKI</div>
+              <div class="bottombox">
+                Learn more about WebYaST.
+              </div>
+            </a>
+          </li>
+
+           <li class="grid_3">
+             <a href="http://forums.opensuse.org/">
+              <div class="topbox">OPENSUSE FORUM</div>
+              <div class="bottombox">
+                Ask questions on WebYaST forum.
+              </div>
+            </a>
+          </li>
+
+           <li class="grid_3">
+             <a href="/company/">
+              <div class="topbox">FREENODE IRC</div>
+              <div class="bottombox">
+                Join us on IRC freenode #webyast channel.
+              </div>
+            </a>
+          </li>
+
+           <li class="grid_3">
+             <a href="/company/">
+              <div class="topbox">KONTAKT</div>
+              <div class="bottombox">Our mailinglist webyast@suse.de</div>
+            </a>
+          </li>
+        </ul>-->
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
+

@@ -1,0 +1,16 @@
+
+<div>
+  <% for share in @shares %>
+    <div class="link">
+      <%= link_to_remote(
+           "<div class='key'>#{share.name}</div>" +
+           "<div class='value'> <strong> {#} </strong> </div>",
+           :before => "$('#wait').show(); console.log('wait');",
+           :update => 'mform',
+           :after => "console.log('finished'); expand($(this)); $('#wait').fadeOut('slow');",
+           :html => {:class => 'share_link'},
+           :url => {:action => 'show', :id => share.id, :name => share.name })
+      %>
+    </div>
+  <% end %>
+</div>

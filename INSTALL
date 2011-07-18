@@ -1,0 +1,46 @@
+### How to install SUSE Media Server on openSUSE 11.x ###
+
+Prerequires:
+RPMs: samba, augeas, augeas-lenses, minidlna* and Ruby on Rails 2 packages
+Rubygems: rubygem-dbus, rubygem-augeas
+
+-----------------------------------------------------------------------
+
+Installation:
+1) git clone <project>
+2) cd <project>
+3) sudo rake install
+
+-----------------------------------------------------------------------
+
+*** start required services (just workaround, will be fixed later) ***
+
+Open terminal and start DLNA D-Bus service: 
+4) sudo ruby /usr/local/sbin/augeasDLNAService.rb
+
+-----------------------------------------------------------------------
+
+Open another terminal tab or window and start SAMBA D-Bus service: 
+5) sudo ruby /usr/local/sbin/augeasSambaService.rb
+
+-----------------------------------------------------------------------
+
+6) sudo ./script/server 
+{notice}: use -p <port number> if you want to use another port
+
+7) point you browser to http://localhost:3000 
+
+-----------------------------------------------------------------------
+
+*** optional ***
+{notice}: if you want to use application as a normal user, you have to grant the permissions for <username>
+
+polkit-auth --user <username> --grant org.augeas.dlna.read
+polkit-auth --user <username> --grant org.augeas.dlna.writte
+
+polkit-auth --user <username> --grant org.augeas.samba.read
+polkit-auth --user <username> --grant org.augeas.samba.writte
+
+-----------------------------------------------------------------------
+
+

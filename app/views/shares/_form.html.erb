@@ -1,0 +1,61 @@
+
+<div id="mcontent" class="mcontent">
+  <div>
+  
+  <br>
+  <h2 style="background:none; margin-bottom:10px;  border-bottom:3px solid #C79E61; color:#C79E61;">New share</h2>
+  
+  <% form_remote_for :share, 
+    :url => {:action => 'create'}, 
+    :before => "$('#wait').show();",
+    :after => "$('#wait').fadeOut(); $('div#newform').stop().animate({height: '-=300' }, 200);" do |form| %>
+          
+    <%= form.hidden_field :id %>
+    
+    <div class="line">
+      <div class='key'> <%= form.label :name %> </div>
+      <div class='value'>
+        <%= form.text_field :name %>
+      </div> 
+    </div>
+    
+    <div class="line">
+      <div class='key'> <%= form.label :path %> </div>
+      <div class='value'> 
+        <%= form.text_field :path %>
+      </div>
+    </div>
+
+    <div class="line">
+      <div class='key'> <%= form.label :browseable %> </div>
+      <div class='value'>
+        <%= form.check_box(:browseable, {:class=>"ftoggle"}, "yes", "no")%>
+      </div> 
+    </div>
+    
+    <div class="line">
+      <div class='key'> <%= form.label :writeable %> </div>
+      <div class='value'>
+        <%= form.check_box(:writeable, {:class=>"ftoggle"}, "yes", "no")%>
+      </div> 
+    </div>
+
+    <%= form.submit%>
+  <% end %>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function() {
+    $('#newform').find('[type=checkbox].ftoggle').slider({background: "orange"});
+  });
+</script>
+
+  
+  
+  
+  
+
+
+
+
