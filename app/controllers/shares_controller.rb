@@ -65,13 +65,13 @@ class SharesController < ApplicationController
 
   #SYSTEM ACTIONS
   def smbaction
-    Rails.logger.error "ACTION #{params[:samba][:status].inspect}"
-    if params[:samba][:status] == "start"
-      @state = Samba.start
-      @smb = Samba.running?
-    else 
+    
+    @smb = Samba.running?
+    
+    if @smb.status == true 
       @state = Samba.stop
-      @smb = Samba.running?
+    else
+      @state = Samba.start
     end
     
     render :nothing => true
