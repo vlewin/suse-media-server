@@ -19,7 +19,7 @@ task :"prepare" do
 
     puts "\nChange file permissions"
 
-    readme = File.new(README, "w")
+    readme = File.new(README, "r")
     uid = readme.stat.uid
     gid = readme.stat.gid
 

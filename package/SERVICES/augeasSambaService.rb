@@ -12,9 +12,6 @@ class AugeasSambaService < DBus::Object
 
   PROPERTIES = ["workgroup", "name", "path", "writeable", "browseable", "read_only", "security", "comment"]
 
-#  PROPERTIES.each { |p| attr_reader p }
-
-
   def init
     augeas = Augeas::open("/", "/usr/share/libaugeas0/augeas/lenses/dist", Augeas::NO_MODL_AUTOLOAD)
     augeas.transform(:lens => "Samba.lns", :incl => "/etc/samba/smb.conf")
@@ -24,11 +21,12 @@ class AugeasSambaService < DBus::Object
 
   dbus_interface "augeas.samba.Service.Interface" do
 
+    #MATCH with VALUES
     dbus_method :all, "in nothing:s, out matched:aa{ss}" do |path|
       shares = Array.new
       aug = init()
 
-      paths = aug.match("/files/etc/samba/smb.conf/*[label() != '#comment']")
+      paths = aug.match("#{AUG_PATH}*[label() != '#comment']")
 
       paths.each do |share|
         target = share.to_s.split('/').last
@@ -38,6 +36,7 @@ class AugeasSambaService < DBus::Object
       [shares]
     end
 
+    #GET
     dbus_method :get, "in target:s, out matched:a{ss}" do |target|
       children = Hash.new
 
@@ -66,58 +65,47 @@ class AugeasSambaService < DBus::Object
       return [children]
     end
 
-    dbus_method :exec, "in command:s, out out:b" do |cmd|
-      success = system 'echo "hello $HOSTNAME"'
-        ret = `#{cmd}`
-        out = ret.split('..').last
-        #puts "\nCOMMAND #{cmd}\n"
-        #puts "MESSAGE: #{out}\n"
-
-      case out
-        when "running"
-          return "true"
-        when "unused"
-          return "false"
-        else
-          return "Execution error"
-        end
+    #SET
+    dbus_method :set, "in share:a{ss}, out success:b" do |share|
+      aug = init()
+        
+      puts "#{AUG_PATH}#{share["id"]}"
+        
+      if aug.get("#{AUG_PATH}#{share["id"]}").nil?
+        aug.set("#{AUG_PATH}#{share["id"]}", share["name"])
       end
-
-      dbus_method :set, "in share:a{ss}, out success:b" do |share|
-        aug = init()
         
-        puts "CREATE NEW #{share.inspect}"
-
-        #save ID in extra var and remove id from hash
-        
-        #TARGET exist?
-        
-        puts "#{AUG_PATH}#{share["id"]}"
-        
-        if aug.get("#{AUG_PATH}#{share["id"]}").nil?
-		   puts "NEW SHARE"
-		   aug.set("#{AUG_PATH}#{share["id"]}", share["name"])
-		   puts "AFTER SET"
-		   puts aug.get("#{AUG_PATH}#{share["id"]}")
-        end
-        
-		  id = share["id"]
+      id = share["id"]
           
-          share.delete("id")
-          share.delete("name")
+      share.delete("id")
+      share.delete("name")
 
-          share.each do |k,v|
-            puts "SET #{AUG_PATH}#{id}/#{k} WITH VALUE #{v}"
-            aug.set("#{AUG_PATH}#{id}/#{k}", v) unless k == "id"
-         end
-
-       
-       
-         saved = aug.save
-         puts "SAVE OK? #{saved}"
-         saved
-         
+      share.each do |k,v|
+        puts "SET #{AUG_PATH}#{id}/#{k} WITH VALUE #{v}"
+        aug.set("#{AUG_PATH}#{id}/#{k}", v) unless k == "id"
       end
+
+      saved = aug.save
+      puts "SAVE OK? #{saved}"
+      saved
+    end
+
+    #EXEC
+    dbus_method :exec, "in command:s, out out:b" do |cmd|
+      #success = system 'echo "hello $HOSTNAME"'
+      ret = `#{cmd}`
+      result = ret.split('..').last
+
+      if result.match("running")
+        return true
+      elsif result.match("unused")
+        return false
+      elsif result.match("done")
+        return true
+      else 
+        return "error"
+      end
+    end
 
   end
 end
