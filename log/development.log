@@ -74368,3 +74368,1504 @@ service "dlna"
 Rendering template within layouts/application
 Rendering dlna/index
 Completed in 33ms (View: 6, DB: 0) | 200 OK [http://0.0.0.0/dlna]
+
+
+Processing DlnaController#index (for 127.0.0.1 at 2011-07-18 16:59:00) [GET]
+DLNA BUS
+dlna
+
+service "dlna"
+
+*** CONFIG #<Dlna:0x7f2de17b1c48 @model_number="1", @serial="12345678", @media_dir2="V,/work/VIDEO", @inotify="yes", @media_dir1="A,/work/AUDIO", @friendly_name="Stealth DLNA Server">
+Rendering template within layouts/application
+Rendering dlna/index
+Completed in 225ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/dlna]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 16:59:04) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 8ms (View: 7, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 16:59:07) [GET]
+service "samba"
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de19dae48 @id="target[1]", @name="global">, #<Share:0x7f2de19dab28 @id="target[2]", @name="other">, #<Share:0x7f2de19da7b8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.6ms)
+Completed in 135ms (View: 27, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:01:58) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de19b7f88 @id="target[1]", @name="global">, #<Share:0x7f2de19b7d80 @id="target[2]", @name="other">, #<Share:0x7f2de19b7bf0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 218ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:04:42) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de197b8d0 @id="target[1]", @name="global">, #<Share:0x7f2de197b6c8 @id="target[2]", @name="other">, #<Share:0x7f2de197b268 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 211ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:07:58) [GET]
+service "samba"
+service "rcsmb status"
+
+DBus::Error (undefined local variable or method `out' for #<AugeasSambaService:0x7fc0105b94b0>):
+  /usr/local/sbin/augeasSambaService.rb:76:in `augeas.samba.Service.Interface%%exec'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/export.rb:58:in `call'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/export.rb:58:in `dispatch'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:632:in `process'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:810:in `run'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:801:in `each'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:801:in `run'
+  /usr/local/sbin/augeasSambaService.rb:133
+
+Rendered rescues/_trace (4.3ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:08:16) [GET]
+service "samba"
+service "rcsmb status"
+
+DBus::Error (undefined local variable or method `out' for #<AugeasSambaService:0x7fd69dc88950>):
+  /usr/local/sbin/augeasSambaService.rb:75:in `augeas.samba.Service.Interface%%exec'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/export.rb:58:in `call'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/export.rb:58:in `dispatch'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:632:in `process'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:810:in `run'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:801:in `each'
+  /usr/lib64/ruby/gems/1.8/gems/ruby-dbus-0.6.0/lib/dbus/bus.rb:801:in `run'
+  /usr/local/sbin/augeasSambaService.rb:132
+
+Rendered rescues/_trace (3.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:08:32) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de17c7bb0 @id="target[1]", @name="global">, #<Share:0x7f2de17c79a8 @id="target[2]", @name="other">, #<Share:0x7f2de17c7818 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 146ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:09:05) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+SAMBA running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de19e2300 @id="target[1]", @name="global">, #<Share:0x7f2de19e20f8 @id="target[2]", @name="other">, #<Share:0x7f2de19e1f40 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.8ms)
+Completed in 140ms (View: 15, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:10:08) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f2de19db6b8 @id="target[1]", @name="global">, #<Share:0x7f2de19db3e8 @id="target[2]", @name="other">, #<Share:0x7f2de19db1e0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 140ms (View: 15, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:10:35) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA running? true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f5753df9100 @id="target[1]", @name="global">, #<Share:0x7f5753df8ef8 @id="target[2]", @name="other">, #<Share:0x7f5753df8d68 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.5ms)
+Completed in 334ms (View: 30, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:11:04) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fba62f480e8 @id="target[1]", @name="global">, #<Share:0x7fba62f47ee0 @id="target[2]", @name="other">, #<Share:0x7fba62f47d50 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.5ms)
+Completed in 331ms (View: 30, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:12:08) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fba631932d0 @id="target[1]", @name="global">, #<Share:0x7fba631930a0 @id="target[2]", @name="other">, #<Share:0x7fba63192f10 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 139ms (View: 15, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:12:11) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fba63181d00 @id="target[1]", @name="global">, #<Share:0x7fba63180cc0 @id="target[2]", @name="other">, #<Share:0x7fba6317ff28 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.3ms)
+Completed in 207ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:12:28) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fba6316e4f8 @id="target[1]", @name="global">, #<Share:0x7fba6316e2f0 @id="target[2]", @name="other">, #<Share:0x7fba6316e160 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 209ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:13:36) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fba6313d5b0 @id="target[1]", @name="global">, #<Share:0x7fba6313d3a8 @id="target[2]", @name="other">, #<Share:0x7fba6313d218 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 211ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:15:40) [GET]
+service "samba"
+
+NoMethodError (undefined method `attr_accessor' for main:Object):
+  app/models/samba.rb:3
+  app/controllers/shares_controller.rb:7:in `index'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.1ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:15:42) [GET]
+service "samba"
+
+NoMethodError (undefined method `attr_accessor' for main:Object):
+  app/models/samba.rb:3
+  app/controllers/shares_controller.rb:7:in `index'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:15:56) [GET]
+service "samba"
+service "rcsmb status"
+
+NameError (undefined local variable or method `ret' for Samba:Class):
+  app/models/samba.rb:15:in `running?'
+  app/controllers/shares_controller.rb:7:in `index'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (26.7ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:16:06) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running #<Samba:0x7f9c610cb408>
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f9c60eb1c30 @id="target[1]", @name="global">, #<Share:0x7f9c60eb1488 @id="target[2]", @name="other">, #<Share:0x7f9c60eb1078 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.6ms)
+Completed in 339ms (View: 30, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:16:59) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running #<Samba:0x7fb57bb04798>
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb882f0 @id="target[1]", @name="global">, #<Share:0x7fb57bb880e8 @id="target[2]", @name="other">, #<Share:0x7fb57bb87f58 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.5ms)
+Completed in 430ms (View: 30, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:17:01) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running #<Samba:0x7fb57baf8df8>
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb96e90 @id="target[1]", @name="global">, #<Share:0x7fb57bb96c10 @id="target[2]", @name="other">, #<Share:0x7fb57bb969b8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 235ms (View: 15, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:17:10) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running #<Samba:0x7fb57baecd78>
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bba19d0 @id="target[1]", @name="global">, #<Share:0x7fb57bba1728 @id="target[2]", @name="other">, #<Share:0x7fb57bba1458 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 143ms (View: 15, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:17:18) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb97ae8 @id="target[1]", @name="global">, #<Share:0x7fb57bb978e0 @id="target[2]", @name="other">, #<Share:0x7fb57bb97728 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 203ms (View: 79, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:18:10) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb92ed0 @id="target[1]", @name="global">, #<Share:0x7fb57bb92138 @id="target[2]", @name="other">, #<Share:0x7fb57bb91e68 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+
+ActionView::TemplateError (wrong number of arguments (0 for 1)) on line #146 of app/views/shares/index.html.erb:
+143:       </div>
+144:       <div class="grid_6 right">
+145:         <%= check_box(:status, { :class => 'ftoggle' }) %>
+146:         <% form.check_box(:writeable, {:class=>"ftoggle"}, "yes", "no")%>
+147:       </div>
+148:       <div class="clear"></div>
+149:     </div>
+
+    app/views/shares/index.html.erb:146:in `form'
+    app/views/shares/index.html.erb:146
+    /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.5ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:18:19) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb77ce8 @id="target[1]", @name="global">, #<Share:0x7fb57bb776d0 @id="target[2]", @name="other">, #<Share:0x7fb57bb76de8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+
+ActionView::TemplateError (can't convert Symbol into String) on line #145 of app/views/shares/index.html.erb:
+142:         </p>
+143:       </div>
+144:       <div class="grid_6 right">
+145:         <%= check_box(:status, { :class => 'ftoggle' }, "yes", "no") %>
+146:         <% form.check_box(:writeable, {:class=>"ftoggle"}, "yes", "no")%>
+147:       </div>
+148:       <div class="clear"></div>
+
+    app/views/shares/index.html.erb:145
+    /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.9ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:20:41) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb76be0 @id="target[1]", @name="global">, #<Share:0x7fb57bb76898 @id="target[2]", @name="other">, #<Share:0x7fb57bb76708 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 232ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:21:00) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bae89f8 @id="target[1]", @name="global">, #<Share:0x7fb57bae8750 @id="target[2]", @name="other">, #<Share:0x7fb57bae8548 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.4ms)
+Completed in 151ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:21:23) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba38940 @id="target[1]", @name="global">, #<Share:0x7fb57ba386e8 @id="target[2]", @name="other">, #<Share:0x7fb57ba38558 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 170ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:21:32) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bbacf60 @id="target[1]", @name="global">, #<Share:0x7fb57bbacd30 @id="target[2]", @name="other">, #<Share:0x7fb57bbacba0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.8ms)
+Completed in 148ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:21:40) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bba1e80 @id="target[1]", @name="global">, #<Share:0x7fb57bba1c50 @id="target[2]", @name="other">, #<Share:0x7fb57bba1a98 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 147ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:22:54) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb9b698 @id="target[1]", @name="global">, #<Share:0x7fb57bb9b490 @id="target[2]", @name="other">, #<Share:0x7fb57bb9b300 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.5ms)
+Completed in 225ms (View: 91, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:25:00) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb7f8a8 @id="target[1]", @name="global">, #<Share:0x7fb57bb7e0e8 @id="target[2]", @name="other">, #<Share:0x7fb57bb7c810 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.2ms)
+Completed in 238ms (View: 26, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:26:17) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bae5a50 @id="target[1]", @name="global">, #<Share:0x7fb57bae5848 @id="target[2]", @name="other">, #<Share:0x7fb57bae56b8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 159ms (View: 26, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:26:27) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba36848 @id="target[1]", @name="global">, #<Share:0x7fb57ba36640 @id="target[2]", @name="other">, #<Share:0x7fb57ba364b0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 146ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:27:21) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bba6ac0 @id="target[1]", @name="global">, #<Share:0x7fb57bba6890 @id="target[2]", @name="other">, #<Share:0x7fb57bba6700 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.4ms)
+Completed in 157ms (View: 24, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:27:51) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb9dba0 @id="target[1]", @name="global">, #<Share:0x7fb57bb9d948 @id="target[2]", @name="other">, #<Share:0x7fb57bb9d768 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.8ms)
+Completed in 145ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:28:00) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb95e00 @id="target[1]", @name="global">, #<Share:0x7fb57bb95bf8 @id="target[2]", @name="other">, #<Share:0x7fb57bb95a68 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 209ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:29:55) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb8af50 @id="target[1]", @name="global">, #<Share:0x7fb57bb8ad48 @id="target[2]", @name="other">, #<Share:0x7fb57bb8abb8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.8ms)
+Completed in 212ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:31:17) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb42598 @id="target[1]", @name="global">, #<Share:0x7fb57bb42188 @id="target[2]", @name="other">, #<Share:0x7fb57bb41ff8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 221ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:33:56) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba2ba10 @id="target[1]", @name="global">, #<Share:0x7fb57ba2b808 @id="target[2]", @name="other">, #<Share:0x7fb57ba2b678 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.3ms)
+Completed in 157ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:34:10) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb6b808 @id="target[1]", @name="global">, #<Share:0x7fb57bb6e6e8 @id="target[2]", @name="other">, #<Share:0x7fb57bb72720 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 148ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:35:40) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bba26c8 @id="target[1]", @name="global">, #<Share:0x7fb57bba24c0 @id="target[2]", @name="other">, #<Share:0x7fb57bba2330 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 200ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:35:56) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb96170 @id="target[1]", @name="global">, #<Share:0x7fb57bb95e78 @id="target[2]", @name="other">, #<Share:0x7fb57bb95c70 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 217ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:36:45) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb84970 @id="target[1]", @name="global">, #<Share:0x7fb57bb83520 @id="target[2]", @name="other">, #<Share:0x7fb57bb82648 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.2ms)
+Completed in 218ms (View: 26, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:36:55) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bad2798 @id="target[1]", @name="global">, #<Share:0x7fb57bad2590 @id="target[2]", @name="other">, #<Share:0x7fb57bad2400 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.5ms)
+Completed in 151ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:36:59) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 9ms (View: 8, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:37:00) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:37:03) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57baca138 @id="target[1]", @name="global">, #<Share:0x7fb57bac9f30 @id="target[2]", @name="other">, #<Share:0x7fb57bac9da0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.2ms)
+Completed in 148ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:37:08) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb84a10 @id="target[1]", @name="global">, #<Share:0x7fb57bb84678 @id="target[2]", @name="other">, #<Share:0x7fb57bb83f98 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 210ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:37:14) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb85168 @id="target[1]", @name="global">, #<Share:0x7fb57bb84f38 @id="target[2]", @name="other">, #<Share:0x7fb57bb84d80 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 253ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:37:20) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bacf070 @id="target[1]", @name="global">, #<Share:0x7fb57bacee68 @id="target[2]", @name="other">, #<Share:0x7fb57bacecd8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 150ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:38:19) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba20a20 @id="target[1]", @name="global">, #<Share:0x7fb57ba207a0 @id="target[2]", @name="other">, #<Share:0x7fb57ba20610 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.2ms)
+Completed in 145ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:38:56) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bac7ed8 @id="target[1]", @name="global">, #<Share:0x7fb57bac8dd8 @id="target[2]", @name="other">, #<Share:0x7fb57bac9f58 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 152ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:39:22) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb9e3c0 @id="target[1]", @name="global">, #<Share:0x7fb57bb9e1b8 @id="target[2]", @name="other">, #<Share:0x7fb57bb9e028 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 153ms (View: 22, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:40:06) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb983a8 @id="target[1]", @name="global">, #<Share:0x7fb57bb98178 @id="target[2]", @name="other">, #<Share:0x7fb57bb97f98 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 222ms (View: 24, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:41:07) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb75808 @id="target[1]", @name="global">, #<Share:0x7fb57bb75268 @id="target[2]", @name="other">, #<Share:0x7fb57bb74c50 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.4ms)
+Completed in 236ms (View: 26, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:41:08) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"yes"}}
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 198ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:41:20) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb70ad8 @id="target[1]", @name="global">, #<Share:0x7fb57bb70650 @id="target[2]", @name="other">, #<Share:0x7fb57bb704c0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 221ms (View: 24, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:41:23) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"yes"}}
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 71ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:41:25) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"no"}}
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 114ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:42:15) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb84ad8 @id="target[1]", @name="global">, #<Share:0x7fb57bb848d0 @id="target[2]", @name="other">, #<Share:0x7fb57bb842e0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 227ms (View: 23, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:42:17) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"true"}}
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 122ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-07-18 17:43:08) [GET]
+
+SyntaxError (/work/projects/suse-media-server/app/controllers/shares_controller.rb:78: syntax error, unexpected $end, expecting kEND):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (23.2ms)
+Rendered rescues/_request_and_response (73.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:43:45) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba3d940 @id="target[1]", @name="global">, #<Share:0x7fb57ba3d710 @id="target[2]", @name="other">, #<Share:0x7fb57ba3d580 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 152ms (View: 24, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:43:48) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:68:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:44:38) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb89b28 @id="target[1]", @name="global">, #<Share:0x7fb57bb89920 @id="target[2]", @name="other">, #<Share:0x7fb57bb89768 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 216ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:44:39) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION nil
+
+ActionView::MissingTemplate (Missing template shares/smbaction.erb in view path app/views):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:44:53) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:44:53) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:44:55) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb8e268 @id="target[1]", @name="global">, #<Share:0x7fb57bb8e060 @id="target[2]", @name="other">, #<Share:0x7fb57bb8dd40 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 212ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:44:57) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "_method"=>"put", "action"=>"smbaction", "controller"=>"shares", "samba"=>{"status"=>"start"}}
+
+ActionView::MissingTemplate (Missing template shares/smbaction.erb in view path app/views):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:44:59) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "_method"=>"put", "action"=>"smbaction", "controller"=>"shares", "samba"=>{"status"=>"stop"}}
+
+ActionView::MissingTemplate (Missing template shares/smbaction.erb in view path app/views):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:45:30) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb86dd8 @id="target[1]", @name="global">, #<Share:0x7fb57bb86b80 @id="target[2]", @name="other">, #<Share:0x7fb57bb869f0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 217ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:45:32) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+
+ActionView::MissingTemplate (Missing template shares/smbaction.erb in view path app/views):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:45:41) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57baa5518 @id="target[1]", @name="global">, #<Share:0x7fb57baa4e60 @id="target[2]", @name="other">, #<Share:0x7fb57baa47a8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 155ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:45:42) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:69:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:45:46) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:69:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (27.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:45:56) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bac8b80 @id="target[1]", @name="global">, #<Share:0x7fb57bac8978 @id="target[2]", @name="other">, #<Share:0x7fb57bac87e8 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 154ms (View: 21, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:45:58) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:69:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (31.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:45:59) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:69:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.7ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:00) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+  app/controllers/shares_controller.rb:69:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:46:12) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57bb9d9e8 @id="target[1]", @name="global">, #<Share:0x7fb57bb9d7e0 @id="target[2]", @name="other">, #<Share:0x7fb57bb9d650 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.8ms)
+Completed in 150ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:14) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcnmb start"
+AFTER START SAMBA running? true
+
+ActionView::MissingTemplate (Missing template shares/nothing.erb in view path app/views):
+  app/controllers/shares_controller.rb:71:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:15) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcnmb stop"
+AFTER START SAMBA running? true
+
+ActionView::MissingTemplate (Missing template shares/smbaction.erb in view path app/views):
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:16) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcnmb start"
+AFTER START SAMBA running? true
+
+ActionView::MissingTemplate (Missing template shares/nothing.erb in view path app/views):
+  app/controllers/shares_controller.rb:71:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:46:27) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57ba363e8 @id="target[1]", @name="global">, #<Share:0x7fb57ba36078 @id="target[2]", @name="other">, #<Share:0x7fb57ba35dd0 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 146ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:29) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcnmb start"
+AFTER START SAMBA running? true
+
+ActionView::MissingTemplate (Missing template shares/nothing.erb in view path app/views):
+  app/controllers/shares_controller.rb:75:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:46:31) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcnmb stop"
+AFTER START SAMBA running? true
+
+ActionView::MissingTemplate (Missing template shares/nothing.erb in view path app/views):
+  app/controllers/shares_controller.rb:75:in `smbaction'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib64/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib64/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib64/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib64/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib64/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:47:00) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7fb57baeb798 @id="target[1]", @name="global">, #<Share:0x7fb57baeb1a8 @id="target[2]", @name="other">, #<Share:0x7fb57baeb018 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.2ms)
+Completed in 220ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:47:02) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 64ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:47:04) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcnmb stop"
+AFTER START SAMBA running? true
+Completed in 171ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:47:08) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcnmb start"
+AFTER START SAMBA running? true
+Completed in 138ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:47:31) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS true
+SAMBA is running true
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f8a393a32c8 @id="target[1]", @name="global">, #<Share:0x7f8a393a30c0 @id="target[2]", @name="other">, #<Share:0x7f8a393a2f30 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.8ms)
+Completed in 480ms (View: 36, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:47:35) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcsmb start"
+AFTER START SAMBA running? true
+Completed in 45ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:47:44) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcsmb stop"
+AFTER START SAMBA running? true
+Completed in 186ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:48:42) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 8ms (View: 7, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing IndexController#index (for 127.0.0.1 at 2011-07-18 17:48:42) [GET]
+Rendering template within layouts/application
+Rendering index/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:48:44) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f8a393b52e8 @id="target[1]", @name="global">, #<Share:0x7f8a393b50e0 @id="target[2]", @name="other">, #<Share:0x7f8a393b4f50 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.1ms)
+Completed in 212ms (View: 82, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:48:46) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcsmb stop"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS false
+Completed in 143ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:48:48) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcsmb start"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS true
+Completed in 268ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:48:51) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcsmb stop"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS false
+Completed in 218ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:49:37) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f8a39391cd0 @id="target[1]", @name="global">, #<Share:0x7f8a39391898 @id="target[2]", @name="other">, #<Share:0x7f8a39391708 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (3.0ms)
+Completed in 210ms (View: 18, DB: 0) | 200 OK [http://0.0.0.0/shares]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:49:40) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcsmb stop"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS false
+Completed in 148ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:49:44) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"start"}}
+ACTION "start"
+service "rcsmb start"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS true
+Completed in 204ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#smbaction (for 127.0.0.1 at 2011-07-18 17:49:48) [PUT]
+  Parameters: {"authenticity_token"=>"isMKMC8XqTTXjZBLeL4aBG/fexnsINGsYRK1i85MjUc=", "samba"=>{"status"=>"stop"}}
+ACTION "stop"
+service "rcsmb stop"
+AFTER START SAMBA running? true
+service "rcsmb status"
+SAMBA status from DBUS false
+Completed in 209ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/shares/smbaction]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2011-07-18 17:49:50) [GET]
+service "samba"
+service "rcsmb status"
+SAMBA status from DBUS false
+SAMBA is running false
+
+*** INDEX:: ALL SHAREs [#<Share:0x7f8a393af640 @id="target[1]", @name="global">, #<Share:0x7f8a393af140 @id="target[2]", @name="other">, #<Share:0x7f8a393aea10 @id="target[3]", @name="other2">]
+Rendering template within layouts/application
+Rendering shares/index
+Rendered shares/_shares (2.9ms)
+Completed in 151ms (View: 17, DB: 0) | 200 OK [http://0.0.0.0/shares]

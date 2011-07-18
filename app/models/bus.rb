@@ -52,8 +52,8 @@ class Bus
    dbus.set(share)[0]
  end
 
- def exec(srv, cmd)
-   dbus = self.bus(srv)
+ def exec(cmd)
+   dbus = self.bus(cmd)
    dbus.exec(cmd)[0]
  end
 end

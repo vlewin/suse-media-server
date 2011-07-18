@@ -1,22 +1,32 @@
 require "bus.rb"
+
+
+
 class Samba
+  attr_accessor :status
+  
+  def initialize(status)
+    @status = status
+  end
+  
   def self.running?
     bus = Bus.new()
-    ret = bus.exec("rcnmb status")
-    Rails.logger.error "SAMBA running? #{ret}"
-    ret
+    result = bus.exec("rcsmb status")
+    Rails.logger.error "SAMBA status from DBUS #{result}"
+    smb = Samba.new(result)
+    smb
   end
 
   def self.start
     bus = Bus.new
-    state = bus.exec("rcnmb start")
+    state = bus.exec("rcsmb start")
     Rails.logger.error "AFTER START SAMBA running? #{state}"
     return state
   end
 
   def self.stop
     bus = Bus.new
-    state = bus.exec("rcnmb stop")
+    state = bus.exec("rcsmb stop")
     Rails.logger.error "AFTER START SAMBA running? #{state}"
     return state
   end

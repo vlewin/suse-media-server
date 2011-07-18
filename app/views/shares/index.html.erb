@@ -9,7 +9,24 @@
 
 <script>
   jQuery(document).ready(function() {
-    $('[type=checkbox].ftoggle').slider({on: "running", off: "unused", size: 180});
+    $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
+    
+    
+    console.log("CHECKBOX")
+    console.log($('[type=checkbox].smb').is(':checked'))
+    
+    $('#smb').live('click', function() {
+      $('#smbform').submit();
+      if ($('[type=checkbox].smb').is(':checked')) {
+        console.log("unchecked")
+       } else {
+        console.log("checked")
+       }
+  
+       
+    
+    })
+    
   });
   
   $(function(){
@@ -142,7 +159,11 @@
         </p>
       </div>
       <div class="grid_6 right">
-        <%= check_box("samba", "status", { :class => 'ftoggle' }) %>
+        <% form_remote_for @smb, :url => {:action => 'smbaction'},
+          :before => "$('#wait').show();", :html => {:id => 'smbform'},
+          :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
+            <%= form.check_box(:status, { id=> 'smbaction', :class => 'ftoggle smb', :checked  => @smb.status }, "start", "stop") %>
+        <% end %>
       </div>
       <div class="clear"></div>
     </div>

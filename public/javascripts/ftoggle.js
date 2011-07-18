@@ -7,7 +7,8 @@
         size: 120,
         background: "green",
         on: "Yes",
-        off: "No"
+        off: "No",
+        id: "toggle"
       }
 
       var options =  $.extend(defaults, options);
@@ -19,7 +20,7 @@
         console.log($obj)
 
         $obj.wrap('<span class="ftoggle_container">')
-            .after($('<span class="ftoggle_box">'))
+            .after($('<span id="' + o.id + '" class="ftoggle_box">'))
             .after($('<span class="ftoggle_label_right">' + o.off + '</span>'))
             .after($('<span class="ftoggle_label_left">' + o.on + '</span>'))
 

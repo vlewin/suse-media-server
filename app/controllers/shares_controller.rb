@@ -3,6 +3,11 @@ require "share.rb"
 class SharesController < ApplicationController
   def index
     @shares = Share.all
+    @smb = Samba.running?
+    
+    
+    Rails.logger.error "SAMBA is running #{@smb.status}"
+    
     Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
   end
 
@@ -59,14 +64,18 @@ class SharesController < ApplicationController
   end
 
   #SYSTEM ACTIONS
-  def start
-    @state = Samba.start
-    render :text => @state
+  def smbaction
+    Rails.logger.error "ACTION #{params[:samba][:status].inspect}"
+    if params[:samba][:status] == "start"
+      @state = Samba.start
+      @smb = Samba.running?
+    else 
+      @state = Samba.stop
+      @smb = Samba.running?
+    end
+    
+    render :nothing => true
   end
 
-  def stop
-    @state = Samba.stop
-    render :text => @state
-  end
 end
 
