@@ -1,6 +1,7 @@
 
 <div>
   <% for share in @shares %>
+    <% unless share.name == "global" %>
     <div class="link">
       <%= link_to_remote(
            "<div class='key'>#{share.name}</div>" +
@@ -12,5 +13,6 @@
            :url => {:action => 'show', :id => share.id, :name => share.name })
       %>
     </div>
+    <% end %>
   <% end %>
 </div>

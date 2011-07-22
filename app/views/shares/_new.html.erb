@@ -1,0 +1,76 @@
+  <div id="toppanel">
+      <div id="newform">
+        <div class="socials">
+			    <ul class="reset">
+			     <!-- <li>
+			      <% link_to_remote(
+              "<img src='images/dlna-sym2.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:class => 'share_link'},
+              :url => {:action => 'new' })
+              %>
+			      </li>-->
+			      <li>
+			      <%= link_to_remote(
+              "<img src='images/audio-sym.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "AUDIO", :class => 'share_link'},
+              :url => {:action => 'new', :name => "audio" })
+              %>
+			      </li>
+			      <li>
+			      <%= link_to_remote(
+              "<img src='images/video-sym.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "VIDEO", :class => 'share_link'},
+              :url => {:action => 'new', :name => "video" })
+              %>
+			      </li>
+			      <li>
+			      <%= link_to_remote(
+              "<img src='images/photo-sym.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "PHOTO", :class => 'share_link'},
+              :url => {:action => 'new', :name => "photo" })
+              %>
+			      </li>
+			      <li>
+			      <%= link_to_remote(
+              "<img src='images/audio-sym.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "AUDIO", :class => 'share_link'},
+              :url => {:action => 'new', :name => "audio" })
+              %>
+			      </li>
+			      <li>
+			      <%= link_to_remote(
+              "<img src='images/video-sym.png' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "VIDEO", :class => 'share_link'},
+              :url => {:action => 'new', :name => "video" })
+              %>
+			      </li>
+            <li>
+			      <%= link_to_remote(
+              "<img src='images/dlna-sym.png' style='border:2px solid #7B9881;' alt="" />",
+              :update => 'newform',
+              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
+              :html => {:value => "OTHER", :class => 'share_link'},
+              :url => {:action => 'new', :name => "other" })
+              %>
+			      </li>			      			      			      			      			      			      
+<!--            <li><a href="#" value="AUDIO"><img src="images/audio-sym.png" alt="" /></a></li>
+			      <li><a href="#" value="PHOTO"><img src="images/photo-sym.png" alt="" /></a></li>
+			      <li><a href="#" value="VIDEO"><img src="images/video-sym.png" alt="" /></a></li>
+			      <li><a href="#" value="AUDIO"><img src="images/audio-sym.png" alt="" /></a></li>
+			      <li><a href="#" value="PHOTO"><img src="images/photo-sym.png" alt="" /></a></li>--->
+			    </ul>			
+    		</div>
+      </div>
+    </div>

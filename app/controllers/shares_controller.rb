@@ -3,11 +3,11 @@ require "share.rb"
 class SharesController < ApplicationController
   def index
     @shares = Share.all
+    @global = Share.find('target[1]')
+
     @smb = Samba.running?
     
-    
     Rails.logger.error "SAMBA is running #{@smb.status}"
-    
     Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
   end
 
