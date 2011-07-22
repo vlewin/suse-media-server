@@ -1,6 +1,6 @@
 <% form_remote_for @share, :url => {:action => 'update'},
-        :before => "$('#wait').show(); console.log('wait');",
-        :after => "console.log('finished'); expand($(this)); $('#wait').fadeOut('slow');",
+        :before => "$('#wait').show();",
+        :after => "expand($(this)); $('#wait').fadeOut('slow');",
         :update =>'mform' do |form| %>
 
     <%= form.hidden_field :id %>
@@ -36,10 +36,6 @@
           </div> 
         </div>
 
-        <!--<div class="line last">
-          <div class='key'> <%= form.label :comment %> </div>
-          <div class='value'> <%= @share.comment %> </div>
-        </div>-->
       <% else %>
         <div class="line">
           <div class='key'> <%= form.label :workgroup %> </div>

@@ -1,35 +1,22 @@
 $(function () {
-//  var $mcontent = $("#mcontent");
-//  var $links = $mcontent.find('div.link');
-
-
-//BACK CLICKED
   $('#back').click(function(){
-    //    $links.removeClass('active');
     shrink();
     hideSave();
     return false;
   })
-  
-  //LINK CLICKED
-// $('div.link').click(function(){
-  //    $links.removeClass('active');
-//    expand($(this));
-//  });
 });
 
 $(function () {
-//  $('a.show_container').click(function() {
-//    $('.hidden_container').show();
-//  });
   $('a#settings').click(function() {
     $('div.actionscont').find('a').hide();
-    $('div.msettings').toggle('show');
+//    $('div.msettings').toggle('show');
+    showSettings();
     showSave();
   });
 
   $('a#close').click(function() {
-    $('div.msettings').toggle('hide');
+//    $('div.msettings').toggle('hide');
+    hideSettings();
     hideSave();
   });
 });
@@ -43,10 +30,19 @@ function showSave() {
 
 function hideSave() {
   $('#submit').stop().animate({ width: "0" }, 100);
-  
   $('div.actionscont').find('a').show(); 
   $('#submit').hide();
   
+}
+
+function hideSettings () {
+//  $('div.msettings').fadeOut();
+  $('#msettings').addClass('hidden').toggle('hide');
+}
+
+function showSettings() {
+  $('#msettings').removeClass('hidden').toggle('show');
+//  $('div.msettings').fadeIn();
 }
 
 //INIT FTOGGLES
@@ -56,27 +52,30 @@ function initSliders(color) {
 }
 
 //EXPAND DETAIL VIEW
-function expand($link) {
+//function expand($link) {
+function expand() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
   var width = $mcontent.width();
   
 
   var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-  
-  $('div.msettings').hide();
+  $toggles.hide();
+
+//  hideSettings();
+  $('#msettings').fadeOut(50);
   showSave();
   
 //  $mcontent.find('div.link').hide();
   $mcontent.stop().animate({width: "1px" }, 300, function() {
     $mcontent.hide();
-    //var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-    $toggles.hide();
-  
+    
     $mform.show().stop().animate({width: "99%" }, 500, function() {
 //      $mform.stop().delay(200).animate({ width: "99%" }, 100);
-      $toggles.show();
+//      $toggles.show();
     });
+
+    $toggles.stop().delay(100).fadeIn(800);
   });
 }
 
@@ -95,7 +94,8 @@ function shrink() {
     
     
 //    $mform.find('div.line').hide();
-    $mform.hide(); $mcontent.show();
+    $mform.hide(); 
+    $mcontent.show();
     
     $mcontent.stop().animate({width: "100%" }, 300, function() {
       $mcontent.stop();
@@ -107,9 +107,12 @@ function shrink() {
 //SAVE ACTION
 $(function () {
   $('#submit').click(function() {
-    console.log("SUBMIT FORM")
-    $("#mcontent").find('form').submit();
-//    shrink();
-//    initSliders("orange")
+    if($("#msettings").hasClass('hidden')) {
+      $("#mform").find('form').submit();
+      console.log("SET SHARE SETTINGS")
+    } else {
+      $("#msettings").find('form').submit();
+      console.log("SET GLOBAL SETTINGS")
+    }
   });
 });

@@ -7,10 +7,18 @@ bus = DBus::system_bus
 service = bus.request_service("augeas.samba.Service")
 
 class AugeasSambaService < DBus::Object
+
+  #set default values otherwise overwrite with user settings
+  #GLOBAL_DEFAULTS = { "passdb_backend" => "tdbsam", "map_to_guest" => "Bad User", "usershare_allow_guests" => "Yes" }
+  
+  GLOBAL_DEFAULTS = {"restrict_anonymous" => "no", "guest_account" => "nobody", "security" => "share" }
+  NOBODY_DEFAULTS = {"guest_ok" => "yes", "inherit_acls" => "yes", "read_only" => "no", "guest_only" => "yes" }
+
   CONF_PATH = "/etc/samba/smb.conf/"
   AUG_PATH = "/files" + CONF_PATH
 
-  PROPERTIES = ["workgroup", "name", "path", "writeable", "browseable", "read_only", "security", "comment"]
+  PROPERTIES = ["name", "path", "writeable", "browseable", "read_only", "guest_only", "comment"]
+  GLOBAL = ["workgroup", "security"]
 
   def init
     augeas = Augeas::open("/", "/usr/share/libaugeas0/augeas/lenses/dist", Augeas::NO_MODL_AUTOLOAD)
@@ -36,59 +44,103 @@ class AugeasSambaService < DBus::Object
       [shares]
     end
 
-    #GET
+    #GET ALL NODES
     dbus_method :get, "in target:s, out matched:a{ss}" do |target|
       children = Hash.new
 
-      #get all nodes
       aug = init()
       array = aug.match("#{AUG_PATH}#{target}/*")
 
       children["id"] = target
-      children["name"] = aug.get("#{AUG_PATH}#{target}")
+
+      #resolve name from id
+      name = aug.get("#{AUG_PATH}#{target}")
+      children["name"] = name 
 
       array.each do | a |
         child = a.split('/').last
 
-        #augeas crashed if child node has a white space in his name
-        if PROPERTIES.include?(child)
-          if child.match(/\s/)
-            child = child.gsub(/\s/, "\\ ")
-            children[a.split('/').last] = aug.get("#{AUG_PATH}#{target}/#{child}")
-          else
-            children[a.split('/').last] = aug.get(a) unless aug.get(a).empty?
+        if children["name"] == "global"
+  
+	  if GLOBAL.include?(child)
+            puts "GLOBAL SETTINGS"
+	    children[child] = aug.get(a) unless aug.get(a).empty? 
+            puts "CHILD #{child} and value #{aug.get(a)}"
+            puts "*** \n"
+	  end
+	  	
+	else
+	
+          if PROPERTIES.include?(child)
+            #augeas crashed if child node has a white space in his name 
+            if child.match(/\s/)
+              child = child.gsub(/\s/, "\\ ")
+              children[child] = aug.get("#{AUG_PATH}#{target}/#{child}")
+            else
+              children[child] = aug.get(a) unless aug.get(a).empty?
+            end
           end
-        end
-     end
+
+        end #GLOBAL
+      end #EACH
 
       puts "FOUND #{children.inspect}"
       return [children]
     end
 
-    #SET
+    #SET NODE
     dbus_method :set, "in share:a{ss}, out success:b" do |share|
       aug = init()
         
       puts "#{AUG_PATH}#{share["id"]}"
         
+      #new smb share if not exist?
       if aug.get("#{AUG_PATH}#{share["id"]}").nil?
         aug.set("#{AUG_PATH}#{share["id"]}", share["name"])
       end
-        
+      
+      
+      puts "SHARE #{share.inspect }"
+      
+      #store id and name and remove from hash  
       id = share["id"]
-          
+      name = share["name"] 
+      
       share.delete("id")
       share.delete("name")
+ 
+      #TODO: check if key in SHARE and set user value otherwise set default GLOBAL values for nobody without password
+  
+      puts "NAME #{name}"
+ 
 
+      #TODO: find better way to detect GLOBAL section 
+      if id == "target[1]"
+        puts "WRITE GLOBAL SETTINGS"
+        GLOBAL_DEFAULTS.each do |key,value| 
+	  key = key.gsub(/_/, "\\ ")
+          aug.set("#{AUG_PATH}#{id}/#{key}", value)
+	end
+      else
+         puts "WRITE SHARE SETTINGS"
+        NOBODY_DEFAULTS.each do |key,value| 
+	  key = key.gsub(/_/, "\\ ")
+          aug.set("#{AUG_PATH}#{id}/#{key}", value)
+        end
+       
+      end
+	      
       share.each do |k,v|
-        puts "SET #{AUG_PATH}#{id}/#{k} WITH VALUE #{v}"
-        aug.set("#{AUG_PATH}#{id}/#{k}", v) unless k == "id"
+        puts "\n\n*** SHARE SET #{AUG_PATH}#{id}/#{k} WITH VALUE #{v}"
+        aug.set("#{AUG_PATH}#{id}/#{k}", v)
       end
 
       saved = aug.save
       puts "SAVE OK? #{saved}"
       saved
     end
+
+
 
     #EXEC
     dbus_method :exec, "in command:s, out out:b" do |cmd|
@@ -106,6 +158,8 @@ class AugeasSambaService < DBus::Object
         return "error"
       end
     end
+    
+    
 
   end
 end
