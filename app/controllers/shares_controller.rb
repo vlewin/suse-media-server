@@ -22,6 +22,8 @@ class SharesController < ApplicationController
 
     @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
     render :partial => 'form', :with => @share, :locals => {:share => @share } 
+
+
   end
   
   

@@ -1,0 +1,32 @@
+# smb.conf is the main Samba configuration file. You find a full commented
+# version at /usr/share/doc/packages/samba/examples/smb.conf.SUSE if the
+# samba-doc package is installed.
+# Date: 2011-03-01
+[global]
+   workgroup = WORKGROUP
+   security = share
+   restrict anonymous = no
+   guest account = nobody
+   map to guest = Bad User
+   os level = 20
+   netbios name = Linux
+   usershare allow guests = Yes
+   debug pid = Yes
+
+[video]
+   writeable = yes
+   browseable = yes
+   path = /home/tux/Videos/
+   read only = no
+   guest ok = yes
+   inherit acls = yes
+   guest only = yes
+
+[audio]
+   read only = no
+   guest ok = yes
+   inherit acls = yes
+   guest only = yes
+   writeable = yes
+   browseable = yes
+   path = /home/tux/Musik/
