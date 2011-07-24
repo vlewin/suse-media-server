@@ -1,0 +1,79 @@
+
+
+<div class="container_12">
+  <div class="grid_3">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+      <a href="/">BACK</a>
+    </div>
+  </div>
+
+  <div class="grid_5">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+      HEADER
+    </div>
+  </div>
+
+  <div class="grid_1">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+       <%= link_to_remote(
+          "ADD",
+          :update => 'form',
+          :url => {:controller => :playground, :action => 'new'}) %>
+    </div>
+  </div>
+
+  <div class="grid_1">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+      <%= link_to_remote(
+          "DEL",
+          :update => 'form',
+          :url => {:controller => :playground, :action => 'remove'}) %>
+    </div>
+  </div>
+
+  <div class="grid_1">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+      <%= link_to_remote(
+          "SET",
+          :update => 'form',
+          :url => {:controller => :playground, :action => 'settings'}) %>
+    </div>
+  </div>
+
+  <div class="grid_1">
+    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
+      <a href="#" id="add">EXR</a>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+<br>
+
+
+
+<div class="clear"></div>
+<br>
+
+<div id="form" class="container_12">
+  <div class="grid_8">
+    <div class="border" style="border:1px solid grey; height:360px; text-align:center; background:#fff;">
+      <img src="images/home_network.jpg">
+    </div>
+  </div>
+  <div class="grid_4">
+    <div class="border" style="border:1px solid grey; height:360px; text-align:left; background:#fff;">
+      <h2>Share list</h2>
+
+      <br>
+
+      <h2>Photo</h2>
+      <h2>Musik</h2>
+      <h2>Video</h2>
+      <h2>Files</h2>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+

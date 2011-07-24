@@ -1,0 +1,35 @@
+<h2 class="mheading grey">
+            Settings
+            <span style="float:right;"><a id="close" href="#"> close </a></span>
+          </h2>
+        
+          <div>
+
+          <% form_remote_for @global, :url => {:action => 'update'},
+                    :before => "$('#wait').show();",
+                    :after => "$('#wait').fadeOut('slow');",
+                    :html => { :class => "mform"},
+                    :update =>'mform' do |form| %>
+
+              <%= form.hidden_field :id %>
+              <div class="line">
+                <div class="key"> <%= form.label :workgroup %> </div>
+                <div class="value uppercase"><%= form.text_field :workgroup %></div>
+              </div>
+
+
+              <div class="line">
+                <div class='key'><%= form.label :security %></div>
+                <div class='value'> {
+                  <% if @global.security == 'share'%>
+                    <span style="color:green"> share </span>
+                    <span> user </span>
+                  <% else %>
+                    <span style="color:green"> user </span>
+                    <span> share </span>
+                  <% end %> 
+                  }
+                </div>
+              </div>
+            <% end %>
+
