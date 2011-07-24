@@ -1,6 +1,9 @@
 class Share
-  PROPERTIES = [:id, :name, :path, :workgroup, :writeable, :browseable, :read_only, :security, :comment]
+  PROPERTIES = [:id, :name, :path, :writeable, :browseable, :read_only, :comment]
+  GLOBAL = [:workgroup, :security]
+
   attr_accessor *PROPERTIES
+  attr_accessor *GLOBAL
 
   def initialize(args)
     if args.is_a? Hash
@@ -17,7 +20,7 @@ class Share
 
   def self.all
     shares = Array.new
-    bus = Bus.new
+    bus = Bus.new		
 
     shares_map = bus.find_all("samba")
     args = {}

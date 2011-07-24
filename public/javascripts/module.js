@@ -1,21 +1,52 @@
 $(function () {
-//  var $mcontent = $("#mcontent");
-//  var $links = $mcontent.find('div.link');
-
-
-//BACK CLICKED
+  //TODO: JUST FOR TEST -> REFACTORING
   $('#back').click(function(){
-    //    $links.removeClass('active');
-    shrink();
-    return false;
+    if ($('#msettings').hasClass('new')) {
+      $("div#newform").stop().animate({height: "-=300" }, 200, function() { });
+      hideSave();
+      return false;
+    } else {
+      shrink();
+      hideSave();
+      return false;
+    }
   })
-  
-  //LINK CLICKED
-// $('div.link').click(function(){
-  //    $links.removeClass('active');
-//    expand($(this));
-//  });
 });
+
+$(function () {
+  $('a#settings').click(function() {
+    $('div.actionscont').find('a').hide();
+    showSettings();
+    showSave();
+  });
+
+  $('a#close').click(function() {
+    hideSettings();
+    hideSave();
+  });
+});
+
+
+function showSave() {
+  $('div.actionscont').find('a').hide();
+  $('#submit').show();
+  $('#submit').stop().delay(200).animate({ width: "100%" }, 100);
+}
+
+function hideSave() {
+  $('#submit').stop().animate({ width: "0" }, 100);
+  $('div.actionscont').find('a').show();
+  $('#submit').hide();
+
+}
+
+function hideSettings () {
+  $('#msettings').addClass('hidden').toggle('hide');
+}
+
+function showSettings() {
+  $('#msettings').removeClass('hidden').toggle('show');
+}
 
 //INIT FTOGGLES
 function initSliders(color) {
@@ -24,34 +55,27 @@ function initSliders(color) {
 }
 
 //EXPAND DETAIL VIEW
-function expand($link) {
+function expand() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
   var width = $mcontent.width();
-//  var height = $mcontent.height();
-  
+
 
   var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-  
-  console.log("EXPAND")
-  
+  $toggles.hide();
 
-  
-  $mcontent.stop().animate({width: "20%" }, 300, function() {
-    $mform.css('border-left', '5px solid #eee').css('box-shadow', '-2px 0px 0px #888')
-    //initSliders("orange");
-//    $mform.height(height);
-  
-    var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-    console.log($toggles)
-    console.log("HIDE")
-    $toggles.hide();
-  
-    $mform.show().stop().animate({width: "76%" }, 500, function() {
-      $mform.stop().delay(200).animate({ width: "72%" }, 100);
-      $toggles.show();
-//      $mform.find('div.line').find('span.ftoggle_container').show().delay(50);
+  $mform.height($mcontent.height());
+
+  $('#msettings').fadeOut(50);
+  showSave();
+
+  $mcontent.stop().animate({width: "1px" }, 300, function() {
+    $mcontent.hide();
+
+    $mform.show().stop().animate({width: "99%" }, 500, function() {
     });
+
+    $toggles.stop().delay(100).fadeIn(800);
   });
 }
 
@@ -62,18 +86,15 @@ function shrink() {
   var width = $mcontent.width();
 
   var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-  console.log("SHRINK")
-  console.log($toggles)
   $toggles.hide();
-  
-//  $mform.find('div.line').hide();
-  
+
+
   $mform.stop().animate({width: "1px" }, 500, function() {
-    
-    
-//    $mform.find('div.line').hide();
+
+
     $mform.hide();
-    
+    $mcontent.show();
+
     $mcontent.stop().animate({width: "100%" }, 300, function() {
       $mcontent.stop();
     });
@@ -82,11 +103,25 @@ function shrink() {
 
 
 //SAVE ACTION
+//TODO: REFACTORING JUST FOR TEST!!!
 $(function () {
   $('#submit').click(function() {
-    console.log("CLICKED")
-    $("#mform").find('form').submit();
-//    shrink();
-//    initSliders("orange")
+
+    if($("#msettings").hasClass('new')) {
+      $("#toppanel").find('form').submit();
+      $("#msettings").removeClass('new');
+      console.log("SET NEW SHARE");
+      hideSave();
+    }
+
+    else if($("#msettings").hasClass('hidden')) {
+      $("#mform").find('form').submit();
+      console.log("SET SHARE SETTINGS")
+
+    } else {
+      $("#msettings").find('form').submit();
+      console.log("SET GLOBAL SETTINGS")
+    }
   });
 });
+

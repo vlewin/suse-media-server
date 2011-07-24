@@ -3,11 +3,11 @@ require "share.rb"
 class SharesController < ApplicationController
   def index
     @shares = Share.all
+    @global = Share.find('target[1]')
+
     @smb = Samba.running?
     
-    
     Rails.logger.error "SAMBA is running #{@smb.status}"
-    
     Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
   end
 
@@ -22,6 +22,8 @@ class SharesController < ApplicationController
 
     @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
     render :partial => 'form', :with => @share, :locals => {:share => @share } 
+
+
   end
   
   

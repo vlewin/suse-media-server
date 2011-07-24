@@ -5,48 +5,27 @@
 <%= stylesheet_link_tag 'mobilyblocks.css' %>
 <script type="text/javascript" src="/javascripts/mobilyblocks.js" ></script>
 
-
-
 <script>
   jQuery(document).ready(function() {
     $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
-    
-    
-    console.log("CHECKBOX")
-    console.log($('[type=checkbox].smb').is(':checked'))
-    
     $('#smb').live('click', function() {
       $('#smbform').submit();
-      if ($('[type=checkbox].smb').is(':checked')) {
-        console.log("unchecked")
-       } else {
-        console.log("checked")
-       }
-  
-       
-    
     })
-    
   });
   
   $(function(){
-	
-//	$('.socials').mobilyblocks();
-	
-	$('.socials').mobilyblocks({
-		direction: 'clockwise',
-		duration:300,
-		zIndex:500,
-		widthMultiplier:1.25
-	});
-	
-	
+    $('.socials').mobilyblocks({
+      direction: 'clockwise',
+      duration:300,
+      zIndex:500,
+      widthMultiplier:1.25
+    });
   });
 </script>
 
-<div style="padding:0px 0px;">
+<div>
   <div class="container_12 mhead">
-    <div class="grid_2 blcontainer">
+    <div class="grid_2 leftcont">
       <a href="/" id="back" class="button">BACK</a>
     </div>
 
@@ -55,9 +34,26 @@
       <h4>Access your files, videos, music and photo from any device in home network.</h4>
     </div>
 
-    <div class="grid_2 brcontainer">
-      <a href="#" id="add" class="button">+</a>
-      <a href="#" id="submit" class="button">SAVE</a>
+    <div class="grid_2 rightcont">
+      <div class="actionscont">
+          <% link_to_remote(
+                     "<img src='/images/plus.png' />",
+                     :before => "$('#wait').show();",
+                     :update => 'mform',
+                     :after => "$('#wait').hide();",
+                     :html => {:class => 'share_link'},
+                     :url => {:action => 'new'})
+                %>
+          <a  id="add" href="#" class="button">
+            <img src="/images/plus.png" />
+          </a>
+          <a id="settings" href="#" class="button">
+            <img src="/images/settings-white.png" />
+          </a>
+          
+          <a href="#" id="submit" class="button">SAVE</a>
+        <div class="clear"></div>
+      </div>
     </div>
 
 
@@ -73,84 +69,9 @@
   <div class="container_12 mbody">
 
 
-    <div id="toppanel">
-      <div id="newform">
-        <div class="socials">
-			    <ul class="reset">
-			     <!-- <li>
-			      <% link_to_remote(
-              "<img src='images/dlna-sym2.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:class => 'share_link'},
-              :url => {:action => 'new' })
-              %>
-			      </li>-->
-			      <li>
-			      <%= link_to_remote(
-              "<img src='images/audio-sym.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "AUDIO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "audio" })
-              %>
-			      </li>
-			      <li>
-			      <%= link_to_remote(
-              "<img src='images/video-sym.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "VIDEO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "video" })
-              %>
-			      </li>
-			      <li>
-			      <%= link_to_remote(
-              "<img src='images/photo-sym.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "PHOTO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "photo" })
-              %>
-			      </li>
-			      <li>
-			      <%= link_to_remote(
-              "<img src='images/audio-sym.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "AUDIO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "audio" })
-              %>
-			      </li>
-			      <li>
-			      <%= link_to_remote(
-              "<img src='images/video-sym.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "VIDEO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "video" })
-              %>
-			      </li>
-            <li>
-			      <%= link_to_remote(
-              "<img src='images/dlna-sym.png' style='border:2px solid #7B9881;' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "OTHER", :class => 'share_link'},
-              :url => {:action => 'new', :name => "other" })
-              %>
-			      </li>			      			      			      			      			      			      
-<!--            <li><a href="#" value="AUDIO"><img src="images/audio-sym.png" alt="" /></a></li>
-			      <li><a href="#" value="PHOTO"><img src="images/photo-sym.png" alt="" /></a></li>
-			      <li><a href="#" value="VIDEO"><img src="images/video-sym.png" alt="" /></a></li>
-			      <li><a href="#" value="AUDIO"><img src="images/audio-sym.png" alt="" /></a></li>
-			      <li><a href="#" value="PHOTO"><img src="images/photo-sym.png" alt="" /></a></li>--->
-			    </ul>			
-    		</div>
-      </div>
-    </div>
+    <%= render :partial => "new"  %>
 
-
+   
     <div class="mstatus">
       <div class="grid_6">
         <p class="left">
@@ -168,10 +89,15 @@
       <div class="clear"></div>
     </div>
 
-
-
     <div class="grid_12">
       <div id="mcontent" class="mcontent">
+        <div id="msettings" class="msettings hidden">
+          <%= render :partial => "settings"  %>
+          
+        </div>
+
+       </div>
+
           <%= render :partial => "shares"  %>
           
           <!-- CAN NOT UPDATE PARTIAL ???-->
