@@ -16,11 +16,13 @@ $(function () {
 $(function () {
   $('a#settings').click(function() {
     $('div.actionscont').find('a').hide();
+//    $('div.msettings').toggle('show');
     showSettings();
     showSave();
   });
 
   $('a#close').click(function() {
+//    $('div.msettings').toggle('hide');
     hideSettings();
     hideSave();
   });
@@ -46,6 +48,7 @@ function hideSettings () {
 
 function showSettings() {
   $('#msettings').removeClass('hidden').toggle('show');
+//  $('div.msettings').fadeIn();
 }
 
 //INIT FTOGGLES
@@ -59,8 +62,6 @@ function expand() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
   var width = $mcontent.width();
-
-
   var $toggles = $mform.find('div.line').find('span.ftoggle_container');
   $toggles.hide();
 
@@ -73,6 +74,17 @@ function expand() {
     $mcontent.hide();
 
     $mform.show().stop().animate({width: "99%" }, 500, function() {
+//  hideSettings();
+  $('#msettings').fadeOut(50);
+  showSave();
+  
+//  $mcontent.find('div.link').hide();
+  $mcontent.stop().animate({width: "1px" }, 300, function() {
+    $mcontent.hide();
+    
+    $mform.show().stop().animate({width: "99%" }, 500, function() {
+//      $mform.stop().delay(200).animate({ width: "99%" }, 100);
+//      $toggles.show();
     });
 
     $toggles.stop().delay(100).fadeIn(800);
@@ -90,11 +102,15 @@ function shrink() {
 
 
   $mform.stop().animate({width: "1px" }, 500, function() {
-
-
     $mform.hide();
     $mcontent.show();
 
+    
+    
+//    $mform.find('div.line').hide();
+    $mform.hide(); 
+    $mcontent.show();
+    
     $mcontent.stop().animate({width: "100%" }, 300, function() {
       $mcontent.stop();
     });
@@ -117,7 +133,8 @@ $(function () {
     else if($("#msettings").hasClass('hidden')) {
       $("#mform").find('form').submit();
       console.log("SET SHARE SETTINGS")
-
+    if($("#msettings").hasClass('hidden')) {
+      $("#mform").find('form').submit();
     } else {
       $("#msettings").find('form').submit();
       console.log("SET GLOBAL SETTINGS")
