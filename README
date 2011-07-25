@@ -1,17 +1,24 @@
-SUSE Media Server is a web front end for samba and dlna configuration
+SUSE Media Server is a easy to use web iterface for samba (file sharing) and dlna (streaming) configuration
 
 TODO LIST 
 ---------------------------------------------------------------------
 [WIP]:
+- dynamic flash[:notice] for messages
+- provide simple drag and drop mask for new shares
+- implement JQuery/Ruby based directory browser
+- improve input[type="file"] to be able to select folders and not the files
 
+[NEXT]:
 - systen monitoring (CPU, RAM, HDD)
 - provide system action for REBOOT and SHUTDOWN
 - provide mobile view for mobile devices (JQuery Mobile)
-- improve web UI and usability
-- clean up inline javascript and CSS code
 
-NEXT:
+[NEXT NEXT]:
 - FTP server configuration*
 - File browser (FTP)*
 - Jquery AjaxTerminal*
+
+[miscellaneous]:
+- improve web UI and usability
+- clean up inline javascript and CSS code
 
