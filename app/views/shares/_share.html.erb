@@ -1,6 +1,7 @@
 <% form_remote_for @share, :url => {:action => 'update'},
         :before => "$('#wait').show();",
         :after => "expand($(this)); $('#wait').fadeOut('slow');",
+        :html => {:id => "form_share"},
         :update =>'mform' do |form| %>
 
     <%= form.hidden_field :id %>

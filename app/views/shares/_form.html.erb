@@ -11,6 +11,7 @@
   <% form_remote_for :share,
     :url => {:action => 'create'},
     :before => "$('#wait').show();",
+    :html => {:id => "form_new"},
     :after => "$('#wait').fadeOut(); $('div#newform').stop().animate({height: '-=300' }, 200);" do |form| %>
 
     <%= form.hidden_field :id %>
@@ -24,8 +25,10 @@
 
     <div class="line">
       <div class='key'> <%= form.label :path %> </div>
+      
       <div class='value'>
         <%= form.text_field :path %>
+        <% form.file_field "ppp" %>
       </div>
     </div>
 

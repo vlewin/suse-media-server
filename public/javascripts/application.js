@@ -1,28 +1,15 @@
 //DASHBOARD
-$(document).ready(function() {
-  $("div.panel_button").click(function(){
-    $("div#panel").animate({ height: "80px" }).animate({ height: "52px" }, "fast");
-    $("div.panel_button").toggle();
-  });
+//$(document).ready(function() {
+//  $("div.panel_button").click(function(){
+//    $("div#panel").animate({ height: "80px" }).animate({ height: "52px" }, "fast");
+//    $("div.panel_button").toggle();
+//  });
 
-  $("div#hide_button").click(function(){
-    $("div#panel").animate({ height: "0px"}, "fast");
-  });
-});
+//  $("div#hide_button").click(function(){
+//    $("div#panel").animate({ height: "0px"}, "fast");
+//  });
+//});
 
-//DASHBOARD
-$(document).ready(function() {
-  $("a#add").click().toggle(function() {
-      $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
-      showSave();
-      $("#msettings").addClass('new');
-  }, function() {
-    $("div#newform").stop().animate({height: "-=280" }, 200, function() {
-    });
-  });
-});
-
-//END DASHBOARD
 
 //SHINE EFFECT
 $(document).ready(function() {
@@ -34,23 +21,23 @@ $(document).ready(function() {
   setInterval(function() {
    $('#beta').find(".shine").css("background-position","-99px 0");
    $('#beta').find(".shine").animate({ backgroundPosition: '99px 0'},700);
-  }, 5000);
+  }, 10000);
 });
 //END SHINE EFFECT
 
-$(document).ready(function() {
-  $("#box").click().toggle(function() {
-    $(this).animate({left: "+="+$(this).width() }, 200, function() {
-      $('#slider').css('background', 'green');
-      $('#status label').text("Enabled")
-    });
-  }, function() {
-    $(this).animate({left: "-="+$(this).width() }, 200, function() {
-      $('#slider').css('background', '#888');
-      $('#status label').text("Disabled")
-    });
-  });
-});
+//$(document).ready(function() {
+//  $("#box").click().toggle(function() {
+//    $(this).animate({left: "+="+$(this).width() }, 200, function() {
+//      $('#slider').css('background', 'green');
+//      $('#status label').text("Enabled")
+//    });
+//  }, function() {
+//    $(this).animate({left: "-="+$(this).width() }, 200, function() {
+//      $('#slider').css('background', '#888');
+//      $('#status label').text("Disabled")
+//    });
+//  });
+//});
 
 //jQuery(document).ready(function() {
 //	$("a#ToogleSidebar").click().toggle(function() {

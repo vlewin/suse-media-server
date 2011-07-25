@@ -8,7 +8,7 @@
           <% form_remote_for @global, :url => {:action => 'update'},
                     :before => "$('#wait').show();",
                     :after => "$('#wait').fadeOut('slow');",
-                    :html => { :class => "mform"},
+                    :html => { :id => "form_settings", :class => "mform"},
                     :update =>'mform' do |form| %>
 
               <%= form.hidden_field :id %>
