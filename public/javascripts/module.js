@@ -74,19 +74,16 @@ function expand() {
     $mcontent.hide();
 
     $mform.show().stop().animate({width: "99%" }, 500, function() {
-//  hideSettings();
-  $('#msettings').fadeOut(50);
-  showSave();
-  
-//  $mcontent.find('div.link').hide();
+      $('#msettings').fadeOut(50);
+      showSave();
+    });
+    
+    });
   $mcontent.stop().animate({width: "1px" }, 300, function() {
     $mcontent.hide();
     
-    $mform.show().stop().animate({width: "99%" }, 500, function() {
-//      $mform.stop().delay(200).animate({ width: "99%" }, 100);
-//      $toggles.show();
-    });
-
+    $mform.show().stop().animate({width: "99%" }, 500);
+    
     $toggles.stop().delay(100).fadeIn(800);
   });
 }
@@ -101,19 +98,17 @@ function shrink() {
   $toggles.hide();
 
 
-  $mform.stop().animate({width: "1px" }, 500, function() {
+  $mform.stop().animate({width: "0px" }, 500, function() {
     $mform.hide();
     $mcontent.show();
-
     
-    
-//    $mform.find('div.line').hide();
     $mform.hide(); 
     $mcontent.show();
     
     $mcontent.stop().animate({width: "100%" }, 300, function() {
       $mcontent.stop();
     });
+    
   });
 }
 
@@ -126,19 +121,17 @@ $(function () {
     if($("#msettings").hasClass('new')) {
       $("#toppanel").find('form').submit();
       $("#msettings").removeClass('new');
-      console.log("SET NEW SHARE");
       hideSave();
     }
 
     else if($("#msettings").hasClass('hidden')) {
       $("#mform").find('form').submit();
-      console.log("SET SHARE SETTINGS")
-    if($("#msettings").hasClass('hidden')) {
-      $("#mform").find('form').submit();
-    } else {
-      $("#msettings").find('form').submit();
-      console.log("SET GLOBAL SETTINGS")
     }
+    
+    else {
+      $("#msettings").find('form').submit();
+    }
+    
   });
 });
 

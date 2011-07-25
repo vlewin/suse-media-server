@@ -10,49 +10,21 @@
 
     <%= stylesheet_link_tag 'forms.css' %>
     <%= stylesheet_link_tag 'module.css' %>
-    
-        
 
-
-
-<!--    <%= stylesheet_link_tag 'jquery.textreflection.css' %> -->
 
     <script type="text/javascript" src="/javascripts/jquery-1.4.3.js"></script>
     <script type="text/javascript" src="/javascripts/jrails.js" ></script>
     <script type="text/javascript" src="/javascripts/application.js" ></script>
-
-<!--    <script type="text/javascript" src="/javascripts/jquery.textreflection.js" ></script> -->
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#rtoggle").click(function(){
-      console.log("d");
-      if($(this).hasClass('active')) {
-        $('#rightpanel').animate({width: 1}, {duration: "fast"});
-        $(this).removeClass("active")
-
-        return false;
-      } else {
-        $('#rightpanel').animate({width: 250}, {duration: "fast"});
-        $(this).addClass("active")
-        return false;
-
-      }
-    });
-  });
-  </script>
-
   </head>
+  
   <body style="position:relative;">
   <div id="container">
 
     <div id="header">
        <div class="container_12">
         <div class="grid_3">
-          <!--<img src="images/suse-sticker2.png" style="display:inline-block; float:left; height:100px; width:100px;" alt="" />-->
 
           <div id="beta">
-<!--           <img src="../images/beta-button.png" class="large_thumb_image" alt="thumb" />-->
            <img src="../images/alpha-button.png" class="large_thumb_image" alt="thumb" />
            <div class="shine"></div>
           </div>
@@ -74,14 +46,11 @@
             <img src="/images/home-sym.png" style="margin:5px 0px; width:32px; height:32px; " />
             <label style="vertical-align:middle; ">Home</label>
           </a>
-<<<<<<< HEAD
-=======
 
           <a href="/" style="font-weight:bold; color:#666; text-shadow:0px 1px 0px #fff; text-decoration:none;">
             <img src="/images/action-sym.png" style="margin:5px 0px; width:32px; height:32px; " />
             <label style="vertical-align:middle; ">Logout</label>
           </a>
->>>>>>> 86148530b611a5d04326cd52f0eb103098557526
         </div>
       </div>
     </div>
