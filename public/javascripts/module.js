@@ -22,6 +22,7 @@ function showSave(form) {
 function hideSave() {
   $('#submit').stop().animate({ width: "0" }, 100);
   $('div.actionscont').find('a').show();
+  $('#submit').data('form', '')
   $('#submit').hide();
 
 }
@@ -61,7 +62,6 @@ function expand() {
       showSave('form_share');
       $toggles.stop().delay(200).fadeIn();
     });
-    
    });
 }
 
@@ -77,16 +77,13 @@ function shrink() {
 
   $mform.stop().animate({width: "0px" }, 500, function() {
     $mform.hide();
-//    $mcontent.show();
-    
-    $mcontent.show().stop().animate({width: "100%" }, 500, function() { /*$mcontent.stop();*/ });
-    
+    $mcontent.show().stop().animate({width: "100%" }, 500);
   });
 }
 
 //SHOW FORM FOR NEW SHARES
 $(document).ready(function() {
-  $("a#add").click().toggle(function() {
+  $("#new").click().toggle(function() {
     $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
     showSave('form_new');
   }, function() {
@@ -97,18 +94,20 @@ $(document).ready(function() {
 
 //BACK
 $(function () {
-  //TODO: JUST FOR TEST -> REFACTORING
   $('#back').click(function(){
-    if ($('#msettings').hasClass('new')) {
-      $("div#newform").stop().animate({height: "-=300" }, 200, function() { });
-      hideSave();
-      return false;
-    } else {
+    form = $('#submit').data('form');
+    if(form == 'form_share') {
       shrink();
       hideSave();
       return false;
+    } else if(form == 'form_new') {
+      $("div#newform").stop().animate({height: "-=300" }, 200);
+      hideSave();
+      return false;
+    } else {
+      return true;
     }
-  })
+  });
 });
 
 //SAVE ACTION

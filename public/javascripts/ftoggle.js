@@ -17,8 +17,6 @@
         var o = options;
         var $obj = $(this);
         
-        console.log($obj)
-
         $obj.wrap('<span class="ftoggle_container">')
             .after($('<span id="' + o.id + '" class="ftoggle_box">'))
             .after($('<span class="ftoggle_label_right">' + o.off + '</span>'))
