@@ -12,6 +12,7 @@
     :url => {:action => 'create'},
     :before => "$('#wait').show();",
     :html => {:id => "form_new"},
+    :update => "shares",
     :after => "$('#wait').fadeOut(); $('div#newform').stop().animate({height: '-=300' }, 200);" do |form| %>
 
     <%= form.hidden_field :id %>

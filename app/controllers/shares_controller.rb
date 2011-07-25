@@ -37,12 +37,7 @@ class SharesController < ApplicationController
       Rails.logger.debug @shares.inspect
       Rails.logger.debug "\n END"
       
-      render :partial => 'shares', :locals => {:shares => @shares } 
-      
-      #render :update do |page|
-      #  page.replace_html  'mcontent', :partial => "shares", :object => [@shares]
-      #end
-
+      render :partial => 'shares'
       
       #redirect_to :shares
     else 

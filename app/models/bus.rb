@@ -4,14 +4,7 @@ require "dbus"
 class Bus
  attr_accessor :method
 
-# def initialize(args)
-#  @methode = args
-#  Rails.logger.error "Methode #{@methode.inspect}"
-# end
-
  def bus(serv)
-  Rails.logger.error "service #{serv.inspect}"
-
   if serv != "dlna"
     bus = DBus.system_bus
     ruby_service = bus.service("augeas.samba.Service")
@@ -37,7 +30,6 @@ class Bus
  end
 
  def find_all(srv)
-#   dbus = self.init()
    dbus = self.bus(srv)
    ret = dbus.all(' ')[0]
  end
