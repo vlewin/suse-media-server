@@ -1,8 +1,8 @@
 .socials {
   display:block;
-  width:71px;
-  height:71px;
-  background:url(../images/samba-sym.png) no-repeat;
+  width:64px;
+  height:64px;
+  background:url(../images/smb.png) no-repeat;
 
   cursor:pointer;
   position:relative;

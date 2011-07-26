@@ -8,17 +8,17 @@
 
     <div class="line">
       <div class='key'> <%= form.label :name %> </div>
-        <div class='value' style="text-transform:uppercase;"> 
+        <div class='value' style="text-transform:uppercase;">
           <% form.text_field :name %>
           <%= @share.name %>
         </div>
-        
+
       </div>
 
       <% unless @share.name == "global"%>
         <div class="line">
           <div class='key'> <%= form.label :path %> </div>
-          <div class='value'> 
+          <div class='value'>
             <%= @share.path %>
           </div>
         </div>
@@ -27,14 +27,16 @@
           <div class='key'> <%= form.label :browseable %> </div>
           <div class='value'>
             <%= form.check_box(:browseable, {:class=>"ftoggle"}, "yes", "no")%>
-          </div> 
+            <img class="wait" src="/images/wait.gif" />
+          </div>
         </div>
 
         <div class="line">
           <div class='key'> <%= form.label :writeable %> </div>
           <div class='value'>
             <%= form.check_box(:writeable, {:class=>"ftoggle"}, "yes", "no")%>
-          </div> 
+            <img class="wait" src="/images/wait.gif" />
+          </div>
         </div>
 
       <% else %>
@@ -47,6 +49,7 @@
 
 <script>
   $(function () {
-    initSliders("orange")
+    //initSliders("orange")
   })
 </script>
+

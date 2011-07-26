@@ -12,13 +12,13 @@
       $('#smbform').submit();
     })
   });
-  
+
   $(function(){
     $('.socials').mobilyblocks({
       direction: 'clockwise',
       duration:300,
       zIndex:500,
-      widthMultiplier:1.25
+      widthMultiplier:1.50
     });
   });
 </script>
@@ -50,7 +50,7 @@
           <a id="settings" href="#" class="button">
             <img src="/images/settings-white.png" />
           </a>
-          
+
           <a href="#" id="submit" class="button">SAVE</a>
         <div class="clear"></div>
       </div>
@@ -71,7 +71,7 @@
 
     <%= render :partial => "new"  %>
 
-   
+
     <div class="mstatus">
       <div class="grid_6">
         <p class="left">
@@ -93,13 +93,13 @@
       <div id="mcontent" class="mcontent">
         <div id="msettings" class="msettings hidden">
           <%= render :partial => "settings"  %>
-          
+
         </div>
 
        </div>
 
           <%= render :partial => "shares"  %>
-          
+
           <!-- CAN NOT UPDATE PARTIAL ???-->
           <!--<div>
             <% for share in @shares %>

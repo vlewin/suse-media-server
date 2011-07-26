@@ -46,21 +46,28 @@ function expand() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
   var $msettings = $('#msettings');
-  
-  var width = $mcontent.width();
-  var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-  
-  $toggles.hide();
-  $msettings.fadeOut(50);
-  
+
+  $msettings.fadeOut();
+
+
+  var $values = $mform.find('div.value');
+  $values.hide();
+
+  //BUG: form height is growing after multiple submit
   $mform.height($mcontent.height());
-  
-  $mcontent.stop().animate({width: "0px" }, 500, function() {
+
+  $mcontent.stop().animate({width: "0px" }, 300, function() {
     $mcontent.hide();
 
-    $mform.show().stop().animate({width: "99%" }, 500, function() {
+    $mform.show().stop().animate({width: "99%" }, 300, function() {
       showSave('form_share');
-      $toggles.stop().delay(200).fadeIn();
+
+      $values.show();
+
+      setTimeout( function() {
+         $mform.find('div.value img.wait').hide();
+         initSliders("orange");
+      }, 520);
     });
    });
 }
@@ -69,15 +76,18 @@ function expand() {
 function shrink() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
-  
-  var width = $mcontent.width();
-  var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-  
-  $toggles.hide();
 
-  $mform.stop().animate({width: "0px" }, 500, function() {
+  var width = $mcontent.width();
+//  var $toggles = $mform.find('div.line').find('span.ftoggle_container');
+
+  var $values = $mform.find('div.value');
+  $values.hide();
+
+//  $toggles.hide();
+
+  $mform.stop().animate({width: "0px" }, 300, function() {
     $mform.hide();
-    $mcontent.show().stop().animate({width: "100%" }, 500);
+    $mcontent.show().stop().animate({width: "100%" }, 300);
   });
 }
 
@@ -115,7 +125,27 @@ $(function () {
 $(function () {
   $('#submit').click(function() {
     $('#'+$('#submit').data('form')).submit();
-    hideSave();  
+    hideSave();
   });
 });
+
+
+//<script>$("#start").click(function () {
+//  $("div").show("slow");
+//  $("div").animate({left:'+=200'},5000);
+//  $("div").queue(function () {
+//    $(this).addClass("newcolor");
+//    $(this).dequeue();
+//  });
+//  $("div").animate({left:'-=200'},1500);
+//  $("div").queue(function () {
+//    $(this).removeClass("newcolor");
+//    $(this).dequeue();
+//  });
+//  $("div").slideUp();
+//});
+//$("#stop").click(function () {
+//  $("div").clearQueue();
+//  $("div").stop();
+//});</script>
 
