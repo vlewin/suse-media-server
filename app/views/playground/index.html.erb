@@ -1,10 +1,18 @@
 <script type="text/javascript" src="/javascripts/filebrowser.js" ></script>
 
+<style>
+  li.dir { background: #fff;}
+  li.subdir { padding-left: 10px;}
+</style>
+
 <script>
   $(function(){
-    $('#browser').directory({parent: "/home"});
+ //  {parent: "/home"}
+    $('#browser').directory();
   });
 </script>
+
+<div id="directories" style="display:none;">DIRS</div>
 
 
 <input type="text" id="browser" style="border:1px solid #ccc;">
