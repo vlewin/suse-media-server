@@ -11,8 +11,18 @@ class AugeasSambaService < DBus::Object
   #set default values otherwise overwrite with user settings
   #GLOBAL_DEFAULTS = { "passdb_backend" => "tdbsam", "map_to_guest" => "Bad User", "usershare_allow_guests" => "Yes" }
   
-  GLOBAL_DEFAULTS = {"restrict_anonymous" => "no", "guest_account" => "nobody", "security" => "share" }
-  NOBODY_DEFAULTS = {"guest_ok" => "yes", "inherit_acls" => "yes", "read_only" => "no", "guest_only" => "yes" }
+  GLOBAL_DEFAULTS = {"restrict_anonymous" => "no", "guest_account" => "nobody", "security" => "share", "unix_extensions" => "yes" }
+  NOBODY_DEFAULTS = { "guest_ok" => "yes", 
+                      "inherit_acls" => "yes", 
+		      "read_only" => "no", 
+		      "guest_only" => "yes", 
+		      "browseable" => "yes", 
+		      "writeable" => "yes", 
+		      "available" => "yes",
+		      "create_mask" => "0660",
+		      "directory_mask" => "0770",
+		      "force_group" => "users"
+		      }
 
   CONF_PATH = "/etc/samba/smb.conf/"
   AUG_PATH = "/files" + CONF_PATH
@@ -136,6 +146,10 @@ class AugeasSambaService < DBus::Object
       end
 
       saved = aug.save
+      
+      #TODO: better check for command execution status (make it DRY)
+      ret = `rcsmb restart`
+      
       puts "SAVE OK? #{saved}"
       saved
     end
