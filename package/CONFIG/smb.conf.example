@@ -21,18 +21,6 @@
    path = /home/mrstealth/SAMBA/Dokumente
    force user = mrstealth
    force group = users
-[photo]
-   read only = no
-   available = yes
-   guest ok = yes
-   inherit acls = yes
-   writeable = yes
-   browseable = yes
-   guest only = yes
-   path = /home/mrstealth/SAMBA/Bilder
-   valid users = %S
-   create mode = 0600
-   directory mode = 0700
 [audio]
    read only = no
    available = yes

@@ -1,25 +1,25 @@
 (function($){
 
   var methods = {
-    init : function( data ) {
+    init : function(data, parent) {
 
       var dirs = data.dirs;
-      var html = '<ul>';
-      
+      var html = '<ul id="dirs" class="dirs" data-parent ="' + parent + '">';
+
       console.log(dirs.length);
 
       for(var i=0; i< dirs.length; i++) {
 
 //        if(typeof(dirs[i]) == "object") {
 //          var obj = dirs[i];
-//          
+//
 //          html += '<ul>';
-//          
+//
 //          for (key in obj) {
 //            console.log("DIR " + key);
-//            
+//
 //            html += '<li class="dir">' + key + '</li>';
-//          
+//
 //            if(obj[key].length > 1) {
 //              for(value in obj[key]) {
 //                html += '<li class="subdir" data-subdir="' + obj[key][value] + '" >';
@@ -30,24 +30,24 @@
 //            }
 //          }
 //        } else {
-        
+
           html += '<li class="dir">' + dirs[i] + '</li>';
           console.log('DIR ' + parseInt(i+1) + ': ' + dirs[i]);
-        
+
 //        }
-        
+
         html += '</ul>';
-        
-   
+
+
         $('#directories').html(html).show();
-        
-      }  
-      
+
+      }
+
     },
-      
+
     ajax : function(dir) {
       console.log("AJAX " + dir);
-      
+
       $.ajax({
         type        : "POST",
         url         : "/browser/get",
@@ -56,11 +56,11 @@
         dataType    : "json",
         success     : function( result ) {
           console.log(result);
-          return methods.init(result);
+          return methods.init(result, dir);
         }
       });
-    }, 
-    
+    },
+
     show : function( ) {
       $('#directories').show();
     },
@@ -70,34 +70,36 @@
 //  $.fn.directory = function(method, options){
   $.fn.directory = function(options){
     var opt = $.extend({
-      parent: "/work",
+      parent: "/home/mrstealth",
       height: "50px"
     }, options);
- 
+
     var $this = $(this);
 
     return $this.each(function() {
       $this.css('height', opt.height);
-      
+
       $(this).bind({
         click: function(evt){
           args = ['Hello', 'world'];
           arg = {ddd:  "ddd"};
 
 //          return methods.ajax(opt.parent);
-          
+
           var result = methods.ajax(opt.parent);
           console.log(result);
-          
+
           $('li.dir').live('click', function() {
-            console.log($(this).text());
-            methods.ajax($(this).text());
+            console.log($(this).find('ul'));
+            console.log($('#dirs').attr('data-parent'));
+            methods.ajax($('#dirs').attr('data-parent') + '/' + $(this).text());
           });
         }
-        
+
       });
-      
-      
+
+
     });
   };
 })(jQuery);
+
