@@ -3,31 +3,88 @@
   var methods = {
     init : function(data, parent) {
 
-      var dirs = data.dirs;
       var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
-
-      console.log(dirs.length);
-
-      for(var i=0; i< dirs.length; i++) {
-
-        if(typeof(dirs[i]) == "object") {
-          for (key in dirs[i]) {
-            html += '<li class="dir parent">' + key + '</li>';
+      
+//      for(var i=0; i< data.length; i++) {
+      for (dir in data) {
+        console.log('DIRECTORY ' + dir)
+        
+        for (key in data[dir]) {
+        
+          if(key == "path") {
+            console.log('PATH ' + key + ' ' + data[dir][key])
+            html += '<li class="dir parent" data-parent ="' + key +'">' + dir + '</li>';
           }
-        } else {
-
-          html += '<li class="dir">'; 
-          html += dirs[i];
-          html += '<a href="#" class="share" data-path ="' + dirs[i] + '">share this directory</a>';
-          html += '</li>';
+          
+          if(key == "children") {
+            console.log('CHILDREN ' + key + ' ' + data[dir][key])
+            html += '<li class="dir parent" data-parent ="' + key +'">' + dir + '</li>';
+          }
+          
         }
-
-        html += '</ul>';
-        $('#directories').html(html).show();
-
+        
       }
+      
+       html += '</ul>';
+       $('#directories').html(html).show();
+      
+//      var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
+
+//      console.log(dirs.length);
+
+//      for(var i=0; i< dirs.length; i++) {
+//        var obj = dirs[i]
+//        
+//        if(typeof(dirs[i]) == "object") {
+//          
+//          for (key in obj) {
+//            html += '<li class="dir parent" data-parent ="' + obj[key] +'">' + key + '</li>';
+//          }
+//        } else {
+
+//          html += '<li class="dir">'; 
+//          html += obj;
+//          html += '<a href="#" class="share" data-path ="' + parent + obj + '">share this directory</a>';
+//          html += '</li>';
+//        }
+
+//        html += '</ul>';
+//        $('#directories').html(html).show();
+
+//      }
 
     },
+    
+//    ONLY WORKS WITH --> get_dirs(dir)
+//    init : function(data, parent) {
+
+//      var dirs = data.dirs;
+//      var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
+
+//      console.log(dirs.length);
+
+//      for(var i=0; i< dirs.length; i++) {
+//        var obj = dirs[i]
+//        
+//        if(typeof(dirs[i]) == "object") {
+//          
+//          for (key in obj) {
+//            html += '<li class="dir parent" data-parent ="' + obj[key] +'">' + key + '</li>';
+//          }
+//        } else {
+
+//          html += '<li class="dir">'; 
+//          html += obj;
+//          html += '<a href="#" class="share" data-path ="' + parent + obj + '">share this directory</a>';
+//          html += '</li>';
+//        }
+
+//        html += '</ul>';
+//        $('#directories').html(html).show();
+
+//      }
+
+//    },
 
     ajax : function(dir) {
       console.log("AJAX " + dir);
