@@ -4,41 +4,25 @@
     init : function(data, parent) {
 
       var dirs = data.dirs;
-      var html = '<ul id="dirs" class="dirs" data-parent ="' + parent + '">';
+      var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
 
       console.log(dirs.length);
 
       for(var i=0; i< dirs.length; i++) {
 
-//        if(typeof(dirs[i]) == "object") {
-//          var obj = dirs[i];
-//
-//          html += '<ul>';
-//
-//          for (key in obj) {
-//            console.log("DIR " + key);
-//
-//            html += '<li class="dir">' + key + '</li>';
-//
-//            if(obj[key].length > 1) {
-//              for(value in obj[key]) {
-//                html += '<li class="subdir" data-subdir="' + obj[key][value] + '" >';
-//                console.log(" SUBDIR " + obj[key][value])
-//                html += obj[key][value];
-//                html += '</li>';
-//              }
-//            }
-//          }
-//        } else {
+        if(typeof(dirs[i]) == "object") {
+          for (key in dirs[i]) {
+            html += '<li class="dir parent">' + key + '</li>';
+          }
+        } else {
 
-          html += '<li class="dir">' + dirs[i] + '</li>';
-          console.log('DIR ' + parseInt(i+1) + ': ' + dirs[i]);
-
-//        }
+          html += '<li class="dir">'; 
+          html += dirs[i];
+          html += '<a href="#" class="share" data-path ="' + dirs[i] + '">share this directory</a>';
+          html += '</li>';
+        }
 
         html += '</ul>';
-
-
         $('#directories').html(html).show();
 
       }
@@ -47,7 +31,6 @@
 
     ajax : function(dir) {
       console.log("AJAX " + dir);
-
       $.ajax({
         type        : "POST",
         url         : "/browser/get",
@@ -67,10 +50,9 @@
     hide : function( ) { },
   };
 
-//  $.fn.directory = function(method, options){
   $.fn.directory = function(options){
     var opt = $.extend({
-      parent: "/home/mrstealth",
+      parent: "/suse/vlewin/",
       height: "50px"
     }, options);
 
@@ -81,23 +63,20 @@
 
       $(this).bind({
         click: function(evt){
-          args = ['Hello', 'world'];
-          arg = {ddd:  "ddd"};
-
-//          return methods.ajax(opt.parent);
-
           var result = methods.ajax(opt.parent);
-          console.log(result);
 
           $('li.dir').live('click', function() {
-            console.log($(this).find('ul'));
-            console.log($('#dirs').attr('data-parent'));
             methods.ajax($('#dirs').attr('data-parent') + '/' + $(this).text());
+          });
+          
+          $('a.share').live('click', function() {
+            console.log($(this).attr('data-path'))
+            $('#browser').val($(this).attr('data-path'));
+            return false;
           });
         }
 
       });
-
 
     });
   };

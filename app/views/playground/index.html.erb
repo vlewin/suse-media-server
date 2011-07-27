@@ -1,11 +1,36 @@
 <script type="text/javascript" src="/javascripts/filebrowser.js" ></script>
 
 <style>
-  li.dir { background: #fff;}
+  li { list-style: none;}
+  li.dir { background: #fff; color:#888; font-size:36px; padding-left:0px; position:relative; padding-left:40px; }
+  
+  
+  li.dir:before {
+    content:url(../images/shrink.png);
+    position:absolute;
+    left:0;
+    vertical-align:middle;
+    width:16px;
+    height:16px; 
+  }
+  
+  
+  li.dir.parent { color: orange; padding-left:40px; }
+
+
+  
+  li.dir.parent:before {
+    content:url(../images/expand.png);
+    position:absolute;
+    left:0;
+    vertical-align:middle;
+    width:16px;
+    height:16px; 
+  }
+  
   li.subdir { padding-left: 10px;}
-
-
-
+  
+  a.share { float:right; }
 </style>
 
 <script>
