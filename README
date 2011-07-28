@@ -6,7 +6,13 @@ TODO LIST
 - dynamic flash[:notice] for messages
 - provide simple drag and drop mask for new shares
 - implement JQuery/Ruby based directory browser
-- improve input[type="file"] to be able to select folders and not the files
+
+- fix: automatically detect user name and pass as param to smb.conf (permissions)
+
+- improve input[type="file"] to be able to select folders and not the files [DONE]
+- fix: do not fire AJAX call if current location is home diretory
+- fix: automatically detect "home" directory
+
 
 [NEXT]:
 - systen monitoring (CPU, RAM, HDD)
