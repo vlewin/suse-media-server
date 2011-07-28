@@ -7,6 +7,8 @@ TODO LIST
 - provide simple drag and drop mask for new shares
 - implement JQuery/Ruby based directory browser
 
+
+- fix: provide settings for default working directory in SAMBA section "configure"
 - fix: automatically detect user name and pass as param to smb.conf (permissions)
 
 - improve input[type="file"] to be able to select folders and not the files [DONE]
