@@ -4,17 +4,15 @@
   <head>
     <%= stylesheet_link_tag '960.css' %>
     <%= stylesheet_link_tag 'reset.css' %>
+    
     <%= stylesheet_link_tag 'application.css' %>
-
     <%= stylesheet_link_tag 'layout.css' %>
-
     <%= stylesheet_link_tag 'forms.css' %>
-    <%= stylesheet_link_tag 'module.css' %>
 
+    <%= javascript_include_tag 'jquery-1.4.3' %>
+    <%= javascript_include_tag 'jrails' %>
+    <%= javascript_include_tag 'application' %>
 
-    <script type="text/javascript" src="/javascripts/jquery-1.4.3.js"></script>
-    <script type="text/javascript" src="/javascripts/jrails.js" ></script>
-    <script type="text/javascript" src="/javascripts/application.js" ></script>
   </head>
   
   <body style="position:relative;">
@@ -113,6 +111,9 @@
       </div>
     </div>
   </div>
+  
+  <div id="modalshade"/>
   </body>
+  
 </html>
 

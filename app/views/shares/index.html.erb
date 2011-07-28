@@ -1,27 +1,4 @@
-<%= stylesheet_link_tag 'samba.css' %>
-<script src="/javascripts/ftoggle.js" type="text/javascript"></script>
-<script src="/javascripts/module.js" type="text/javascript"></script>
-
-<%= stylesheet_link_tag 'mobilyblocks.css' %>
-<script type="text/javascript" src="/javascripts/mobilyblocks.js" ></script>
-
-<script>
-  jQuery(document).ready(function() {
-    $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
-    $('#smb').live('click', function() {
-      $('#smbform').submit();
-    })
-  });
-
-  $(function(){
-    $('.socials').mobilyblocks({
-      direction: 'clockwise',
-      duration:300,
-      zIndex:500,
-      widthMultiplier:1.50
-    });
-  });
-</script>
+<%= stylesheet_link_tag 'module.css' %>
 
 <div>
   <div class="container_12 mhead">
@@ -68,9 +45,7 @@
 
   <div class="container_12 mbody">
 
-
     <%= render :partial => "new"  %>
-
 
     <div class="mstatus">
       <div class="grid_6">
@@ -83,7 +58,7 @@
         <% form_remote_for @smb, :url => {:action => 'smbaction'},
           :before => "$('#wait').show();", :html => {:id => 'smbform'},
           :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
-            <%= form.check_box(:status, { id=> 'smbaction', :class => 'ftoggle smb', :checked  => @smb.status }, "start", "stop") %>
+          <%= form.check_box(:status, { id=> 'smbaction', :class => 'ftoggle smb', :checked  => @smb.status }, "start", "stop") %>
         <% end %>
       </div>
       <div class="clear"></div>
@@ -93,30 +68,10 @@
       <div id="mcontent" class="mcontent">
         <div id="msettings" class="msettings hidden">
           <%= render :partial => "settings"  %>
-
         </div>
-
        </div>
-
+       
           <%= render :partial => "shares"  %>
-
-          <!-- CAN NOT UPDATE PARTIAL ???-->
-          <!--<div>
-            <% for share in @shares %>
-              <div class="link">
-                <%= link_to_remote(
-                     "<div class='key'>#{share.name}</div>" +
-                     "<div class='value'> <strong> {#} </strong> </div>",
-                     :before => "$('#wait').show(); console.log('wait');",
-                     :update => 'mform',
-                     :after => "console.log('finished'); expand($(this)); $('#wait').fadeOut('slow');",
-                     :html => {:class => 'share_link'},
-                     :url => {:action => 'show', :id => share.id, :name => share.name })
-                %>
-              </div>
-            <% end %>
-         </div>-->
-          <!-- render :shares -->
       </div>
       <div id="mform" class="mform">
         <!-- render partial -->
@@ -128,4 +83,25 @@
   <div class="clear"></div>
 
 </div>
+
+<%= javascript_include_tag 'ftoggle' %>
+<%= javascript_include_tag 'module' %>
+
+<script>
+  jQuery(document).ready(function() {
+    $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
+    $('#smb').live('click', function() {
+      $('#smbform').submit();
+    })
+  });
+
+  $(function(){
+    $('.socials').mobilyblocks({
+      direction: 'clockwise',
+      duration:300,
+      zIndex:500,
+      widthMultiplier:1.50
+    });
+  });
+</script>
 

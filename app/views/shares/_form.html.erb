@@ -1,7 +1,14 @@
+<script type="text/javascript" src="/javascripts/filebrowser.js" ></script>
+<%= stylesheet_link_tag 'filebrowser.css' %>
+
+<div id="dirwrap">
+  <div id="controls"></div>
+  <div id="directories"></div>
+</div>
 
 <div id="mcontent" class="mcontent">
-  <div>
 
+<div>
   <br>
   <h2 class="mheading grey">
     New share
@@ -28,8 +35,9 @@
       <div class='key'> <%= form.label :path %> </div>
       
       <div class='value'>
-        <%= form.text_field :path %>
-        <% form.file_field "ppp" %>
+        <%= form.text_field :path, :id=>"browser" %>
+        <% form.file_field :path %>
+<!--        <input type="text" id="browser" style="border:1px solid #ccc;"> -->
       </div>
     </div>
 
@@ -56,5 +64,7 @@
   jQuery(document).ready(function() {
     $('#newform').find('[type=checkbox].ftoggle').slider({background: "orange"});
   });
+  
+  $(function(){ $('#browser').directory(); });
 </script>
 

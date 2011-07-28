@@ -20,6 +20,7 @@ class Browser
           
           Rails.logger.error " - #{dir}"
           
+#          .gsub(/ /,'')
           @dir = {"path" => File.join(@path, dir)}
           
 
@@ -47,6 +48,7 @@ class Browser
       end
     end
 
+    Rails.logger.error @hash.inspect
     return @hash
   end
 
@@ -69,9 +71,6 @@ class Browser
 
     Rails.logger.error "\n ### LIST DIRECTORIES ### \n"
     
-#    @array << @path
-
-    #return {[:dir1 => {}]}
 
     if File.exists?(@path)
       Dir.entries(@path).each do |dir|

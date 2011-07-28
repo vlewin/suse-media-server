@@ -2,6 +2,7 @@ div.mhead {
   color:#fff;
   background: #666;
   background: -moz-linear-gradient(center top , #888, #454545) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#888));
 
   border-width: 1px;
   border-style: solid;
@@ -75,6 +76,7 @@ div.mhead a#submit {
   overflow:hidden;
   background:green;
   background: -moz-linear-gradient(center bottom , #0E6C0E, #00A200) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00A200), to(#0E6C0E));
 }
 
 div.mhead a#back {
@@ -86,6 +88,7 @@ div.mhead a#back {
   background:#555;
   box-shadow: 0px 0px 2px #222 inset;
   background: -moz-linear-gradient(center bottom , #353535, #777) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#353535));
 }
 
 
@@ -98,14 +101,15 @@ div.mbody {
   border-width: 0px 1px 1px 1px;
   border-style: solid;
   border-color: #ccc;
-
   background:#fff;
-  background: -moz-linear-gradient(center bottom , #fff, #f8f8f8) repeat scroll 0 0 transparent;
+/*  background: -moz-linear-gradient(center bottom , #fff, #f8f8f8) repeat scroll 0 0 transparent;*/
+/*  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#fff));*/
 }
 
 div.mstatus {
   background:#FFFFF6;
   background: -moz-linear-gradient(270deg, #FFFFF6, #FFFDE3) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFF6), to(#FFFDE3));
 
   border-bottom: 1px solid #E7E7CE;
   border-radius: 5px 5px 5px 5px;
@@ -147,7 +151,8 @@ div.mcontent, div.mform {
   padding:5px 0px;
 
   background:#fff;
-  background: -moz-linear-gradient(center bottom , #fff, #f8f8f8) repeat scroll 0 0 transparent;
+/*  background: -moz-linear-gradient(center bottom , #fff, #f8f8f8) repeat scroll 0 0 transparent;*/
+/*  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#fff));*/
 }
 
 div.mcontent div.line, div.mform div.line {
@@ -165,7 +170,9 @@ div.mcontent div.line, div.mform div.line {
   vertical-align:middle;
 }
 
-div.mcontent div.key, div.mcontent div.value, div.mform div.key, div.mform div.value { display:inline-block; width:50%; }
+div.mcontent div.key, div.mform div.key { display:inline-block; width:30%; }
+div.mcontent div.value, div.mform div.value { display:inline-block; width:70%; }
+
 div.mcontent div.key, div.mform div.key { float:left; }
 div.mcontent div.value, div.mform div.value { float:right; text-align: right; }
 
@@ -206,7 +213,7 @@ div.mform div.last { color:#888; }
 form input[type=text] {
   border:1px solid #ddd;
   padding:5px 0px;
-  width:180px;
+  width:124px;
   text-align:center;
   font-size:18px;
   font-weight:bold;

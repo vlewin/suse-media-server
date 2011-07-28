@@ -2,90 +2,37 @@
 
   var methods = {
     init : function(data, parent) {
+      console.log(parent)
 
       var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
+      var path = '';
       
-//      for(var i=0; i< data.length; i++) {
       for (dir in data) {
-        console.log('DIRECTORY ' + dir)
-        
         for (key in data[dir]) {
-        
-          if(key == "path") {
-            console.log('PATH ' + key + ' ' + data[dir][key])
-            html += '<li class="dir parent" data-parent ="' + key +'">' + dir + '</li>';
-          }
           
-          if(key == "children") {
-            console.log('CHILDREN ' + key + ' ' + data[dir][key])
-            html += '<li class="dir parent" data-parent ="' + key +'">' + dir + '</li>';
-          }
+          if(key == "path") { path = data[dir][key]; } else {
           
+            if(key == "children" && data[dir][key] == "yes") {
+              html += '<li class="dir parent" data-child ="' + path +'">';
+              html += '<label>' + dir + '</label>';
+              html += '<a href="#" class="share" data-path ="' + path +'">select</a>'
+              html += '</li>';
+            } else {
+              html += '<li class="dir">';
+              html += '<label>' + dir + '</label>';
+              html += '<a href="#" class="share" data-path ="' + path +'">select</a>'
+              html += '</li>';
+            }
+          }
         }
-        
       }
       
        html += '</ul>';
-       $('#directories').html(html).show();
-      
-//      var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
-
-//      console.log(dirs.length);
-
-//      for(var i=0; i< dirs.length; i++) {
-//        var obj = dirs[i]
-//        
-//        if(typeof(dirs[i]) == "object") {
-//          
-//          for (key in obj) {
-//            html += '<li class="dir parent" data-parent ="' + obj[key] +'">' + key + '</li>';
-//          }
-//        } else {
-
-//          html += '<li class="dir">'; 
-//          html += obj;
-//          html += '<a href="#" class="share" data-path ="' + parent + obj + '">share this directory</a>';
-//          html += '</li>';
-//        }
-
-//        html += '</ul>';
-//        $('#directories').html(html).show();
-
-//      }
-
+       
+       $('#controls').html('<a id="back" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
+       methods.show(html);
     },
     
-//    ONLY WORKS WITH --> get_dirs(dir)
-//    init : function(data, parent) {
-
-//      var dirs = data.dirs;
-//      var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
-
-//      console.log(dirs.length);
-
-//      for(var i=0; i< dirs.length; i++) {
-//        var obj = dirs[i]
-//        
-//        if(typeof(dirs[i]) == "object") {
-//          
-//          for (key in obj) {
-//            html += '<li class="dir parent" data-parent ="' + obj[key] +'">' + key + '</li>';
-//          }
-//        } else {
-
-//          html += '<li class="dir">'; 
-//          html += obj;
-//          html += '<a href="#" class="share" data-path ="' + parent + obj + '">share this directory</a>';
-//          html += '</li>';
-//        }
-
-//        html += '</ul>';
-//        $('#directories').html(html).show();
-
-//      }
-
-//    },
-
     ajax : function(dir) {
       console.log("AJAX " + dir);
       $.ajax({
@@ -95,40 +42,62 @@
         contentType : "application/json; charset=utf-8",
         dataType    : "json",
         success     : function( result ) {
-          console.log(result);
-          return methods.init(result, dir);
+          methods.init(result, dir);
         }
       });
     },
 
-    show : function( ) {
-      $('#directories').show();
+    show : function(html) {
+      $('#modalshade').show();
+      $('#directories').html(html);
+      $('#dirwrap').show();
     },
-    hide : function( ) { },
+    
+    hide : function( ) { 
+      $('#modalshade').hide();
+      $('#dirwrap').hide();
+    }
   };
 
   $.fn.directory = function(options){
     var opt = $.extend({
       parent: "/suse/vlewin/",
-      height: "50px"
     }, options);
 
     var $this = $(this);
 
     return $this.each(function() {
-      $this.css('height', opt.height);
+      $this.after('<a id="select" href="#">select</a>')
 
-      $(this).bind({
+      $('#select').bind({
         click: function(evt){
           var result = methods.ajax(opt.parent);
 
-          $('li.dir').live('click', function() {
-            methods.ajax($('#dirs').attr('data-parent') + '/' + $(this).text());
+          $('li.parent').live('click', function() {
+            methods.ajax($(this).attr('data-child'));
           });
           
           $('a.share').live('click', function() {
-            console.log($(this).attr('data-path'))
             $('#browser').val($(this).attr('data-path'));
+            methods.hide();
+            return false;
+          });
+          
+          $('a#back').live('click', function() {
+            var back = $(this).attr('data-back');
+            
+            if(back != opt.parent) {
+              var tmp = back.split('/');
+              back = tmp.splice(0, (tmp.length-1)).join('/');  
+              methods.ajax(back);
+            } else {
+              console.log("HOME")
+            }
+            return false;
+          });
+          
+          $('a#close').live('click', function() {
+            methods.hide();
             return false;
           });
         }
