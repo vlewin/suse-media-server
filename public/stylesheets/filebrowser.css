@@ -1,8 +1,6 @@
-#browser { width:70%; text-align:left; border:none; background: #fafafa; }
-/* font-size:20px; color:#666; border-radius:5px;  border:1px solid #ccc; vertical-align: middle;*/
+#browser { width:70%; text-align:left; border:none; background: #fff; }
+
 #select { 
-/*    font-size: 20px; */
-    
     background:#444; 
     background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
     background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
@@ -11,7 +9,6 @@
     text-shadow: 0px -1px #222; 
     
     display:inline-block; 
-/*    padding:4px 10px 4px 10px;*/
     margin:0px 0px 0px 5px;
 
     padding:2px 4px 4px 4px;
@@ -106,14 +103,11 @@
   
   li.dir { background: #fff; color:#888;  border-bottom:0px solid #ccc;  font-size:30px; padding-left:0px; position:relative; padding-left:40px; }
   
-  
   li.dir:before {
     content:url(../images/folder.png);
     position:absolute;
     left:0;
     vertical-align:top;
-/*    width:16px;*/
-/*    height:16px; */
   }
   
   

@@ -86,6 +86,11 @@
           $('a#back').live('click', function() {
             var back = $(this).attr('data-back');
             
+            console.log( back + ' p ' + opt.parent )
+            
+            
+            //TODO: FIX if parent == back don't fire AJAX call
+            
             if(back != opt.parent) {
               var tmp = back.split('/');
               back = tmp.splice(0, (tmp.length-1)).join('/');  
