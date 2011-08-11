@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'augeas'
 require 'dbus'
+require 'syslog'
 
 bus = DBus::system_bus
 service = bus.request_service("augeas.samba.Service")
@@ -51,6 +52,10 @@ class AugeasSambaService < DBus::Object
         puts share.to_s.split('/').last
         shares.push({ "id" => share.to_s.split('/').last, "name" => aug.get(share)})
       end
+
+      Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info "*** existing shares" }
+      Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info shares.inspect }
+
       [shares]
     end
 
