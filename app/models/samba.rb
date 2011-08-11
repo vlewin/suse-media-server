@@ -26,8 +26,8 @@ class Samba
     smbd = bus.exec("/etc/init.d/smb start")
     nmbd = bus.exec("/etc/init.d/nmb start")
     
-    smbd = bus.exec("rcsmb start")
-    nmbd = bus.exec("rcnmb start")
+   # smbd = bus.exec("rcsmb start")
+   # nmbd = bus.exec("rcnmb start")
 
     #start rcnmb and rcsmb if both OK return true
     if smbd && nmbd
