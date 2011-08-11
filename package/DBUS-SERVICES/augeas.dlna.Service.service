@@ -1,0 +1,5 @@
+# DBus service activation config
+[D-BUS Service]
+Name= augeas.dlna.Service
+Exec=/usr/local/sbin/augeasDLNAService.rb
+User=root
