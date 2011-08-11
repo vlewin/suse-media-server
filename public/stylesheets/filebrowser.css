@@ -86,10 +86,7 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#BC2E2E), to(#761e1e));
 }
 
- 
-  
-  
-  #directories {
+#directories {
   padding:10px; 
   margin:10px;
   background:#fff; 
@@ -101,32 +98,33 @@
   ul li:first-child { border-top: 0px solid #ccc; }
   ul li:last-child { border:none; }
   
-  li.dir { background: #fff; color:#888;  border-bottom:0px solid #ccc;  font-size:30px; padding-left:0px; position:relative; padding-left:40px; }
+  li.dir { background: #fff; color:#888;  border-bottom:0px solid #ccc;  font-size:26px; padding-left:0px; position:relative; padding-left:40px; }
   
   li.dir:before {
-    content:url(../images/folder.png);
+    content:url(../images/folder-grey.png);
     position:absolute;
     left:0;
     vertical-align:top;
   }
   
   
-  li.dir.parent { color: #C79E61; padding-left:40px; }
+/*  li.dir.parent { color: #C79E61; padding-left:40px; }*/
+  li.dir.parent { color: #2399d5; padding-left:40px; }
 
   li.dir.parent:before {
-    content:url(../images/folder-open.png);
+    content:url(../images/folder-open-blue.png);
     position:absolute;
     left:0;
     vertical-align:middle;
-    width:16px;
-    height:16px; 
+    width:14px;
+    height:14px; 
   }
   
   li.subdir { padding-left: 10px;}
   
   a.share { 
     float:right; 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold; 
     background:#444; 
     background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);

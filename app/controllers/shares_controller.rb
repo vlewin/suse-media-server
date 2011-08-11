@@ -7,8 +7,8 @@ class SharesController < ApplicationController
 
     @smb = Samba.running?
     
-    Rails.logger.error "SAMBA is running #{@smb.status}"
-    Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
+    #Rails.logger.error "SAMBA is running #{@smb.status}"
+    #Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
   end
 
   def show
@@ -22,8 +22,6 @@ class SharesController < ApplicationController
 
     @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
     render :partial => 'form', :with => @share, :locals => {:share => @share } 
-
-
   end
   
   
@@ -38,8 +36,6 @@ class SharesController < ApplicationController
       Rails.logger.debug "\n END"
       
       render :partial => 'shares'
-      
-      #redirect_to :shares
     else 
       render :text => "ERROR"
     end
@@ -48,7 +44,6 @@ class SharesController < ApplicationController
 
   def update
     Rails.logger.debug "\n*** UPDATE SHARE #{params.inspect} and NAME #{params[:share][:name]}"
-
     @share = Share.new(params[:share])
 
     if @share.save
@@ -62,7 +57,6 @@ class SharesController < ApplicationController
 
   #SYSTEM ACTIONS
   def smbaction
-    
     @smb = Samba.running?
     
     if @smb.status == true 
@@ -70,7 +64,6 @@ class SharesController < ApplicationController
     else
       @state = Samba.start
     end
-    
     render :nothing => true
   end
 

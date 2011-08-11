@@ -60,17 +60,22 @@
   };
 
   $.fn.directory = function(options){
-    var opt = $.extend({
-      parent: "/suse/vlewin/",
-    }, options);
-
+    var defaults = {
+      parent: "/"
+    }
+    
+    var opt =  $.extend(defaults, options);
     var $this = $(this);
 
     return $this.each(function() {
       $this.after('<a id="select" href="#">select</a>')
 
+      console.log(opt.parent)
+      
       $('#select').bind({
         click: function(evt){
+          console.log("PARENT")        
+          console.log(opt.parent)
           var result = methods.ajax(opt.parent);
 
           $('li.parent').live('click', function() {
@@ -87,9 +92,6 @@
             var back = $(this).attr('data-back');
             
             console.log( back + ' p ' + opt.parent )
-            
-            
-            //TODO: FIX if parent == back don't fire AJAX call
             
             if(back != opt.parent) {
               var tmp = back.split('/');

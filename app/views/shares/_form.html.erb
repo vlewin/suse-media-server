@@ -62,9 +62,13 @@
 
 <script>
   jQuery(document).ready(function() {
+    var home = "<%= ENV['HOME'] %>"
     $('#newform').find('[type=checkbox].ftoggle').slider({background: "orange"});
+    $('#browser').directory({parent: home}); 
   });
   
-  $(function(){ $('#browser').directory(); });
+  $(function(){ 
+    
+  });
 </script>
 
