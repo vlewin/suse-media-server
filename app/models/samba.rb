@@ -11,7 +11,8 @@ class Samba
 
   def self.running?
     bus = Bus.new()
-    result = bus.exec("rcsmb status")
+#    result = bus.exec("rcsmb status")
+    result = bus.exec("/etc/init.d/smb status")
     Rails.logger.error "SAMBA status from DBUS #{result}"
     smb = Samba.new(result)
     smb
@@ -21,6 +22,10 @@ class Samba
   #DRY !!!
   def self.start
     bus = Bus.new
+    
+    smbd = bus.exec("/etc/init.d/smb start")
+    nmbd = bus.exec("/etc/init.d/nmb start")
+    
     smbd = bus.exec("rcsmb start")
     nmbd = bus.exec("rcnmb start")
 
@@ -37,8 +42,12 @@ class Samba
   #DRY !!!
   def self.stop
     bus = Bus.new
-    smbd = bus.exec("rcsmb stop")
-    nmbd = bus.exec("rcnmb stop")
+    
+    mbd = bus.exec("/etc/init.d/smb stop")
+    nmbd = bus.exec("/etc/init.d/nmb stop")
+    
+#    smbd = bus.exec("rcsmb stop")
+#    nmbd = bus.exec("rcnmb stop")
 
     if smbd && nmbd
       Rails.logger.error "SAMBA STOP smb #{smbd} and nmb #{nmbd}"
