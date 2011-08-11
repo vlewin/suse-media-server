@@ -3,6 +3,7 @@ SUSE Media Server is a easy to use web iterface for samba (file sharing) and dln
 TODO LIST 
 ---------------------------------------------------------------------
 [WIP]:
+- start D-BUS service on-demand [DONE]
 - dynamic flash[:notice] for messages
 - provide simple drag and drop mask for new shares
 - implement JQuery/Ruby based directory browser
@@ -29,4 +30,19 @@ TODO LIST
 [miscellaneous]:
 - improve web UI and usability
 - clean up inline javascript and CSS code
+
+INFO: 
+
+Kill running D-BUS service: 
+
+  "pkill -f augeasSambaService.rb"
+
+Log out from running D-BUS service to "/var/log/messages" with:
+
+  require  "syslog"
+  Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info "YOUR MESSAGE" }
+
+
+
+
 
