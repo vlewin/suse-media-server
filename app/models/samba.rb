@@ -43,7 +43,7 @@ class Samba
   def self.stop
     bus = Bus.new
     
-    mbd = bus.exec("/etc/init.d/smb stop")
+    smbd = bus.exec("/etc/init.d/smb stop")
     nmbd = bus.exec("/etc/init.d/nmb stop")
     
 #    smbd = bus.exec("rcsmb stop")
