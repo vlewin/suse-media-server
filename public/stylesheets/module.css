@@ -327,3 +327,26 @@ div#wait img {
 
 .uppercase {text-transform:uppercase; }
 
+div.infobox {
+  vertical-align:middle; 
+  background: -moz-linear-gradient(270deg, #FFFFF6, #FFFDE3) repeat scroll 0 0 transparent;
+  margin:10px 0px;
+  padding:10px 5px; 
+  border:2px solid grey; 
+  border-radius: 5px;
+  color: #666666;
+}
+
+span.infomark {
+  border-radius:100%; 
+  display:inline-block; 
+  width:28px; 
+  height:28px;  
+  border:2px solid #507CA7; 
+  line-height:28px; 
+  font-size: 22px; 
+  font-weight:bold; 
+  color:#fff;
+  text-align:center;  text-shadow: 0px -1px 0 #000;
+  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+}
