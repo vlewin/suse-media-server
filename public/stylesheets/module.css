@@ -34,6 +34,9 @@ div.mhead div.actionscont {
   border-width: 1px 1px 1px 1px;
   border-style: solid;
   border-color: #222 #353535 #222 #353535;
+  float: right;
+  margin: 0 3px 0 0;
+  width: 185px;
 }
 
 div.mhead a.button {
