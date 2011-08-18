@@ -11,7 +11,6 @@ $(function () {
   });
 });
 
-
 function showSave(form) {
   $('div.actionscont').find('a').hide();
   $submit = $('#submit')
@@ -28,11 +27,11 @@ function hideSave() {
 }
 
 function hideSettings () {
-  $('#msettings').addClass('hidden').toggle('hide');
+  $('#msettings').addClass('hidden').toggle(500);
 }
 
 function showSettings() {
-  $('#msettings').removeClass('hidden').toggle('show');
+  $('#msettings').removeClass('hidden').toggle(500);
 }
 
 //INIT FTOGGLES
@@ -45,25 +44,31 @@ function initSliders(color) {
 function expand() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
-  var $msettings = $('#msettings');
+  var $links =  $('#shares').find('div.key');
+  
+  $('#msettings').hide();
+  
+  if($mform.height() != $mcontent.height()) {
+    console.log("BUG: ADAPT $MFORM HIGHT !!!");
+    $mform.height($mcontent.height());
+  }
 
-  $msettings.fadeOut();
-
-
-  var $values = $mform.find('div.value');
-  $values.hide();
-
-  //BUG: form height is growing after multiple submit
-  $mform.height($mcontent.height());
-
+  setTimeout( function() {
+    console.log('hide links')
+    $links.hide();
+  }, 180);
+    
   $mcontent.stop().animate({width: "0px" }, 300, function() {
+    var $lines =  $('#form_share').find('div.line');
+    $lines.hide();
     $mcontent.hide();
+
+    setTimeout( function() {
+      $lines.show();
+    }, 180);
 
     $mform.show().stop().animate({width: "99%" }, 300, function() {
       showSave('form_share');
-
-      $values.show();
-
       setTimeout( function() {
          $mform.find('div.value img.wait').hide();
          initSliders("orange");
@@ -77,15 +82,15 @@ function shrink() {
   var $mcontent = $("#mcontent");
   var $mform = $("#mform");
 
-  var width = $mcontent.width();
-//  var $toggles = $mform.find('div.line').find('span.ftoggle_container');
-
-  var $values = $mform.find('div.value');
-  $values.hide();
-
-//  $toggles.hide();
-
+  setTimeout( function() {
+    $('#mform').find('div.line').hide();
+  }, 180);
+  
   $mform.stop().animate({width: "0px" }, 300, function() {
+    setTimeout( function() {
+      $('#shares').find('div.key').show();
+    }, 180);
+    
     $mform.hide();
     $mcontent.show().stop().animate({width: "100%" }, 300);
   });
@@ -101,6 +106,46 @@ $(document).ready(function() {
   });
 });
 
+
+$(document).ready(function() {
+  var $links =  $('#shares').find('div.link');
+  var $actionlinks = $('a.actionlink');
+  
+  $actionlinks.unbind('click');
+  $actionlinks.click(function(event) {
+    console.log("CICKEDF");
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  });
+//  $("#delete").live('click', function() {
+//    $links.each(function() {
+//      console.log($(this));
+//      $(this).removeClass('beforelink');
+//      $(this).find('div.value').html('<input type="checkbox" class="delete" />')
+//      
+//      
+//    });
+//  });
+  
+  $("#delete").click().toggle(function() {
+    
+    console.log($(this).find('a.actionlink'))
+    $links.each(function() {
+      $(this).find('strong.remove-placeholder').hide();
+      $(this).find('a.remove-share').show();
+//      $(this).removeClass('beforelink');
+//      $(this).find('div.value').html('<span class="delcont"><img src="../images/destroy.png"></span>')
+    });
+    
+  }, function() {
+    $links.each(function() {
+      $(this).find('strong.remove-placeholder').show();
+      $(this).find('a.remove-share').hide();
+    });
+  });
+
+});
 
 //BACK
 $(function () {
@@ -128,24 +173,4 @@ $(function () {
     hideSave();
   });
 });
-
-
-//<script>$("#start").click(function () {
-//  $("div").show("slow");
-//  $("div").animate({left:'+=200'},5000);
-//  $("div").queue(function () {
-//    $(this).addClass("newcolor");
-//    $(this).dequeue();
-//  });
-//  $("div").animate({left:'-=200'},1500);
-//  $("div").queue(function () {
-//    $(this).removeClass("newcolor");
-//    $(this).dequeue();
-//  });
-//  $("div").slideUp();
-//});
-//$("#stop").click(function () {
-//  $("div").clearQueue();
-//  $("div").stop();
-//});</script>
 

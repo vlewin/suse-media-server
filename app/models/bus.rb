@@ -43,6 +43,12 @@ class Bus
    dbus = self.bus(srv)
    dbus.set(share)[0]
  end
+ 
+ def destroy(srv, share)
+   dbus = self.bus(srv)
+   returns = dbus.rm(share)[0]
+   returns
+ end
 
  def exec(cmd)
    dbus = self.bus(cmd)

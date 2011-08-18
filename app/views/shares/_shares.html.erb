@@ -1,15 +1,27 @@
 <div id="shares">
   <% for share in @shares %>
     <% unless share.name == "global" %>
-    <div class="link">
+    <div class="link beforelink">
       <%= link_to_remote(
-           "<div class='key'>#{share.name}</div>" +
-           "<div class='value'> <strong> {#} </strong> </div>",
+           "<div class='key'>#{share.name}</div>",
+           
+           :html => { :class=>'actionlink'},
            :before => "$('#wait').show();",
            :after => "expand($(this)); $('#wait').fadeOut('slow');",
            :update => 'mform',
            :url => {:action => 'show', :id => share.id, :name => share.name })
       %>
+      <div class='value'>
+        <strong class="remove-placeholder">{#}</strong> 
+        <%= link_to_remote(
+           '<span class="delcont"><img src="../images/destroy.png"></span>',
+           :html => { :class=>'remove-share'},
+           :before => "$('#wait').show();",
+           :after => "$('#wait').fadeOut('slow');",
+           :update => "shares",
+           :url => {:action => 'destroy', :id => share.id, :name => share.name })
+        %>
+      </div>
     </div>
     <% end %>
   <% end %>

@@ -13,8 +13,10 @@ class AugeasSambaService < DBus::Object
   #GLOBAL_DEFAULTS = { "passdb_backend" => "tdbsam", "map_to_guest" => "Bad User", "usershare_allow_guests" => "Yes" }
 
   GLOBAL_DEFAULTS = {"restrict_anonymous" => "no", "guest_account" => "nobody", "security" => "share", "unix_extensions" => "yes" }
-  NOBODY_DEFAULTS = { "guest_ok" => "yes",
-                      "inherit_acls" => "yes",
+
+  NOBODY_DEFAULTS = {
+          "guest_ok" => "yes",
+          "inherit_acls" => "yes",
 		      "read_only" => "no",
 		      "guest_only" => "yes",
 		      "browseable" => "yes",
@@ -23,7 +25,7 @@ class AugeasSambaService < DBus::Object
 		      "create_mask" => "0660",
 		      "directory_mask" => "0770",
 		      "force_group" => "users"
-		      }
+  }
 
   CONF_PATH = "/etc/samba/smb.conf/"
   AUG_PATH = "/files" + CONF_PATH
@@ -31,6 +33,13 @@ class AugeasSambaService < DBus::Object
   PROPERTIES = ["name", "path", "writeable", "browseable", "read_only", "guest_only", "comment"]
   GLOBAL = ["workgroup", "security"]
 
+  def syslog(message)
+    Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s|
+      s.info "*** SMS INFO MESSAGE ***"
+      s.info "*** #{message} ***"
+    }
+  end
+  
   def init
     augeas = Augeas::open("/", "/usr/share/libaugeas0/augeas/lenses/dist", Augeas::NO_MODL_AUTOLOAD)
     augeas.transform(:lens => "Samba.lns", :incl => "/etc/samba/smb.conf")
@@ -137,7 +146,7 @@ class AugeasSambaService < DBus::Object
           aug.set("#{AUG_PATH}#{id}/#{key}", value)
 	end
       else
-         puts "WRITE SHARE SETTINGS"
+        puts "WRITE SHARE SETTINGS"
         NOBODY_DEFAULTS.each do |key,value|
 	        key = key.gsub(/_/, "\\ ")
           aug.set("#{AUG_PATH}#{id}/#{key}", value)
@@ -160,16 +169,26 @@ class AugeasSambaService < DBus::Object
     end
 
 
+    dbus_method :rm, "in share:a{ss}, out success:b" do |share|
+      syslog("SMS: DESTROY share with ID #{share["id"]}")
+      syslog("SMS: SHARE PATH #{AUG_PATH}#{share["id"]}")
+      
+      aug = init()
+      path = "#{AUG_PATH}#{share["id"]}"
+      aug.rm(path)
+      
+      saved = aug.save
+      syslog("SMS: SAVE SUCCESSFUL? #{saved}")
+      saved
+    end
 
     #EXEC
     dbus_method :exec, "in command:s, out out:b" do |cmd|
       message = `#{cmd}`
       result = message.split('..').last
 
-      Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s|
-        s.info "SMS: Execute CMD #{cmd.inspect} and return exit code #{result.inspect}"
-      }
-
+      syslog("SMS: Execute CMD #{cmd.inspect} and return exit code #{result.inspect}")
+            
       # TODO: return result instead of boolean and handle it in smb modell !!!
       unless result.nil?
         if result.match("running")
@@ -180,9 +199,7 @@ class AugeasSambaService < DBus::Object
           return true
         end
       else
-        Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s|
-          s.warning "SMS: Unknown exit code #{result.inspect}!"
-        }
+	syslog("SMS: Unknown exit code #{result.inspect}! ")
         return false
       end
     end

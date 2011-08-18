@@ -173,11 +173,11 @@ div.mcontent div.line, div.mform div.line {
   vertical-align:middle;
 }
 
-div.mcontent div.key, div.mform div.key { display:inline-block; width:30%; }
-div.mcontent div.value, div.mform div.value { display:inline-block; width:70%; }
+div.mcontent div.key, div.mform div.key { display:inline-block; width:30%; float:left; }
+div.mcontent div.value, div.mform div.value { display:inline-block; width:67%; padding-right:10px; float:right; text-align: right; }
 
-div.mcontent div.key, div.mform div.key { float:left; }
-div.mcontent div.value, div.mform div.value { float:right; text-align: right; }
+/*div.mcontent div.key, div.mform div.key {  }*/
+/*div.mcontent div.value, div.mform div.value {  }*/
 
 div.mform div.last { border: none; }
 
@@ -191,11 +191,16 @@ div.mcontent div.link {
   font-weight:bold;
 
   padding:5px 5px 5px 30px;
-  clear:both;
+/*  clear:both;*/
   overflow:hidden;
 
   position:relative;
 }
+
+div.mcontent div.link:hover {
+/*  box-shadow: 0px 0px 10px #222 inset;*/
+}
+
 
 div.mcontent div.link:before {
   content:url(../images/tt.png);
@@ -205,6 +210,42 @@ div.mcontent div.link:before {
   width:8px;
   height:8px;
 }
+
+div.link div.key{
+  width:67%;
+}
+div.link div.value {
+   width:30%;
+}
+
+/*div.mcontent div.beforelink:before {*/
+/*  content:url(../images/tt.png);*/
+/*  position:absolute;*/
+/*  left:4px;*/
+/*  top:5px;*/
+/*  width:8px;*/
+/*  height:8px;*/
+/*}*/
+
+span.delcont {
+  box-shadow: 0px 0px 0px #222 inset;
+  display:inline-block;
+  padding:5px;
+  line-height:8px;
+  border-radius:100%;
+  border:2px solid #b8a6a6;
+}
+
+span.delcont img { height:16px; width:16px; }
+div.mcontent a.remove-share {
+  display:none;
+}
+
+
+/*input[type=checkbox].delete {*/
+/*  vertical-align:middle;*/
+/*  background: #800000;*/
+/*}*/
 
 div.mcontent div.link a { color: #666; text-transform:uppercase; }
 div.mcontent div.link.active { background: #f0f0f0; };

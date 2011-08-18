@@ -54,6 +54,22 @@ class SharesController < ApplicationController
     end
 
   end
+  
+  def destroy
+    @share = Share.find(params[:id])
+    
+    if @share.destroy
+      @shares = Share.all
+      
+      Rails.logger.debug "RENDER:: ALL SHARES"
+      Rails.logger.debug @shares.inspect
+      Rails.logger.debug "\n END"
+      
+      render :partial => 'shares'
+    else 
+      render :text => "ERROR"
+    end
+  end
 
   #SYSTEM ACTIONS
   def smbaction
