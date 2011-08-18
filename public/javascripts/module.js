@@ -106,36 +106,15 @@ $(document).ready(function() {
   });
 });
 
-
+//FIX: TOGGLE IS NOT WORKING AFTER PARTIAL IS RENDERED
 $(document).ready(function() {
+  console.log("BUG: toggle action is not fired after partial update (use live instead of click??)")
   var $links =  $('#shares').find('div.link');
-  var $actionlinks = $('a.actionlink');
-  
-  $actionlinks.unbind('click');
-  $actionlinks.click(function(event) {
-    console.log("CICKEDF");
-    event.stopPropagation();
-    event.preventDefault();
-    return false;
-  });
-//  $("#delete").live('click', function() {
-//    $links.each(function() {
-//      console.log($(this));
-//      $(this).removeClass('beforelink');
-//      $(this).find('div.value').html('<input type="checkbox" class="delete" />')
-//      
-//      
-//    });
-//  });
   
   $("#delete").click().toggle(function() {
-    
-    console.log($(this).find('a.actionlink'))
     $links.each(function() {
       $(this).find('strong.remove-placeholder').hide();
       $(this).find('a.remove-share').show();
-//      $(this).removeClass('beforelink');
-//      $(this).find('div.value').html('<span class="delcont"><img src="../images/destroy.png"></span>')
     });
     
   }, function() {
@@ -144,6 +123,22 @@ $(document).ready(function() {
       $(this).find('a.remove-share').hide();
     });
   });
+
+//  $("#delete").live('click', function(){
+//  
+//    $(this).toggle(function() {
+//      $links.each(function() {
+//        $(this).find('strong.remove-placeholder').hide();
+//        $(this).find('a.remove-share').show();
+//      });
+//      
+//    }, function() {
+//      $links.each(function() {
+//        $(this).find('strong.remove-placeholder').show();
+//        $(this).find('a.remove-share').hide();
+//      });
+//    });
+//  });
 
 });
 

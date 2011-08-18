@@ -52,10 +52,10 @@ class Share
 
   def save
     bus = Bus.new
-    saved = bus.save("samba", self.to_hash)
-    state = Samba.start
+#    saved = bus.save("samba", self.to_hash)
+#    state = Samba.start
     
-    if saved && state
+    if bus.save("samba", self.to_hash) && Samba.start
       return true  
     else
       Rails.logger.error "ERROR: CAN NOT SAVE SHARE OR START SMB!"
@@ -66,11 +66,8 @@ class Share
   end
   
   def destroy
-    Rails.logger.error "DESTROY SHARE #{self.inspect}"
     bus = Bus.new
-    state = bus.destroy("samba", self.to_hash)
-    Rails.logger.error "DBUS RETURNS #{state}"
-    return state
+    bus.destroy("samba", self.to_hash) ? true : false
   end
 
 end

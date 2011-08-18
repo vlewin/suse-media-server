@@ -4,11 +4,7 @@ class SharesController < ApplicationController
   def index
     @shares = Share.all
     @global = Share.find('target[1]')
-
     @smb = Samba.running?
-    
-    #Rails.logger.error "SAMBA is running #{@smb.status}"
-    #Rails.logger.debug "\n*** INDEX:: ALL SHAREs #{@shares.inspect}"
   end
 
   def show
@@ -19,31 +15,24 @@ class SharesController < ApplicationController
   def new
     @shares = Share.all
     target_id = @shares.length
-
     @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
     render :partial => 'form', :with => @share, :locals => {:share => @share } 
   end
   
   
   def create
-    Rails.logger.debug "\n*** CREATE NEW SHARE "
     @share = Share.new(params[:share])
     
     if @share.save
       @shares = Share.all
-      Rails.logger.debug "CREATE:: ALL SHARES"
-      Rails.logger.debug @shares.inspect
-      Rails.logger.debug "\n END"
-      
       render :partial => 'shares'
     else 
-      render :text => "ERROR"
+      render :error
     end
 
   end
 
   def update
-    Rails.logger.debug "\n*** UPDATE SHARE #{params.inspect} and NAME #{params[:share][:name]}"
     @share = Share.new(params[:share])
 
     if @share.save
@@ -60,14 +49,9 @@ class SharesController < ApplicationController
     
     if @share.destroy
       @shares = Share.all
-      
-      Rails.logger.debug "RENDER:: ALL SHARES"
-      Rails.logger.debug @shares.inspect
-      Rails.logger.debug "\n END"
-      
       render :partial => 'shares'
     else 
-      render :text => "ERROR"
+      render :error
     end
   end
 
