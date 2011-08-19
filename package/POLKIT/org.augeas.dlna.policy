@@ -4,12 +4,12 @@
  "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
 <policyconfig>
 
-  <vendor>YaST Webservice Project</vendor>
-  <vendor_url>http://en.opensuse.org/YAST</vendor_url>
+  <vendor>SUSE Media Server</vendor>
+  <vendor_url>https://github.com/vlewin/suse-media-server</vendor_url>
 
   <action id="org.augeas.dlna.read">
     <description>Description of action</description>
-    <message>Authentication message which appear on desktop (not affect webyast)</message>
+    <message>read permissions</message>
     <defaults>
       <allow_inactive>yes</allow_inactive>
       <allow_active>yes</allow_active>
@@ -18,7 +18,7 @@
 
   <action id="org.augeas.dlna.write">
     <description>Description of action</description>
-    <message>Authentication message which appear on desktop (not affect webyast)</message>
+    <message>write permissions</message>
     <defaults>
       <allow_inactive>yes</allow_inactive>
       <allow_active>yes</allow_active>

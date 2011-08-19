@@ -7,10 +7,18 @@ PACKAGE = File.join(RAILS_ROOT, '/package')
 POLKIT_DIR = "/usr/share/PolicyKit/policy/"
 
 DBUS_SERVICES = ["augeas.samba.Service.service", "augeas.dlna.Service.service"]
+DBUS_SERVICES_DIR = "/usr/share/dbus-1/system-services/"
 DBUS_SOURCE_DIR = File.join(RAILS_ROOT, '/package/DBUS-SERVICES')
 
 DBUS_CONF_DIR = "/etc/dbus-1/system.d/"
-DBUS_SERVICES_DIR = "/usr/share/dbus-1/system-services/"
+DBUS_CONF_SOURCE_DIR = File.join(RAILS_ROOT, '/package/DBUS-CONF')
+
+
+
+
+#DBUS_CONF_DIR = "/etc/dbus-1/system.d"
+#DBUS_CONFIGS = ["augeas.samba.Service.conf", "augeas.dlna.Service.conf"]
+
 
 SBIN = "/usr/local/sbin/"
 
@@ -31,7 +39,7 @@ task :"install" do
     #install dbus configuration files
     puts "\n2) Install dbus configuration files"
 
-    Dir.chdir("#{PACKAGE}/DBUS") do 
+    Dir.chdir(DBUS_CONF_SOURCE_DIR) do 
       files = Dir.glob("*")
 
       files.each do |f|
