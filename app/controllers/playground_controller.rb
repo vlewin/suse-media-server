@@ -1,6 +1,5 @@
 require 'etc'
 
-
 class PlaygroundController < ApplicationController
   USER = Etc.getlogin
 
@@ -27,11 +26,6 @@ class PlaygroundController < ApplicationController
     @parent = "/home/#{USER}" unless params['dir']
     @dir = Filetree.new(@parent).get_content
     render :partial => 'folders'
-  end
-
-  def destroy
-    #Rails.logger.error "*** Render NEW ***"
-    #render :partial => 'new'
   end
 end
 
