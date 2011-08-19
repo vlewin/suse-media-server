@@ -1,4 +1,41 @@
+//SHINE
+$(document).ready(function() {
+  $('#beta').hover(function(){
+    $(this).find(".shine").css("background-position","-99px 0");
+    $(this).find(".shine").animate({ backgroundPosition: '99px 0'},700);
+  });
+
+  setInterval(function() {
+   $('#beta').find(".shine").css("background-position","-99px 0");
+   $('#beta').find(".shine").animate({ backgroundPosition: '99px 0'},700);
+  }, 10000);
+});
+
 $(function () {
+  //NEW
+  $("#new").click().toggle(function() {
+    $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
+    showSave('form_new');
+  }, function() {
+    $("div#newform").stop().animate({height: "-=280" }, 200, function() { /*callback*/ });
+  });
+  
+  //DELETE
+  $('#delete').live('click', function() {
+    var $values =  $('#shares').find('div.value');
+    var $placeholders =  $values.find('strong.remove-placeholder');
+    var $links = $values.find('a.remove-share');
+    
+    if ($placeholders.is(":visible")) {
+      $placeholders.hide();
+       $links.show();
+    } else {
+      $placeholders.show();
+      $links.hide();
+    }
+  });
+  
+  // SETTONGS
   $('a#settings').click(function() {
     $('div.actionscont').find('a').hide();
     showSettings();
@@ -9,7 +46,30 @@ $(function () {
     hideSettings();
     hideSave();
   });
-});
+
+  // BACK
+  $('#back').click(function(){
+    form = $('#submit').data('form');
+    if(form == 'form_share') {
+      shrink();
+      hideSave();
+      return false;
+    } else if(form == 'form_new') {
+      $("div#newform").stop().animate({height: "-=300" }, 200);
+      hideSave();
+      return false;
+    } else {
+      return true;
+    }
+  });
+  
+  // SUBMIT/SAVE (TODO: JUST FOR TEST)
+  $('#submit').click(function() {
+    $('#'+$('#submit').data('form')).submit();
+    hideSave();
+  });
+  
+}); // end $(finction())
 
 function showSave(form) {
   $('div.actionscont').find('a').hide();
@@ -96,76 +156,5 @@ function shrink() {
   });
 }
 
-//SHOW FORM FOR NEW SHARES
-$(document).ready(function() {
-  $("#new").click().toggle(function() {
-    $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
-    showSave('form_new');
-  }, function() {
-    $("div#newform").stop().animate({height: "-=280" }, 200, function() { /*callback*/ });
-  });
-});
 
-//FIX: TOGGLE IS NOT WORKING AFTER PARTIAL IS RENDERED
-$(document).ready(function() {
-  console.log("BUG: toggle action is not fired after partial update (use live instead of click??)")
-  var $links =  $('#shares').find('div.link');
-  
-  $("#delete").click().toggle(function() {
-    $links.each(function() {
-      $(this).find('strong.remove-placeholder').hide();
-      $(this).find('a.remove-share').show();
-    });
-    
-  }, function() {
-    $links.each(function() {
-      $(this).find('strong.remove-placeholder').show();
-      $(this).find('a.remove-share').hide();
-    });
-  });
-
-//  $("#delete").live('click', function(){
-//  
-//    $(this).toggle(function() {
-//      $links.each(function() {
-//        $(this).find('strong.remove-placeholder').hide();
-//        $(this).find('a.remove-share').show();
-//      });
-//      
-//    }, function() {
-//      $links.each(function() {
-//        $(this).find('strong.remove-placeholder').show();
-//        $(this).find('a.remove-share').hide();
-//      });
-//    });
-//  });
-
-});
-
-//BACK
-$(function () {
-  $('#back').click(function(){
-    form = $('#submit').data('form');
-    if(form == 'form_share') {
-      shrink();
-      hideSave();
-      return false;
-    } else if(form == 'form_new') {
-      $("div#newform").stop().animate({height: "-=300" }, 200);
-      hideSave();
-      return false;
-    } else {
-      return true;
-    }
-  });
-});
-
-//SAVE ACTION
-//TODO: REFACTORING JUST FOR TEST!!!
-$(function () {
-  $('#submit').click(function() {
-    $('#'+$('#submit').data('form')).submit();
-    hideSave();
-  });
-});
 
