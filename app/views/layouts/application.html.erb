@@ -10,9 +10,6 @@
     <%= stylesheet_link_tag 'forms.css' %>
 
     <%= javascript_include_tag 'jquery-1.4.3' %>
-    <%= javascript_include_tag 'jrails' %>
-    <%= javascript_include_tag 'application' %>
-
   </head>
   
   <body style="position:relative;">
@@ -32,8 +29,6 @@
           <a href="/" style="color:#fff;"><h1>SuSE Media Server</h1></a>
         </div>
        </div>
-
-
     </div>
 
     <div id="navbar">
@@ -46,7 +41,6 @@
         </div>
       </div>
     </div>
-
 
      <div id="content">
         <%= yield %>
@@ -71,42 +65,6 @@
         <div class="counter">I</div>
         <div class="counter">O</div>
         <div class="counter">N</div>
-
-        <!--<ul>
-           <li class="grid_3">
-             <a href="http://en.opensuse.org/Portal:WebYaST">
-              <div class="topbox">OPENSUSE WIKI</div>
-              <div class="bottombox">
-                Learn more about WebYaST.
-              </div>
-            </a>
-          </li>
-
-           <li class="grid_3">
-             <a href="http://forums.opensuse.org/">
-              <div class="topbox">OPENSUSE FORUM</div>
-              <div class="bottombox">
-                Ask questions on WebYaST forum.
-              </div>
-            </a>
-          </li>
-
-           <li class="grid_3">
-             <a href="/company/">
-              <div class="topbox">FREENODE IRC</div>
-              <div class="bottombox">
-                Join us on IRC freenode #webyast channel.
-              </div>
-            </a>
-          </li>
-
-           <li class="grid_3">
-             <a href="/company/">
-              <div class="topbox">KONTAKT</div>
-              <div class="bottombox">Our mailinglist webyast@suse.de</div>
-            </a>
-          </li>
-        </ul>-->
         <div class="clear"></div>
       </div>
     </div>
@@ -116,4 +74,7 @@
   </body>
   
 </html>
+
+<%= javascript_include_tag 'jrails' %>
+
 
