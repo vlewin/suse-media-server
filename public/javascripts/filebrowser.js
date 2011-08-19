@@ -74,8 +74,6 @@
       
       $('#select').bind({
         click: function(evt){
-          console.log("PARENT")        
-          console.log(opt.parent)
           var result = methods.ajax(opt.parent);
 
           $('li.parent').live('click', function() {
@@ -90,8 +88,9 @@
           
           $('a#back').live('click', function() {
             var back = $(this).attr('data-back');
-            
-            console.log( back + ' p ' + opt.parent )
+
+            console.log("Location A" + back);
+            console.log("Location B" + opt.parent);
             
             if(back != opt.parent) {
               var tmp = back.split('/');
