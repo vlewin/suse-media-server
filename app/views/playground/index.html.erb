@@ -1,106 +1,147 @@
 <script type="text/javascript" src="/javascripts/filebrowser.js" ></script>
-<%= stylesheet_link_tag 'filebrowser.css' %>
+<% stylesheet_link_tag 'filebrowser.css' %>
 <script>
+
+
+
+//    setTimeout( function() {
+//      $lines.show();
+//    }, 180);
+
+
   $(function(){
- //  {parent: "/home"}
-    $('#browser').directory();
+    $('#controls a').click(function(){
+      var activate = $(this).attr('id').split('_')[0];
+      console.log(activate);
+
+      var $containers = $('#containers').find('div.partial');
+
+      $containers.each(function() {
+        if($(this).hasClass("active")) {
+            $(this).stop().animate({width: "1%" }, 300, function() {
+              $(this).hide().removeClass('active');
+            });
+         }
+      });
+
+      //NOT WORKIN IN RAILS 2
+      //$('#' + $(this).attr('data-action')).stop().animate({width: "90%" }, 300, function() {
+      //  $(this).addClass('active')
+      //});
+
+      console.log($('#' + $(this).attr('id')))
+      $('#' + activate).show().stop().animate({width: "99%" }, 300, function() {
+        $(this).addClass('active')
+      });
+
+
+
+      //$('#' + $(this).attr('data-action')).css('width', '90%');
+
+    });
   });
 </script>
 
-<p><input type="text" id="browser" style="border:1px solid #ccc;"></p>
 
-<div id="dirwrap">
-  <div id="controls"></div>
-  <div id="directories"></div>
+<style type="text/css">
+  body {
+    background-color:#EEEEEE;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:16px;
+  }
+
+  #show {
+    display:block;
+    width:99%;
+  }
+
+  div.partial {
+    border: 0px solid grey;
+    width: 1%;
+    float:left;
+    display:none;
+    background: #fff;
+  }
+
+  #controls {
+    background:#353535;
+  }
+
+  #controls a {
+    display:inline-block;
+    width:25%;
+    float:left;
+  }
+
+</style>
+<!--
+    ajax:before
+    ajax:loading
+    ajax:success
+    ajax:failure
+    ajax:complete
+    ajax:after
+-->
+
+<div id="controls">
+  <!--<a href="#" data-action="show">SHARES<a/>
+  <a href="#" data-action="new" >NEW<a/>
+  <a href="#" data-action="delete">DEL<a/>
+  <a href="#" data-action="settings">SET<a/>-->
+
+  <%= link_to_remote(
+    "<img src='/images/plus.png'/>",
+    :before => "$('#wait').show();",
+    :update => 'new',
+    :after => "$('#wait').hide();",
+    :html => {:id => 'new_s'},
+    :url => {:action => 'new'})
+  %>
+
+  <%= link_to_remote(
+    "<img src='/images/trash.png'/>",
+    :before => "$('#wait').show();",
+    :update => 'remove',
+    :after => "$('#wait').hide();",
+    :html => {:id => 'remove_s'},
+    :url => {:action => 'remove'})
+  %>
+
+  <%= link_to_remote(
+    "<img src='/images/settings-white.png'/>",
+    :before => "$('#wait').show();",
+    :update => 'settings',
+    :after => "$('#wait').hide();",
+    :html => {:id => 'settings_s'},
+    :url => {:action => 'settings'})
+  %>
+
 </div>
 
-<br/>
-<br/>
+<div class="clear"></div>
+<div>&nbsp;</div>
 
-
-
-
-
-<div class="container_12">
-  <div class="grid_3">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-      <a href="/">BACK</a>
-    </div>
+<div id="containers">
+  <div id="show" class="partial active">
+    1
   </div>
 
-  <div class="grid_5">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-      HEADER
-    </div>
+  <div id="new" class="partial">
+    2
   </div>
 
-  <div class="grid_1">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-       <%= link_to_remote(
-          "ADD",
-          :update => 'form',
-          :url => {:controller => :playground, :action => 'new'}) %>
-    </div>
+  <div id="remove" class="partial">
+    3
   </div>
 
-  <div class="grid_1">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-      <%= link_to_remote(
-          "DEL",
-          :update => 'form',
-          :url => {:controller => :playground, :action => 'remove'}) %>
-    </div>
-  </div>
-
-  <div class="grid_1">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-      <%= link_to_remote(
-          "SET",
-          :update => 'form',
-          :url => {:controller => :playground, :action => 'settings'}) %>
-    </div>
-  </div>
-
-  <div class="grid_1">
-    <div class="border" style="border:1px solid grey; height:32px; background:#fff;">
-      <a href="#" id="add">EXR</a>
-    </div>
+  <div id="settings" class="partial">
+    4
   </div>
 </div>
 
 <div class="clear"></div>
-<br>
 
-
-
-<div class="clear"></div>
-<br>
-
-<div id="form" class="container_12">
-  <div class="grid_8">
-    <div class="border" style="border:1px solid grey; height:360px; text-align:center; background:#fff;">
-      <img src="images/home_network.jpg">
-    </div>
-  </div>
-  <div class="grid_4">
-    <div class="border" style="border:1px solid grey; height:360px; text-align:left; background:#fff;">
-      <h2>Share list</h2>
-
-      <br>
-
-      <h2>Photo</h2>
-      <h2>Musik</h2>
-      <h2>Video</h2>
-      <h2>Files</h2>
-    </div>
-  </div>
-  <div class="grid_4">
-    <div class="border" style="border:1px solid grey;">
-      <h2>File browser</h2>
-    </div>
-  </div>
-</div>
+<div id="wait">Please wait a while ...</div>
 
 <div class="clear"></div>
-
 

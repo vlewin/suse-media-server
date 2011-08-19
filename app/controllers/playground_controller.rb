@@ -9,18 +9,12 @@ class PlaygroundController < ApplicationController
   end
 
   def new
-    @parent = "/home/#{USER}"
-    @dir = Filetree.new(@parent).get_content
-
-    Rails.logger.error "*** Render NEW ***"
-    Rails.logger.error "*** DIR #{@dir.inspect} ***"
-
     render :partial => 'new'
   end
 
   def remove
-    Rails.logger.error "*** Render REMOVE ***"
-    render :partial => 'destroy'
+    Rails.logger.error "*** Render DELETE ***"
+    render :partial => 'remove'
   end
 
   def settings

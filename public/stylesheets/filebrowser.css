@@ -1,5 +1,5 @@
-#browser { width:70%; text-align:left; border:none; background: #fff; }
-
+#browser { width:70%; border:1px solid #eee; background: #fff; padding: 5px; }
+#share_name { width:82%; border:1px solid #eee; padding: 5px; }
 #select { 
     background:#444; 
     background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
@@ -11,9 +11,9 @@
     display:inline-block; 
     margin:0px 0px 0px 5px;
 
-    padding:2px 4px 4px 4px;
+    padding:3px 4px 3px 4px;
     text-align:center;
-    min-width:118px; 
+    min-width:10%; 
     
     height:26px;
     line-height:26px;  
