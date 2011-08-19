@@ -88,11 +88,13 @@
 </div>
 
 <%= javascript_include_tag 'ftoggle' %>
+<%= javascript_include_tag 'filebrowser' %>
 <%= javascript_include_tag 'module' %>
 
 <script>
   jQuery(document).ready(function() {
     $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
+    
     $('#smb').live('click', function() {
       $('#smbform').submit();
     })
