@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag 'application.css' %>
     <%= stylesheet_link_tag 'layout.css' %>
     <%= stylesheet_link_tag 'forms.css' %>
+    
+    <%= stylesheet_link_tag 'flash.css' %>
 
     <%= javascript_include_tag 'jquery-1.4.3' %>
   </head>
@@ -42,7 +44,9 @@
       </div>
     </div>
 
-     <div id="content">
+    <%= flash[:notice] %>
+    
+    <div id="content">
         <%= yield %>
     </div>
 

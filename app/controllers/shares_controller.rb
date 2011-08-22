@@ -2,9 +2,18 @@ require "share.rb"
 
 class SharesController < ApplicationController
   def index
-    @shares = Share.all
-    @global = Share.find('target[1]')
-    @smb = Samba.running?
+#    @shares = Share.all
+#    @global = Share.find('target[1]')
+#    @smb = Samba.running?
+    begin
+      @shares = Share.all
+      @global = Share.find('target[1]')
+      @smb = Samba.running?
+      
+    rescue RuntimeError => e
+      flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
+      redirect_to(:controller => :index, :action => 'index')
+    end
   end
 
   def show

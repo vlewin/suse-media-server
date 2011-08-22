@@ -20,21 +20,37 @@ class Share
 
   def self.all
     shares = Array.new
-    bus = Bus.new		
+    bus = Bus.new
 
-    shares_map = bus.find_all("samba")
-    args = {}
+    begin
+      shares_map = bus.find_all("samba")
+      args = {}
 
-    shares_map.each do |elem|
-      elem.each do |key, value|
-        args[key] = value
+      shares_map.each do |elem|
+        elem.each do |key, value|
+          args[key] = value
+        end
+
+        share = Share.new(args)
+        shares << share
       end
 
-      share = Share.new(args)
-      shares << share
-    end
+      return shares
+    rescue DBus::Error => dbe
+      if dbe.dbus_message.instance_variables.include?("@error_name") && dbe.dbus_message.error_name == "org.freedesktop.DBus.Error.AccessDenied"
+        Rails.logger.error "*** DBUS:ERROR #{dbe.dbus_message.error_name.inspect}"
+        raise "You have no permissions!"
+      else
+        Rails.logger.error "*** DBUS:ERROR #{dbe.inspect}"
+        raise "Generic exception please report this issue:
+          <a href='https://github.com/vlewin/suse-media-server/issues'>github bugtracker</a>"
+      end
 
-    return shares
+    rescue Exception => e
+      Rails.logger.error "Caught exception: #{e.inspect}"
+      raise "Generic exception"
+    end
+    
   end
 
   def self.find(id)
