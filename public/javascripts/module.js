@@ -14,9 +14,28 @@ $(document).ready(function() {
 $(function () {
   //NEW
   $("#new").click().toggle(function() {
-    $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
+    console.log("NEW CLICKED")
+
+    
+//    $("div#newform").stop().animate({ height: "300px" }).animate({ height: "280px" }, "fast");
+    
+    $("div#newform").stop().animate({height: "300px" }, 300, function() { 
+      $("div#newform").stop().animate({ height: "280px" }, 100);
+      
+      $(function () {
+        $('.socials').mobilyblocks({
+          direction: 'clockwise',
+          duration:300,
+          zIndex:500,
+          widthMultiplier:1.50
+        });
+      });
+    });
+    
     showSave('form_new');
+    
   }, function() {
+    console.log("NEW CLICKED")
     $("div#newform").stop().animate({height: "-=280" }, 200, function() { /*callback*/ });
   });
   
@@ -35,7 +54,7 @@ $(function () {
     }
   });
   
-  // SETTONGS
+  // SETTINGS
   $('a#settings').click(function() {
     $('div.actionscont').find('a').hide();
     showSettings();
