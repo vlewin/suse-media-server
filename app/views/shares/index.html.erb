@@ -1,7 +1,27 @@
 <%= stylesheet_link_tag 'module.css' %>
 
+
+<script>
+  
+
+  
+
+</script>
+
+
+
+
+
+
+<style>
+  .slideshow { margin: 0 auto; width:100%; height:500px; overflow:hidden; }
+  .inner { height:500px; background:#fff; } 
+  .slide { width:960px; height:500; margin-left:0px; float:left; }
+</style>
+
 <div>
   <div class="container_12 mhead">
+
     <div class="grid_3 leftcont">
       <a href="/" id="back" class="button">BACK</a>
     </div>
@@ -13,99 +33,87 @@
 
     <div class="grid_3 rightcont">
       <div class="actionscont">
-          <% link_to_remote(
-                     "<img src='/images/plus.png' />",
-                     :before => "$('#wait').show();",
-                     :update => 'mform',
-                     :after => "$('#wait').hide();",
-                     :html => {:class => 'share_link'},
-                     :url => {:action => 'new'})
-                %>
-          <a  id="new" href="#" class="button">
-            <img src="/images/plus.png" />
-          </a>
-          <a  id="delete" href="#" class="button">
-            <img src="/images/trash.png" />
-          </a>
-          <a id="settings" href="#" class="button">
-            <img src="/images/settings-white.png" />
-          </a>
+        <a id="all" href="#" class="button" data-number="0"><img src="/images/list.png" /></a>
+        <a id="new" href="#" class="button" data-number="1"><img src="/images/plus.png" /></a>
+        <a id="del" href="#" class="button" data-number="2"><img src="/images/trash.png" /></a>
+        <a id="set" href="#" class="button" data-number="3"><img src="/images/settings-white.png" /></a>
 
-          <a href="#" id="submit" class="button">SAVE</a>
+        <a href="#" id="submit" class="button">SAVE</a>
         <div class="clear"></div>
       </div>
     </div>
 
+    <div id="wait"><label>please wait ...<label></div>
 
-    <div id="wait">
-     <!--<img src="/images/wait.gif" />-->
-     <label>please wait ...<label>
-    </div>
-
-  </div>
+  </div> <!-- mhead -->
 
   <div class="clear"></div>
 
   <div class="container_12 mbody">
 
-    <%= render :partial => "new"  %>
+    <%= render :partial => "status" %>
 
-    <div class="mstatus">
-      <div class="grid_6">
-        <p class="left">
-          <img src="/images/samba-sym2.png" alt="Expanded" border="0" />
-          SAMBA status:
-        </p>
-      </div>
-      <div class="grid_6 right">
-        <% form_remote_for @smb, :url => {:action => 'smbaction'},
-          :before => "$('#wait').show();", :html => {:id => 'smbform'},
-          :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
-          <%= form.check_box(:status, { id=> 'smbaction', :class => 'ftoggle smb', :checked  => @smb.status }, "start", "stop") %>
-        <% end %>
-      </div>
-      <div class="clear"></div>
-    </div>
-
+    
     <div class="grid_12">
       <div id="mcontent" class="mcontent">
-        <div id="msettings" class="msettings hidden">
-          <%= render :partial => "settings"  %>
+        <div class="slideshow">
+          <div class="inner">
+            <div id="all-container" class="slide"><%= render :partial => "shares" %></div>
+            <div id="edit-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="new-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="del-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="set-container" class="slide"><%= render :partial => "settings" %></div>
+          </div>
         </div>
-       </div>
-       
-          <%= render :partial => "shares"  %>
+        <div class="clear"></div>
       </div>
-      <div id="mform" class="mform">
-        <!-- render partial -->
-      </div>
-      <div class="clear"></div>
     </div>
-  </div>
 
   <div class="clear"></div>
 
-</div>
+</div> <!-- mbody -->
 
 <%= javascript_include_tag 'ftoggle' %>
 <%= javascript_include_tag 'filebrowser' %>
 <%= javascript_include_tag 'module' %>
 
 <script>
+  function slideTo(number){
+    var $slides = $("div.slide");
+    var width = parseInt($slides.width());
+    
+    
+    var move = "-" + ((number * width)) + 'px';
+    
+    $(".inner").stop().animate({ "margin-left": move }, 300, function() { 
+      console.log("show save button");
+      
+      
+    });
+  }
+  
+  function initSlider() {
+    var $slides = $("div.slide");
+    var width = parseInt($slides.width());
+    var number = $slides.length;
+    var maxWidth = (width * number) + width;
+    
+    $(".inner").css({ "width": maxWidth });
+  }
+  
   jQuery(document).ready(function() {
     $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
-    
-    $('#smb').live('click', function() {
-      $('#smbform').submit();
-    })
+    $('#smb').live('click', function() { $('#smbform').submit(); });
+    initSlider();
   });
+  
 
-  $(function(){
-    $('.socials').mobilyblocks({
-      direction: 'clockwise',
-      duration:300,
-      zIndex:500,
-      widthMultiplier:1.50
+  
+  jQuery(document).ready(function() {
+    $('a.button').bind('click', function(){
+      var number = parseInt($(this).attr('data-number'));
+      console.log(number + " CLICKED?")
+      slideTo(number);
     });
   });
 </script>
