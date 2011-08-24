@@ -1,22 +1,10 @@
 <%= stylesheet_link_tag 'module.css' %>
 
 
-<script>
-  
-
-  
-
-</script>
-
-
-
-
-
-
 <style>
-  .slideshow { margin: 0 auto; width:100%; height:500px; overflow:hidden; }
+  .slideshow { margin: 0 auto; width:100%; height:380px; overflow:hidden; }
   .inner { height:500px; background:#fff; } 
-  .slide { width:960px; height:500; margin-left:0px; float:left; }
+  .slide { width:940px; height:380px; margin-left:0px; float:left; }
 </style>
 
 <div>
@@ -34,9 +22,10 @@
     <div class="grid_3 rightcont">
       <div class="actionscont">
         <a id="all" href="#" class="button" data-number="0"><img src="/images/list.png" /></a>
-        <a id="new" href="#" class="button" data-number="1"><img src="/images/plus.png" /></a>
-        <a id="del" href="#" class="button" data-number="2"><img src="/images/trash.png" /></a>
-        <a id="set" href="#" class="button" data-number="3"><img src="/images/settings-white.png" /></a>
+       <!-- <a id="edit" href="#" class="button" data-number="1"><img src="/images/list.png" /></a> -->
+        <a id="new" href="#" class="button" data-number="2"><img src="/images/plus.png" /></a>
+        <a id="del" href="#" class="button" data-number="3"><img src="/images/trash.png" /></a>
+        <a id="set" href="#" class="button" data-number="4"><img src="/images/settings-white.png" /></a>
 
         <a href="#" id="submit" class="button">SAVE</a>
         <div class="clear"></div>
@@ -59,9 +48,9 @@
         <div class="slideshow">
           <div class="inner">
             <div id="all-container" class="slide"><%= render :partial => "shares" %></div>
-            <div id="edit-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="edit-container" class="slide"><!-- render :partial => 'share' --> </div>
             <div id="new-container" class="slide"><%= render :partial => "form" %></div>
-            <div id="del-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="del-container" class="slide">DEL</div>
             <div id="set-container" class="slide"><%= render :partial => "settings" %></div>
           </div>
         </div>
@@ -74,21 +63,15 @@
 </div> <!-- mbody -->
 
 <%= javascript_include_tag 'ftoggle' %>
-<%= javascript_include_tag 'filebrowser' %>
 <%= javascript_include_tag 'module' %>
 
 <script>
   function slideTo(number){
     var $slides = $("div.slide");
     var width = parseInt($slides.width());
-    
-    
     var move = "-" + ((number * width)) + 'px';
-    
     $(".inner").stop().animate({ "margin-left": move }, 300, function() { 
       console.log("show save button");
-      
-      
     });
   }
   
@@ -97,17 +80,15 @@
     var width = parseInt($slides.width());
     var number = $slides.length;
     var maxWidth = (width * number) + width;
-    
     $(".inner").css({ "width": maxWidth });
   }
   
   jQuery(document).ready(function() {
-    $('[type=checkbox].smb').slider({on: "running", off: "unused", size: 180, id: "smb"});
+    $('[type=checkbox].smb').toggle({on: "running", off: "unused", size: 180, id: "smb"});
     $('#smb').live('click', function() { $('#smbform').submit(); });
     initSlider();
   });
   
-
   
   jQuery(document).ready(function() {
     $('a.button').bind('click', function(){
