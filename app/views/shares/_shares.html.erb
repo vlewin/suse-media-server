@@ -4,13 +4,13 @@
     <div class="link beforelink">
       <%= link_to_remote(
            "<div class='key'>#{share.name}</div>",
-           
            :html => { :class=>'actionlink'},
            :before => "$('#wait').show();",
-           :after => "expand($(this)); $('#wait').fadeOut('slow');",
-           :update => 'mform',
+           :after =>  "$('#wait').fadeOut('slow'); slideTo(1);",
+           :update => 'edit-container',
            :url => {:action => 'show', :id => share.id, :name => share.name })
       %>
+      
       <div class='value'>
         <strong class="remove-placeholder">{#}</strong> 
         <%= link_to_remote(

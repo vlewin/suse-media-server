@@ -2,7 +2,7 @@
 
 (function($){
   $.fn.extend({
-    slider: function(options) {
+    toggle: function(options) {
       var defaults = {
         size: 120,
         background: "green",
@@ -12,15 +12,20 @@
       }
 
       var options =  $.extend(defaults, options);
-
+    
       return this.each(function() {
         var o = options;
         var $obj = $(this);
-
+        
         $obj.wrap('<span class="ftoggle_container">')
             .after($('<span id="' + o.id + '" class="ftoggle_box">'))
             .after($('<span class="ftoggle_label_right">' + o.off + '</span>'))
-            .after($('<span class="ftoggle_label_left">' + o.on + '</span>'))
+            .after($('<span class="ftoggle_label_left">' + o.on + '</span>'));
+            
+        var $parent = $obj.parent().parent();
+        if($parent.hasClass('value')) {
+          $parent.find('img.wait').hide();
+        }
 
         var $parent = $obj.parent();
         var $box = $parent.css('text-align', 'left').find("span.ftoggle_box");

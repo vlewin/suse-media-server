@@ -50,9 +50,13 @@ div#header {
   border-color: #fff;
 
   box-shadow: 0px 0px 2px #aaa inset;
-  background:#2B78C6;
-  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
-  background: -webkit-gradient(linear, left top, left bottom, from(#2B78C6), to(#00A3D3));
+  background:#84B952;
+
+/*  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;*/
+/*  background: -webkit-gradient(linear, left top, left bottom, from(#2B78C6), to(#00A3D3));*/
+
+/*  background: -moz-linear-gradient(center bottom , #709F42, #84B952) repeat scroll 0 0 transparent;*/
+/*  background: -webkit-gradient(linear, left top, left bottom, from(#709F42), to(#84B952));*/
 }
 
 div#header h1 {
@@ -77,9 +81,9 @@ div#navbar {
 
    background: none repeat scroll 0 0 #FFFFFF;
     border-radius: 0 0 0 0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-    background: -moz-linear-gradient(center bottom , #ccc, #ddd) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
+/*    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);*/
+/*    background: -moz-linear-gradient(center bottom , #ccc, #ddd) repeat scroll 0 0 transparent;*/
+/*    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));*/
 
 }
 
