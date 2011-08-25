@@ -1,65 +1,120 @@
-<%= stylesheet_link_tag 'mobilyblocks.css' %>
+<% form_remote_for :share,
+    :url => {:action => 'create'},
+    :before => "$('#wait').show();",
+    :after => "slideTo(0); $('#wait').fadeOut(); ",
+    :html => {:id => "new_form"},
+    :update => "all-container" do |form| %>
 
-<div id="toppanel">
-  <div id="newform">
-    <div class="socials">
+    <% form.submit %>
+    <% form.hidden_field :name %>
+    <% form.text_field :id %>
     
-      <ul class="reset">
-        <li>
-          <%= link_to_remote(
-              "<img src='images/audio.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "AUDIO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "audio" })
-           %>
-        </li>
-        <li>
-          <%= link_to_remote(
-              "<img src='images/video.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "VIDEO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "video" })
-              %>
-        </li>
-        <li>
-          <%= link_to_remote(
-              "<img src='images/photo.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "PHOTO", :class => 'share_link'},
-              :url => {:action => 'new', :name => "photo" })
-           %>
-        </li>
-        <li>
-          <%= link_to_remote(
-              "<img src='images/file.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "FILES", :class => 'share_link'},
-              :url => {:action => 'new', :name => "files" })
-          %>
-        </li>
-        <li>
-          <%= link_to_remote(
-              "<img src='images/backup.png' alt="" />",
-              :update => 'newform',
-              :before => 'console.log($("newform").find("[type=checkbox]")); $("newform").find("[type=checkbox]").slider({on: "running", off: "unused", size: 180});',
-              :html => {:value => "BACKUP", :class => 'share_link'},
-              :url => {:action => 'new', :name => "backup" })
-          %>
-        </li>
-      </ul>
+    
+      <h2 class="mheading grey">
+        Autodiscover
+        <p style="color:#889; font-size:10px;">
+          TODO: find a way to autodiscover translated directories in user home,
+          if autodiscover is not possible, show "select" link on every line
+        </p>
+      </h2>
       
-    </div>
-  </div>
+      <div id="video" class="line">
+        <div class="key"> 
+          <div class="image-container">
+            <img class="large" src="images/video.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name">VIDEO</span> 
+            <span class="path">{PATH}</span>
+          </div>
+        </div>
+        <div class="value">
+          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
+        </div>
+      </div>
+
+      <div id="audio" class="line">
+        <div class="key"> 
+          <div class="image-container">
+            <img class="large" src="images/audio.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name">AUDIO</span> 
+            <span class="path">{PATH}</span>
+          </div>
+        </div>
+        <div class="value">
+          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
+        </div>
+      </div>
+
+      <div id="photo"  class="line">
+        <div class="key"> 
+          <div class="image-container">
+            <img class="large" src="images/photo.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name">PHOTO</span> 
+            <span class="path">{PATH}</span>
+          </div>
+        </div>
+        <div class="value">
+          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
+        </div>
+      </div>
+      
+      <div id="backup"  class="line">
+        <div class="key"> 
+          <div class="image-container">
+            <img class="large" src="images/backup.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name">BACKUP</span> 
+            <span class="path">{PATH}</span>
+          </div>
+        </div>
+        <div class="value">
+          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
+          <%= link_to_remote "SELECT", :html => {:class=>"select"} %>
+        </div>
+      </div>
+
+      <div id="custom-dir" class="line">
+        <div class="key"> 
+          <div class="image-container">
+            <img class="large" src="images/customfile48.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name">CUSTOM</span> 
+            <span class="path">{PATH}</span>
+          </div>
+        </div>
+        <div class="value">
+          <a class="share">SHARE</a>
+          <a class="select">SELECT</a>
+        </div>
+      </div>
+      
+      
+
+<% end %>
+
+<div id="dir-chooser">
+<!--  <div id="controls"></div>
+  <div id="directories"></div>-->
 </div>
 
-<%= javascript_include_tag 'mobilyblocks' %>
+<script type="text/javascript" src="/javascripts/dir-chooser.js" ></script>
+<%= stylesheet_link_tag 'dir-chooser.css' %>
 
 <script>
-  $(function(){
+  jQuery(document).ready(function() {
+    var home = "<%= ENV['HOME'] %>"
+    $('#dir-chooser').dirchooser({parent: home});
     
+    $('a.share').click(function() {
+      $('#new_form').submit();
+    });
   });
 </script>
+

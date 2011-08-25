@@ -2,9 +2,6 @@ require "share.rb"
 
 class SharesController < ApplicationController
   def index
-#    @shares = Share.all
-#    @global = Share.find('target[1]')
-#    @smb = Samba.running?
     begin
       @shares = Share.all
       @global = Share.find('target[1]')
@@ -16,21 +13,31 @@ class SharesController < ApplicationController
     end
   end
 
+#  def new
+#    @shares = Share.all
+#    target_id = @shares.length
+#    Rails.logger.debug "FORM FOR NEW SHARE target[#{target_id+1}]"
+#    
+#    @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
+#    render :partial => 'form', :with => @share, :locals => {:share => @share } 
+#  end
+  
   def show
     @share = Share.find(params[:id])
     render :partial => 'share'
   end
   
-  def new
-    @shares = Share.all
-    target_id = @shares.length
-    @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
-    render :partial => 'form', :with => @share, :locals => {:share => @share } 
-  end
-  
   
   def create
+    Rails.logger.debug "CREATE NEW SHARE #{params[:share].inspect}"
+
+    @shares = Share.all
+    target_id = @shares.length
+    
     @share = Share.new(params[:share])
+    @share.id = "target[#{target_id+1}]"
+    
+    Rails.logger.debug "CLASS #{@share.inspect}"
     
     if @share.save
       @shares = Share.all

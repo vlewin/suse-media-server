@@ -11,7 +11,17 @@ $(document).ready(function() {
   }, 10000);
 });
 
+
+
+
 $(function () {
+
+//  $('a.action').live('click', function() {
+//    console.log("ACTION LINK IS CLICKED");
+//    console.log($(this).attr('data-form'))
+//    submit($(this).attr('data-form'));
+//  });
+  
   //NEW
 //  $("#new").click().toggle(function() {
 //    $("div#newform").stop().animate({height: "300px" }, 300, function() { 
@@ -85,20 +95,7 @@ $(function () {
   
 }); 
 
-function showSave(form) {
-  $('div.actionscont').find('a').hide();
-  $submit = $('#submit')
-  $submit.data('form', form);
-  $submit.show().stop().delay(200).animate({ width: "100%" }, 100);
-}
 
-function hideSave() {
-  $('#submit').stop().animate({ width: "0" }, 100);
-  $('div.actionscont').find('a').show();
-  $('#submit').data('form', '')
-  $('#submit').hide();
-
-}
 
 //function hideSettings () {
 //  $('#msettings').addClass('hidden').toggle(500);

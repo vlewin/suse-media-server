@@ -14,7 +14,6 @@ class Share
   end
 
   def to_hash
-    #Hash[instance_variables.map { |var| [var[1..-1].to_sym, instance_variable_get(var)] }]
     Hash[instance_variables.map { |var| [var[1..-1].to_s, instance_variable_get(var)] }]
   end
 
@@ -36,6 +35,7 @@ class Share
       end
 
       return shares
+      
     rescue DBus::Error => dbe
       if dbe.dbus_message.instance_variables.include?("@error_name") && dbe.dbus_message.error_name == "org.freedesktop.DBus.Error.AccessDenied"
         Rails.logger.error "*** DBUS:ERROR #{dbe.dbus_message.error_name.inspect}"
@@ -67,6 +67,7 @@ class Share
   end
 
   def save
+    Rails.logger.error "INFO: SAVE ACTION #{self.inspect}"
     bus = Bus.new
 #    saved = bus.save("samba", self.to_hash)
 #    state = Samba.start
@@ -77,8 +78,6 @@ class Share
       Rails.logger.error "ERROR: CAN NOT SAVE SHARE OR START SMB!"
       return true  
     end
-    
-    
   end
   
   def destroy

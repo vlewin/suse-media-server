@@ -2,9 +2,9 @@
 
 
 <style>
-  .slideshow { margin: 0 auto; width:100%; height:380px; overflow:hidden; }
-  .inner { height:500px; background:#fff; } 
-  .slide { width:940px; height:380px; margin-left:0px; float:left; }
+  #slideshow { margin: 0 auto; width:100%; height:380px; overflow:hidden; }
+  .inner { min-height:500px; background:#fff; } 
+  .slide { width:940px; min-height:380px; margin-left:0px; float:left; }
 </style>
 
 <div>
@@ -21,11 +21,11 @@
 
     <div class="grid_3 rightcont">
       <div class="actionscont">
-        <a id="all" href="#" class="button" data-number="0"><img src="/images/list.png" /></a>
+        <a id="all" href="#" onclick="slideTo(0)"  class="button sliderbtn"><img src="/images/list.png" /></a>
        <!-- <a id="edit" href="#" class="button" data-number="1"><img src="/images/list.png" /></a> -->
-        <a id="new" href="#" class="button" data-number="2"><img src="/images/plus.png" /></a>
-        <a id="del" href="#" class="button" data-number="3"><img src="/images/trash.png" /></a>
-        <a id="set" href="#" class="button" data-number="4"><img src="/images/settings-white.png" /></a>
+        <a id="new" href="#" onclick="slideTo(2)" class="action button sliderbtn"><img src="/images/plus.png" /></a>
+        <a id="del" href="#" onclick="slideTo(3)" class="action button sliderbtn"><img src="/images/trash.png" /></a>
+        <a id="set" href="#" onclick="slideTo(4)" class="action button sliderbtn"><img src="/images/settings-white.png" /></a>
 
         <a href="#" id="submit" class="button">SAVE</a>
         <div class="clear"></div>
@@ -42,14 +42,13 @@
 
     <%= render :partial => "status" %>
 
-    
     <div class="grid_12">
       <div id="mcontent" class="mcontent">
-        <div class="slideshow">
+        <div id="slideshow">
           <div class="inner">
             <div id="all-container" class="slide"><%= render :partial => "shares" %></div>
             <div id="edit-container" class="slide"><!-- render :partial => 'share' --> </div>
-            <div id="new-container" class="slide"><%= render :partial => "form" %></div>
+            <div id="new-container" class="slide"><%= render :partial => "new" %></div>
             <div id="del-container" class="slide">DEL</div>
             <div id="set-container" class="slide"><%= render :partial => "settings" %></div>
           </div>
@@ -66,17 +65,8 @@
 <%= javascript_include_tag 'module' %>
 
 <script>
-  function slideTo(number){
-    var $slides = $("div.slide");
-    var width = parseInt($slides.width());
-    var move = "-" + ((number * width)) + 'px';
-    $(".inner").stop().animate({ "margin-left": move }, 300, function() { 
-      console.log("show save button");
-    });
-  }
-  
-  function initSlider() {
-    var $slides = $("div.slide");
+  function initFormSlider() {
+    var $slides = $('#slideshow').find("div.slide");
     var width = parseInt($slides.width());
     var number = $slides.length;
     var maxWidth = (width * number) + width;
@@ -86,16 +76,61 @@
   jQuery(document).ready(function() {
     $('[type=checkbox].smb').toggle({on: "running", off: "unused", size: 180, id: "smb"});
     $('#smb').live('click', function() { $('#smbform').submit(); });
-    initSlider();
+    initFormSlider();
   });
-  
   
   jQuery(document).ready(function() {
-    $('a.button').bind('click', function(){
-      var number = parseInt($(this).attr('data-number'));
-      console.log(number + " CLICKED?")
-      slideTo(number);
-    });
+    //$('a.sliderbtn').bind('click', function(){
+      //var number = parseInt($(this).attr('data-number'));
+      //console.log("\nSlide to " + number);
+      //var container = $(this).attr('data-container');
+      //slideTo(number, container);
+    //});
   });
+  
+  /*function slideTo(number, container){
+    var $slides = $('#slideshow').find("div.slide");
+    var width = parseInt($slides.width());
+    var move = "-" + ((number * width)) + 'px';
+    $(".inner").stop().animate({ "margin-left": move }, 300, function() { 
+      submit(container);
+    });*/
+    
+    function slideTo(number){
+      console.log("Slide to " + number)
+      var $slides = $('#slideshow').find("div.slide");
+      var width = parseInt($slides.width());
+      var move = "-" + ((number * width)) + 'px';
+      $(".inner").stop().animate({ "margin-left": move }, 300, function() { 
+        //submit(container);
+      });
+    }
+
+  function submit(container) {
+    console.log("FORM SHOULD BE SUBMITTED " + container)
+    
+    $('div.actionscont').find('a.button').hide();
+    
+    $submit = $('#submit');
+    $submit.show().stop().delay(200).animate({ width: "100%" }, 100);
+    
+    
+    
+    var $form = $('#' + container).find('form');
+    
+    console.log($form)
+    $submit.live('click', function() {
+      console.log("SUBMIT FORM ON CLICK");
+      $form.submit();
+      console.log("END SUBMIT ACTION");
+    });
+  }
+
+  function hideSubmit() {
+    $('#submit').stop().animate({ width: "0" }, 100);
+    $('div.actionscont').find('a').show();
+    $('#submit').hide();
+
+  }
 </script>
 
