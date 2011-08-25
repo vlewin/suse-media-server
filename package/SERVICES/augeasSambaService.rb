@@ -35,8 +35,9 @@ class AugeasSambaService < DBus::Object
 
   def syslog(message)
     Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s|
-      s.info "*** SMS INFO MESSAGE ***"
+      s.info "--- SMS INFO MESSAGE ---"
       s.info "*** #{message} ***"
+      s.info "-------------------------"
     }
   end
   
@@ -58,14 +59,10 @@ class AugeasSambaService < DBus::Object
 
       paths.each do |share|
         target = share.to_s.split('/').last
-        puts share.to_s.split('/').last
         shares.push({ "id" => share.to_s.split('/').last, "name" => aug.get(share)})
       end
 
-      #Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info "*** existing shares" }
-      #Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info shares.inspect }
-
-      [shares]
+     [shares]
     end
 
     #GET ALL NODES
@@ -85,16 +82,10 @@ class AugeasSambaService < DBus::Object
         child = a.split('/').last
 
         if children["name"] == "global"
-
 	  if GLOBAL.include?(child)
-            puts "GLOBAL SETTINGS"
 	    children[child] = aug.get(a) unless aug.get(a).empty?
-            puts "CHILD #{child} and value #{aug.get(a)}"
-            puts "*** \n"
 	  end
-
 	else
-
           if PROPERTIES.include?(child)
             #augeas crashed if child node has a white space in his name
             if child.match(/\s/)
@@ -108,7 +99,6 @@ class AugeasSambaService < DBus::Object
         end #GLOBAL
       end #EACH
 
-      puts "FOUND #{children.inspect}"
       return [children]
     end
 
@@ -116,56 +106,57 @@ class AugeasSambaService < DBus::Object
     dbus_method :set, "in share:a{ss}, out success:b" do |share|
       aug = init()
 
-      puts "#{AUG_PATH}#{share["id"]}"
+      puts "INFO: INSECT SHARE BEFORE SET #{share.inspect}"      
 
-      #new smb share if not exist?
-      if aug.get("#{AUG_PATH}#{share["id"]}").nil?
-        aug.set("#{AUG_PATH}#{share["id"]}", share["name"])
-      end
-
-
-      puts "SHARE #{share.inspect }"
-
-      #store id and name and remove from hash
+      #store ID and NAME BEFORE YOU DELETE THEM
       id = share["id"]
       name = share["name"]
-
+      
+      #delete ID and SHARE NAME from HASH
       share.delete("id")
       share.delete("name")
+      
+      targets = []
 
-      #TODO: check if key in SHARE and set user value otherwise set default GLOBAL values for nobody without password
-
-      puts "NAME #{name}"
-
-
-      #TODO: find better way to detect GLOBAL section
-      if id == "target[1]"
-        puts "WRITE GLOBAL SETTINGS"
-        GLOBAL_DEFAULTS.each do |key,value|
+      unless aug.get("#{AUG_PATH}#{id}") == "global"
+	nodes = aug.match("#{AUG_PATH}*[label() != '#comment']")
+	nodes.each do | target |
+	  targets << aug.get(target)
+	end
+	
+	#IF NAME IS NOT EXIST
+	unless targets.include?(name)   
+	  puts "INFO: CREATE NEW NODE <#{name}>"
+	  puts "DEBUG: AUG.SET: #{AUG_PATH}#{id} \tNAME  #{name}"
+	  aug.set("#{AUG_PATH}#{id}", name)
+	else
+	  puts "INFO: UPDATE EXISTING NODE <#{name}>"
+	end
+	
+	#WRITE NOBODY DEFAULT SETTINGS
+        NOBODY_DEFAULTS.each do |key,value|
+	  puts "\n\n*** WRITE NOBODY DEFAULT SETTINGS"
+ 	  key = key.gsub(/_/, "\\ ")
+ 	  aug.set("#{AUG_PATH}#{id}/#{key}", value)
+        end
+            
+      else
+        # WRITE GLOBAL DEFAULT SETTINGS
+	GLOBAL_DEFAULTS.each do |key,value|
 	  key = key.gsub(/_/, "\\ ")
           aug.set("#{AUG_PATH}#{id}/#{key}", value)
 	end
-      else
-        puts "WRITE SHARE SETTINGS"
-        NOBODY_DEFAULTS.each do |key,value|
-	        key = key.gsub(/_/, "\\ ")
-          aug.set("#{AUG_PATH}#{id}/#{key}", value)
-        end
-
       end
-
-      share.each do |k,v|
-        puts "\n\n*** SHARE SET #{AUG_PATH}#{id}/#{k} WITH VALUE #{v}"
-        aug.set("#{AUG_PATH}#{id}/#{k}", v)
-      end
-
-      saved = aug.save
-
-      #TODO: better check for command execution status (make it DRY)
-      ret = `rcsmb restart`
-
-      puts "SAVE OK? #{saved}"
-      saved
+       
+       # WRITE USER SETTINGS FOR GLOBAL AND SHARE
+       share.each do |key,value|
+         puts "DEBUG: SET USER SETTINGS #{AUG_PATH}#{id}/#{key} WITH VALUE #{value}"
+         aug.set("#{AUG_PATH}#{id}/#{key}", value)
+       end	  
+       
+       save = aug.save
+       puts "\n\nINFO: SMS: SAVE OK? #{save}\n\n"
+       save
     end
 
 
@@ -186,8 +177,7 @@ class AugeasSambaService < DBus::Object
     dbus_method :exec, "in command:s, out out:b" do |cmd|
       message = `#{cmd}`
       result = message.split('..').last
-
-      syslog("SMS: Execute CMD #{cmd.inspect} and return exit code #{result.inspect}")
+      puts "\n\INFO: SAMBA CMD #{cmd.inspect} SAMBA is <#{result}>"
             
       # TODO: return result instead of boolean and handle it in smb modell !!!
       unless result.nil?
