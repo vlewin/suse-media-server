@@ -68,12 +68,14 @@
     var $this = $(this);
 
     return $this.each(function() {
-      $this.after('<a id="select" href="#">select</a>')
+      $this.after('<a class="select" href="#">select</a>')
 
       console.log(opt.parent)
       
-      $('#select').bind({
+      $('a.select').bind({
         click: function(evt){
+          var buttonParent = $(this).parent();
+          console.log(buttonParent)
           var result = methods.ajax(opt.parent);
 
           $('li.parent').live('click', function() {

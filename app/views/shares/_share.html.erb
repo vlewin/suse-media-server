@@ -1,8 +1,10 @@
+<h2 class="mheading grey">Share details</h2>
+
 <% form_remote_for @share, :url => {:action => 'update'},
         :before => "$('#wait').show();",
         :after => "$('#wait').fadeOut('slow');",
-        :html => {:id => "share-form"},
-        :update =>'mform' do |form| %>
+        :html => {:id => "edit_form"},
+        :update =>'edit-container' do |form| %>
 
     <%= form.hidden_field :id %>
 
@@ -21,7 +23,7 @@
             <%= @share.path %>
           </div>
         </div>
-
+        
         <div class="line">
           <div class='key'> <%= form.label :browseable %> </div>
           <div class='value'>

@@ -2,7 +2,7 @@ div.mhead {
   color:#fff;
   background: #666;
   background: -moz-linear-gradient(center top , #888, #454545) repeat scroll 0 0 transparent;
-  background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#888));
+  background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#454545));
 
   border-width: 1px;
   border-style: solid;
@@ -176,6 +176,7 @@ div.mcontent div.line, div.mform div.line {
   vertical-align:middle;
 }
 
+
 div.mcontent div.key, div.mform div.key { display:inline-block; width:30%; float:left; }
 div.mcontent div.value, div.mform div.value { display:inline-block; width:67%; padding-right:10px; float:right; text-align: right; }
 
@@ -274,13 +275,25 @@ div.msettings { margin-bottom:30px; display:none;}
 div.mcontent h2.mheading {
   background:none;
   margin-bottom:10px;
-  padding:5px 0px;
+  padding:12px 0px;
   border-bottom:3px solid #A1B7A7;
   color:#575757;
+  font-size:22px;
+}
+
+div.mcontent h3.mheading {
+  background:none;
+  margin-bottom:10px;
+  padding:12px 0px;
+  border-bottom:3px solid #A1B7A7;
+  color:#575757;
+  font-size:18px;
 }
 
 div.mcontent h2.grey { border-bottom:3px solid #A1B7A7; }
 div.mcontent h2.orange { border-bottom:3px solid #C79E61; }
+div.mcontent h3.grey { border-bottom:2px solid #A1B7A7; }
+div.mcontent h4.orange { border-bottom:2px solid #C79E61; }
 
 .mheading a { color:#3e4041; font-size:18px; vertical-align: middle; margin-right:5px;}
 .mheading a#close:after {
@@ -353,3 +366,18 @@ span.infomark {
   text-align:center;  text-shadow: 0px -1px 0 #000;
   background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
 }
+
+
+/* #new-container */
+#new-container div.line { line-height: 25px;}
+#new-container div.image-container { display:inline-block; padding:0px 5px; float:left;}
+#new-container div.info-container { display:inline-block; padding:0px 5px;  float:left;}
+
+#new-container span.name { display:inline-block; paddind:0px; }
+#new-container span.path { display:block; paddind: 0px 0px; margin:0; color:#888; font-size:12px; }
+
+img.xsmall { width:16px; height:16px; border-radius:16px; }
+img.small { width:22px; height:22px; border-radius:22px; }
+img.medium { width:32px; height:32px; border-radius:32px; }
+img.large { width:48px; height:48px; border-radius:4px; }
+img.xlarge { width:64px; height:64px; border-radius:64px; }
