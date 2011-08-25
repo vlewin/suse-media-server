@@ -1,5 +1,11 @@
-<h2 class="mheading grey">Shares list</h2>
 <div id="shares">
+  <h2 class="mheading green">
+    Shares list
+    <p style="color:#889; font-size:10px;">
+      {Info} Show all shares (should be a second slide)
+    </p>
+  </h2>
+
   <% for share in @shares %>
     <% unless share.name == "global" %>
     <div class="link beforelink">
@@ -11,9 +17,9 @@
            :update => 'edit-container',
            :url => {:action => 'show', :id => share.id, :name => share.name })
       %>
-      
+
       <div class='value'>
-        <strong class="remove-placeholder">{#}</strong> 
+        <strong class="remove-placeholder">{#}</strong>
         <%= link_to_remote(
            '<span class="delcont"><img src="../images/destroy.png"></span>',
            :html => { :class=>'remove-share'},
@@ -27,3 +33,4 @@
     <% end %>
   <% end %>
 </div>
+

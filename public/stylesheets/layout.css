@@ -1,23 +1,13 @@
-/**
- * 100% height layout with header and footer
- * ----------------------------------------------
- * Feel free to copy/use/change/improve
- */
-
-* {
-  padding: 0;
-  margin: 0;
-}
+* { padding: 0; margin: 0; }
 
 html,body {
-	margin:0;
-	padding:0;
-	height:100%; /* needed for container min-height */
-	background-color: #EDEDED;
-
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font: 12px/17px;
-	color: #575757;
+  margin:0;
+  padding:0;
+  height:100%;
+  background-color: #EDEDED;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: 12px/17px;
+  color: #575757;
 }
 
 
@@ -25,33 +15,22 @@ a { text-decoration:none;}
 
 
 div#container {
-	position:relative; /* needed for footer positioning*/
-	margin:0 auto; /* center, not in IE5 */
-
-/*	background:#fff;*/
-
-	height:auto !important; /* real browsers */
-	height:100%; /* IE6: treaded as min-height*/
-	min-height:100%; /* real browsers */
-
-
-/*  min-width:960px;*/
-/*  width:960px;*/
+  position:relative;
+  margin:0 auto;
+  height:auto !important;
+  height:100%;
+  min-height:100%;
 }
 
 div#header {
-	padding:1em;
+  padding:1em;
   color: #888;
   padding: 10px 0px;
-
-
   border-width: 0px 0px 0px 0px;
   border-style: solid;
   border-color: #fff;
-
   box-shadow: 0px 0px 2px #aaa inset;
   background:#84B952;
-
 /*  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;*/
 /*  background: -webkit-gradient(linear, left top, left bottom, from(#2B78C6), to(#00A3D3));*/
 
@@ -68,43 +47,37 @@ div#header h1 {
 }
 
 div#navbar {
-	padding:1em 1em 5em;
-	padding:0;
-
-	margin: 0 0 40px 0;
-
-	position:relative;
-
-	border-width: 0px 1px;
+  padding:1em 1em 5em;
+  padding:0;
+  margin: 0 0 40px 0;
+  position:relative;
+  border-width: 0px 1px;
   border-style: solid;
   border-color: #ddd;
-
    background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 0 0 0 0;
+   border-radius: 0 0 0 0;
 /*    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);*/
 /*    background: -moz-linear-gradient(center bottom , #ccc, #ddd) repeat scroll 0 0 transparent;*/
 /*    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));*/
-
 }
 
 div#content {
-	padding:1em 1em 5em;
-	padding:0;
-	min-width:960px;
-	width:960px;
-
-	position:relative;
-	margin: 100px auto;
-
+  padding:1em 1em 5em;
+  padding:0;
+  min-width:960px;
+  width:960px;
+  position:relative;
+  margin: 50px auto;
   border-style: solid;
   border-color: #ddd;
 }
 
 div#footer {
-	position:relative;
-	width:100%;
-	bottom:0; /* stick to bottom */
- padding:10px 0px;
- margin:100px 0px 0px 0px;
+/*  position:absolute;*/
+  position:relative;
+  width:100%;
+  bottom:0;
+  padding:10px 0px;
+  margin:50px 0px 0px 0px;
 }
 
