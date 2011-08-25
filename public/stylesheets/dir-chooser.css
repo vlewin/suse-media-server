@@ -141,7 +141,7 @@ a.select {
   
   li.subdir { padding-left: 10px;}
   
-  a.share { 
+  a.dirlink, a.share { 
     float:right; 
     font-size: 14px;
     font-weight: bold; 

@@ -16,12 +16,12 @@
               html += '<li class="dir parent" data-child ="' + path +'">';
               html += '<label>' + dir + '</label>';
 //              html += '<a href="#" class="share" data-path ="' + path +'">select</a>'
-              html += '<a href="#" class="share" data-name="' + dir + '" data-path ="' + path +'">select</a>'
+              html += '<a href="#" class="dirlink" data-name="' + dir + '" data-path ="' + path +'">select</a>'
               html += '</li>';
             } else {
               html += '<li class="dir">';
               html += '<label>' + dir + '</label>';
-              html += '<a href="#" class="share" data-name="' + dir + '" data-path ="' + path +'">select</a>'
+              html += '<a href="#" class="dirlink" data-name="' + dir + '" data-path ="' + path +'">select</a>'
               html += '</li>';
             }
           }
@@ -54,10 +54,9 @@
       });
 
       //SHARE CLICKED          
-      $('a.share').live('click', function() {
+      $('a.dirlink').live('click', function() {
         var $selects = $("#new-container").find('a.select');
-      
-        var name = $(this).attr('data-name').toUpperCase();
+        var dirname = $(this).attr('data-name').toUpperCase();
         var value = $(this).attr('data-path');
       
         var $parent, $name, $path;
@@ -68,8 +67,8 @@
             $name = $parent.find('span.name');
             
             if($parent.attr('id') == "custom-dir") {
-              $name.html(name);
-              $name.after('<input type="hidden" name="share[name]" id="share_name" value="' + name + '">');
+              $name.html(dirname);
+              $name.after('<input type="hidden" name="share[name]" id="share_name" value="' + dirname + '">');
             } else {
               $name.after('<input type="hidden" name="share[name]" id="share_name" value="' + $parent.attr('id') + '">');
             }
@@ -108,7 +107,6 @@
       });
     },
     
-
     show : function(html) {
       $('#modalshade').show();
       console.log("Show dialog")
