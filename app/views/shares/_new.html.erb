@@ -1,104 +1,113 @@
-<% form_remote_for :share,
-    :url => {:action => 'create'},
-    :before => "$('#wait').show();",
-    :after => "slideTo(0); $('#wait').fadeOut(); ",
-    :html => {:id => "new_form"},
-    :update => "all-container" do |form| %>
+<h2 class="mheading grey">
+  Autodiscover <span style="float:right; margin-right:20px;">{on/off}</span>
+  <p style="color:#889; font-size:10px;">
+    TODO: find a way to autodiscover translated directories in user home,
+    if autodiscover is not possible, show "select" link on every line
+  </p>
+</h2>
 
-    <% form.submit %>
-    <% form.hidden_field :name %>
-    <% form.text_field :id %>
+<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform1"},
+  :before => "$('#wait').show();",
+  :after => "$('#wait').fadeOut(); slideTo(0); ",
+  :update => "all-container" do |form| %>
+  
+  <div id="video" class="line">
+    <div class="key"> 
+      <div class="image-container">
+        <img class="large" src="images/video.png"/>
+      </div>
+      <div class="info-container">
+        <span class="name">VIDEO</span> 
+        <span class="path">{/root/Videos}</span>
+        <%= form.hidden_field :name, :value=> "VIDEO" %>
+        <%= form.hidden_field :path, :value=> "/root/Videos" %>
+      </div>
+    </div>
     
-    
-      <h2 class="mheading grey">
-        Autodiscover
-        <p style="color:#889; font-size:10px;">
-          TODO: find a way to autodiscover translated directories in user home,
-          if autodiscover is not possible, show "select" link on every line
-        </p>
-      </h2>
+    <div class="value">
+      <a  href="#" class="share" data-form="newform1">SHARE</a>
+    </div>
+  </div>
+<%end %>
+
+<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform2"},
+  :before => "$('#wait').show();",
+  :after => "$('#wait').fadeOut(); slideTo(0); ",
+  :update => "all-container" do |form| %>
+
+  <div id="audio" class="line">
+    <div class="key"> 
+      <div class="image-container">
+        <img class="large" src="images/audio.png"/>
+      </div>
+      <div class="info-container">
+        <span class="name">AUDIO</span> 
+        <span class="path">{/root/Musik}</span>
+        <%= form.hidden_field :name, :value=> "AUDIO" %>
+        <%= form.hidden_field :path, :value=> "/root/Musik" %>
+      </div>
+    </div>
+    <div class="value">
+      <a  href="#" class="share" data-form="newform2">SHARE</a>
+    </div>
+  </div>
+<%end %>
+
+<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform3"},
+  :before => "$('#wait').show();",
+  :after => "$('#wait').fadeOut();",
+  :update => "all-container" do |form| %>
+  <div id="photo"  class="line">
+    <div class="key"> 
+      <div class="image-container">
+        <img class="large" src="images/photo.png"/>
+      </div>
+      <div class="info-container">
+        <span class="name">PHOTO</span> 
+        <span class="path">{/root/Bilder}</span>
+        <%= form.hidden_field :name, :value=> "PHOTO" %>
+        <%= form.hidden_field :path, :value=> "/root/Bilder" %>
+      </div>
+      </div>
+    <div class="value">
+      <a href="#" class="share" data-form="newform3">SHARE</a>
+      <a href="#" class="select">SELECT</a>
+    </div>
+  </div>
+<%end %>  
+
+<h2 class="mheading grey">
+  Custom path
+  <!--<p style="color:#889; font-size:10px;">
+    TODO: find a way to autodiscover translated directories in user home,
+    if autodiscover is not possible, show "select" link on every line
+  </p>-->
+</h2>
+
+<!-- <div class="line"> <<< empty >>> </div> -->
+
+<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform_custom"},
+  :before => "$('#wait').show();",
+  :after => "$('#wait').fadeOut(); slideTo(0); ",
+  :update => "all-container" do |form| %>
+
+  <div id="custom-dir" class="line">
+    <div class="key"> 
+      <div class="image-container">
+        <img class="large" src="images/customfile48.png"/>
+      </div>
+      <div class="info-container">
+        <span class="name" style="color:#8e9189">CUSTOM</span> 
+        <span class="path">{PATH}</span>
+       </div>
+    </div>
+    <div class="value">
+      <a href="#" class="share" data-form="newform_custom">SHARE</a>
+      <a href="#" class="select">SELECT</a>
+    </div>
+  </div>
+<%end %>
       
-      <div id="video" class="line">
-        <div class="key"> 
-          <div class="image-container">
-            <img class="large" src="images/video.png"/>
-          </div>
-          <div class="info-container">
-            <span class="name">VIDEO</span> 
-            <span class="path">{PATH}</span>
-          </div>
-        </div>
-        <div class="value">
-          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
-        </div>
-      </div>
-
-      <div id="audio" class="line">
-        <div class="key"> 
-          <div class="image-container">
-            <img class="large" src="images/audio.png"/>
-          </div>
-          <div class="info-container">
-            <span class="name">AUDIO</span> 
-            <span class="path">{PATH}</span>
-          </div>
-        </div>
-        <div class="value">
-          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
-        </div>
-      </div>
-
-      <div id="photo"  class="line">
-        <div class="key"> 
-          <div class="image-container">
-            <img class="large" src="images/photo.png"/>
-          </div>
-          <div class="info-container">
-            <span class="name">PHOTO</span> 
-            <span class="path">{PATH}</span>
-          </div>
-        </div>
-        <div class="value">
-          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
-        </div>
-      </div>
-      
-      <div id="backup"  class="line">
-        <div class="key"> 
-          <div class="image-container">
-            <img class="large" src="images/backup.png"/>
-          </div>
-          <div class="info-container">
-            <span class="name">BACKUP</span> 
-            <span class="path">{PATH}</span>
-          </div>
-        </div>
-        <div class="value">
-          <a data-path="/root/Musik" class="share" href="#">SHARE</a>
-          <%= link_to_remote "SELECT", :html => {:class=>"select"} %>
-        </div>
-      </div>
-
-      <div id="custom-dir" class="line">
-        <div class="key"> 
-          <div class="image-container">
-            <img class="large" src="images/customfile48.png"/>
-          </div>
-          <div class="info-container">
-            <span class="name">CUSTOM</span> 
-            <span class="path">{PATH}</span>
-          </div>
-        </div>
-        <div class="value">
-          <a class="share">SHARE</a>
-          <a class="select">SELECT</a>
-        </div>
-      </div>
-      
-      
-
-<% end %>
-
 <div id="dir-chooser">
 <!--  <div id="controls"></div>
   <div id="directories"></div>-->
@@ -113,8 +122,13 @@
     $('#dir-chooser').dirchooser({parent: home});
     
     $('a.share').click(function() {
-      $('#new_form').submit();
+      formID = $(this).attr('data-form');
+      console.log("SUBMIT FORM " + formID)
+      $('#'+formID).submit();
     });
+    
+    $('#autodiscover').toggle({background: "orange", on: "on", off: "off", size: 100});
+  
   });
 </script>
 
