@@ -35,7 +35,7 @@ class Share
       end
 
       return shares
-      
+
     rescue DBus::Error => dbe
       if dbe.dbus_message.instance_variables.include?("@error_name") && dbe.dbus_message.error_name == "org.freedesktop.DBus.Error.AccessDenied"
         Rails.logger.error "*** DBUS:ERROR #{dbe.dbus_message.error_name.inspect}"
@@ -50,7 +50,7 @@ class Share
       Rails.logger.error "Caught exception: #{e.inspect}"
       raise "Generic exception"
     end
-    
+
   end
 
   def self.find(id)
@@ -70,16 +70,16 @@ class Share
     Rails.logger.error "INFO: SAVE ACTION #{self.inspect}"
     bus = Bus.new
 #    saved = bus.save("samba", self.to_hash)
-#    state = Samba.start
-    
-    if bus.save("samba", self.to_hash) && Samba.start
-      return true  
+     state = Samba.start
+
+    if bus.save("samba", self.to_hash)
+      return true
     else
-      Rails.logger.error "ERROR: CAN NOT SAVE SHARE OR START SMB!"
-      return true  
+      Rails.logger.error "ERROR: CAN NOT SAVE SHARE"
+      return true
     end
   end
-  
+
   def destroy
     bus = Bus.new
     bus.destroy("samba", self.to_hash) ? true : false

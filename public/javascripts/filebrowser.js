@@ -6,12 +6,12 @@
 
       var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
       var path = '';
-      
+
       for (dir in data) {
         for (key in data[dir]) {
-          
+
           if(key == "path") { path = data[dir][key]; } else {
-          
+
             if(key == "children" && data[dir][key] == "yes") {
               html += '<li class="dir parent" data-child ="' + path +'">';
               html += '<label>' + dir + '</label>';
@@ -26,13 +26,13 @@
           }
         }
       }
-      
+
        html += '</ul>';
-       
+
        $('#controls').html('<a id="back" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
        methods.show(html);
     },
-    
+
     ajax : function(dir) {
       console.log("AJAX " + dir);
       $.ajax({
@@ -52,8 +52,8 @@
       $('#directories').html(html);
       $('#dirwrap').show();
     },
-    
-    hide : function( ) { 
+
+    hide : function( ) {
       $('#modalshade').hide();
       $('#dirwrap').hide();
     }
@@ -63,7 +63,7 @@
     var defaults = {
       parent: "/"
     }
-    
+
     var opt =  $.extend(defaults, options);
     var $this = $(this);
 
@@ -71,39 +71,37 @@
       $this.after('<a class="select" href="#">select</a>')
 
       console.log(opt.parent)
-      
+
       $('a.select').bind({
         click: function(evt){
-          var buttonParent = $(this).parent();
-          console.log(buttonParent)
           var result = methods.ajax(opt.parent);
 
           $('li.parent').live('click', function() {
             methods.ajax($(this).attr('data-child'));
           });
-          
+
           $('a.share').live('click', function() {
             $('#browser').val($(this).attr('data-path'));
             methods.hide();
             return false;
           });
-          
+
           $('a#back').live('click', function() {
             var back = $(this).attr('data-back');
 
             console.log("Location A" + back);
             console.log("Location B" + opt.parent);
-            
+
             if(back != opt.parent) {
               var tmp = back.split('/');
-              back = tmp.splice(0, (tmp.length-1)).join('/');  
+              back = tmp.splice(0, (tmp.length-1)).join('/');
               methods.ajax(back);
             } else {
               console.log("HOME")
             }
             return false;
           });
-          
+
           $('a#close').live('click', function() {
             methods.hide();
             return false;

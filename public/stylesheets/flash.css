@@ -1,17 +1,18 @@
-div#flash  { 
+div#flash  {
   position:absolute;
-  width:90%;
-  left:5%;
-  right:5%;
-  top:14%;
-  font-size:22px;
+  width:100%;
+  left:0%;
+  right:0%;
+  top:0%;
+  font-size:24px;
+  z-index:2000;
   color:#fff;
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 div#flash .error {
-  padding:20px;
-  border-radius:10px;
+  padding:30px;
+  border-radius:0px;
   text-shadow: -1px -1px 0px #000;
   border: 1px solid #900000;
   background: #900000;

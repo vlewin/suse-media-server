@@ -1,7 +1,7 @@
-<h2 class="mheading grey">
-  Autodiscover <span style="float:right; margin-right:20px;">{on/off}</span>
+<h2 class="mheading orange">
+  Autodiscover <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
   <p style="color:#889; font-size:10px;">
-    TODO: find a way to autodiscover translated directories in user home,
+    {Info} Find a way to autodiscover translated directories in user home,
     if autodiscover is not possible, show "select" link on every line
   </p>
 </h2>
@@ -10,20 +10,20 @@
   :before => "$('#wait').show();",
   :after => "$('#wait').fadeOut(); slideTo(0); ",
   :update => "all-container" do |form| %>
-  
+
   <div id="video" class="line">
-    <div class="key"> 
+    <div class="key">
       <div class="image-container">
         <img class="large" src="images/video.png"/>
       </div>
       <div class="info-container">
-        <span class="name">VIDEO</span> 
+        <span class="name">VIDEO</span>
         <span class="path">{/root/Videos}</span>
         <%= form.hidden_field :name, :value=> "VIDEO" %>
         <%= form.hidden_field :path, :value=> "/root/Videos" %>
       </div>
     </div>
-    
+
     <div class="value">
       <a  href="#" class="share" data-form="newform1">SHARE</a>
     </div>
@@ -36,12 +36,12 @@
   :update => "all-container" do |form| %>
 
   <div id="audio" class="line">
-    <div class="key"> 
+    <div class="key">
       <div class="image-container">
         <img class="large" src="images/audio.png"/>
       </div>
       <div class="info-container">
-        <span class="name">AUDIO</span> 
+        <span class="name">AUDIO</span>
         <span class="path">{/root/Musik}</span>
         <%= form.hidden_field :name, :value=> "AUDIO" %>
         <%= form.hidden_field :path, :value=> "/root/Musik" %>
@@ -58,12 +58,12 @@
   :after => "$('#wait').fadeOut();",
   :update => "all-container" do |form| %>
   <div id="photo"  class="line">
-    <div class="key"> 
+    <div class="key">
       <div class="image-container">
         <img class="large" src="images/photo.png"/>
       </div>
       <div class="info-container">
-        <span class="name">PHOTO</span> 
+        <span class="name">PHOTO</span>
         <span class="path">{/root/Bilder}</span>
         <%= form.hidden_field :name, :value=> "PHOTO" %>
         <%= form.hidden_field :path, :value=> "/root/Bilder" %>
@@ -71,17 +71,16 @@
       </div>
     <div class="value">
       <a href="#" class="share" data-form="newform3">SHARE</a>
-      <a href="#" class="select">SELECT</a>
+      <!--<a href="#" class="select">SELECT</a>-->
     </div>
   </div>
-<%end %>  
+<%end %>
 
 <h2 class="mheading grey">
   Custom path
-  <!--<p style="color:#889; font-size:10px;">
-    TODO: find a way to autodiscover translated directories in user home,
-    if autodiscover is not possible, show "select" link on every line
-  </p>-->
+  <p style="color:#889; font-size:10px;">
+    {Info} Point to the directory location
+  </p>
 </h2>
 
 <!-- <div class="line"> <<< empty >>> </div> -->
@@ -92,22 +91,24 @@
   :update => "all-container" do |form| %>
 
   <div id="custom-dir" class="line">
-    <div class="key"> 
+    <div class="key">
       <div class="image-container">
         <img class="large" src="images/customfile48.png"/>
       </div>
       <div class="info-container">
-        <span class="name" style="color:#8e9189">CUSTOM</span> 
+        <span class="name" style="color:#8e9189">{CUSTOM}</span>
         <span class="path">{PATH}</span>
+        <%= form.hidden_field :name, :value=> " " %>
+        <%= form.hidden_field :path, :value=> " " %>
        </div>
     </div>
     <div class="value">
       <a href="#" class="share" data-form="newform_custom">SHARE</a>
-      <a href="#" class="select">SELECT</a>
+      <a href="#" class="select" data-form="newform_custom">SELECT</a>
     </div>
   </div>
 <%end %>
-      
+
 <div id="dir-chooser">
 <!--  <div id="controls"></div>
   <div id="directories"></div>-->
@@ -120,15 +121,15 @@
   jQuery(document).ready(function() {
     var home = "<%= ENV['HOME'] %>"
     $('#dir-chooser').dirchooser({parent: home});
-    
+
     $('a.share').click(function() {
       formID = $(this).attr('data-form');
       console.log("SUBMIT FORM " + formID)
       $('#'+formID).submit();
     });
-    
+
     $('#autodiscover').toggle({background: "orange", on: "on", off: "off", size: 100});
-  
+
   });
 </script>
 

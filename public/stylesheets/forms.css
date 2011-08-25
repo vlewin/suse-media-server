@@ -51,12 +51,6 @@ div.slider_container { position:relative; }
 /*    -moz-transition-property: none;*/
 }
 
-
-
-
-
-/*NE TOGGLE*/
-
 input[type=checkbox].ftoggle {
   position: absolute;
   visibility:hidden;
@@ -67,7 +61,7 @@ span.ftoggle_container {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.5) inset;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.8) inset;
     height: 30px;
     position: relative;
     top: 0px;
@@ -79,8 +73,11 @@ span.ftoggle_container {
 
 }
 
-span.ftoggle_container.green { background-color: green; }
+span.ftoggle_container.red { background-color: #b00000; }
 span.ftoggle_container.orange { background-color: orange; }
+span.ftoggle_container.green { background-color: #009800; }
+span.ftoggle_container.blue { background-color: #4E80B3; }
+span.ftoggle_container.blue { background-color: #FCB243; }
 
 span.ftoggle_label_left, span.ftoggle_label_right {
    color: #FFFFFF;

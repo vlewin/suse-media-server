@@ -23,7 +23,7 @@
             <%= @share.path %>
           </div>
         </div>
-        
+
         <div class="line">
           <div class='key'> <%= form.label :browseable %> </div>
           <div class='value'>
@@ -46,10 +46,13 @@
           <div class='value'> <%= @share.workgroup %> </div>
         </div>
       <% end %>
-<% end %> 
+<% end %>
 
 <script>
   $(function() {
-    $('#share-form').find('[type=checkbox].ftoggle').toggle({background: "orange"});
+    setTimeout( function() {
+      $('#edit_form').find('[type=checkbox].ftoggle').toggle({background: "blue"});
+    }, 600);
   });
 </script>
+
