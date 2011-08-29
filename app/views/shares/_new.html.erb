@@ -1,12 +1,39 @@
 <h2 class="mheading orange">
-  Autodiscover <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
+  Autodiscovery <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
   <p style="color:#889; font-size:10px;">
-    {Info} Find a way to autodiscover translated directories in user home,
-    if autodiscover is not possible, show "select" link on every line
+    {INFO:} List all media directories in users home
   </p>
 </h2>
 
-<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform1"},
+
+
+<% @dirs.each_with_index do |(name, path), index| %>
+  <% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform#{index+1}"},
+    :before => "$('#wait').show();",
+    :after => "$('#wait').fadeOut(); slideTo(0); ",
+    :update => "all-container" do |form| %>
+    
+    <div id="<%= name %>" class="line">
+      <div class="key">
+        <div class="image-container">
+          <img class="large" src="images/video.png"/>
+        </div>
+        <div class="info-container">
+          <span class="name"><%= name.upcase %></span>
+          <span class="path"><%= path %></span>
+          <%= form.hidden_field :name, :value=> "#{name.upcase}" %>
+          <%= form.hidden_field :path, :value=> "#{path}" %>
+        </div>
+      </div>
+
+      <div class="value">
+        <a  href="#" class="share" data-form="newform<%=index+1%>">SHARE</a>
+      </div>
+    </div>
+  <% end%>
+<% end %>
+
+<!-- <% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform1"},
   :before => "$('#wait').show();",
   :after => "$('#wait').fadeOut(); slideTo(0); ",
   :update => "all-container" do |form| %>
@@ -71,15 +98,16 @@
       </div>
     <div class="value">
       <a href="#" class="share" data-form="newform3">SHARE</a>
-      <!--<a href="#" class="select">SELECT</a>-->
     </div>
   </div>
-<%end %>
+<%end %> -->
+
+<br>
 
 <h2 class="mheading grey">
   Custom path
   <p style="color:#889; font-size:10px;">
-    {Info} Point to the directory location
+    {INFO:} Click select and choose directory you want to share
   </p>
 </h2>
 
@@ -119,7 +147,7 @@
 
 <script>
   jQuery(document).ready(function() {
-    var home = "<%= ENV['HOME'] %>"
+    var home = "<%= detectHome %>"
     $('#dir-chooser').dirchooser({parent: home});
 
     $('a.share').click(function() {

@@ -17,18 +17,12 @@ class Browser
       Dir.entries(@path).each do |dir|
         
         if File.directory?(File.join(@path, dir)) && dir[0,1]!="."
-          
           Rails.logger.error " - #{dir}"
-          
-#          .gsub(/ /,'')
           @dir = {"path" => File.join(@path, dir)}
-          
-
           @subpath = File.join(File.expand_path(@path), dir)
 
-          if File.exists?(@subpath)
+          if File.exists?(@subpath) && File.readable?(@subpath)
               has_child = false
-              
               Dir.entries(@subpath).each do |subdir|
                 if File.directory?(File.join(@subpath, subdir)) && subdir[0,1]!="." 
                   has_child = true

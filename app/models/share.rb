@@ -65,12 +65,13 @@ class Share
     share = Share.new(args)
     return share
   end
+  
+  
 
   def save
     Rails.logger.error "INFO: SAVE ACTION #{self.inspect}"
     bus = Bus.new
-#    saved = bus.save("samba", self.to_hash)
-     state = Samba.start
+    state = Samba.start
 
     if bus.save("samba", self.to_hash)
       return true
@@ -84,6 +85,6 @@ class Share
     bus = Bus.new
     bus.destroy("samba", self.to_hash) ? true : false
   end
-
+  
 end
 
