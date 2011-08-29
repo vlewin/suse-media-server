@@ -4,10 +4,14 @@ class SharesController < ApplicationController
   def index
     begin
       @shares = Share.all
-      @global = Share.find('target[1]')
+      
+      Rails.logger.error "INSPECT #{@shares.inspect}"
+      
+      
+      #@global = @shares[0] if @shares[0].name == "global"
+      #Rails.logger.error "INSPECT #{@global.inspect}"
+      #Share.find('target[1]')
       @smb = Samba.running?
-      
-      
       @dirs = scanHomeDirectory
       
       
