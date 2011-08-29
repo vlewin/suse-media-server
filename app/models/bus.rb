@@ -33,6 +33,11 @@ class Bus
    dbus = self.bus(srv)
    ret = dbus.all(' ')[0]
  end
+ 
+ def match(srv)
+   dbus = self.bus(srv)
+   ret = dbus.match(' ')[0]
+ end
 
  def find(srv, id)
    dbus = self.bus(srv)

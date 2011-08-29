@@ -50,6 +50,41 @@ class AugeasSambaService < DBus::Object
 
   dbus_interface "augeas.samba.Service.Interface" do
 
+     dbus_method :match, "in nothing:s, out matched:aa{ss}" do |path|
+      shares = Array.new
+      attr_array = ["path"]
+      
+      aug = init()
+
+      paths = aug.match("#{AUG_PATH}*[label() != '#comment']")
+
+      paths.each do |path|
+        id = path.to_s.split('/').last
+        puts "TARGET: #{id.inspect}"
+	
+	
+	unless id == "target[1]"
+	  attributes = aug.match("#{AUG_PATH}#{id}/*")
+	  attributes.each do |a|
+	    attr_name = a.split('/').last
+	    name = aug.get("#{AUG_PATH}#{id}")
+	    #attr_id = target
+	    
+	    if(attr_array.include?(attr_name))
+	      shares.push({ "id"=> id, "name" => name, attr_name => aug.get("#{AUG_PATH}#{id}/#{attr_name}")})
+	      puts "ATTR #{a.split('/').last}"
+	    end
+	  end
+	end
+	
+	#shares.push({ "id" => target.to_s.split('/').last, "name" => aug.get(target)})
+      end
+      
+      puts "SHARES  #{shares.inspect}"
+
+     [shares]
+    end
+
     #MATCH with VALUES
     dbus_method :all, "in nothing:s, out matched:aa{ss}" do |path|
       shares = Array.new

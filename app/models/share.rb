@@ -24,6 +24,8 @@ class Share
     begin
       shares_map = bus.find_all("samba")
       args = {}
+      
+      tmp = bus.match("samba")
 
       shares_map.each do |elem|
         elem.each do |key, value|

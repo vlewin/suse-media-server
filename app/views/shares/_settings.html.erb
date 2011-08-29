@@ -1,3 +1,5 @@
+<% @global = Share.find('target[1]') %>
+
 <h2 class="mheading grey">Global settings</h2>
 <div>
   <% form_remote_for @global, :url => {:action => 'update'},
