@@ -1,4 +1,4 @@
-require "share.rb"
+include ApplicationHelper
 
 class SharesController < ApplicationController
   def index
@@ -6,6 +6,10 @@ class SharesController < ApplicationController
       @shares = Share.all
       @global = Share.find('target[1]')
       @smb = Samba.running?
+      
+      
+      @dirs = scanHomeDirectory
+      
       
     rescue RuntimeError => e
       flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
@@ -82,6 +86,12 @@ class SharesController < ApplicationController
     end
     render :nothing => true
   end
+  
+  
+  
+  
+  
+  
 
 end
 
