@@ -23,23 +23,7 @@
 /*    float:right;*/
 /*  }*/
   
-a.select { 
-    float:right; 
-    font-size: 14px;
-    font-weight: bold; 
-    background:#444; 
-    background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
-    color:#fff; 
-    display:inline-block; 
-    margin:3px; 
-    padding:3px 10px;
-    text-shadow: 0px -1px #000;
-    border-radius:3px;
-    min-width:60px;
-    text-align:center;
-    text-transform: uppercase;
-  }
+
   
 
 #dir-chooser {
@@ -128,10 +112,10 @@ a.select {
   }
   
   
-  li.dir.parent { color: #2399d5; padding-left:40px; }
+  li.dir.parent { color: #c49846; padding-left:40px; }
 
   li.dir.parent:before {
-    content:url(../images/folder-open-blue.png);
+    content:url(../images/folder-open.png);
     position:absolute;
     left:0;
     vertical-align:middle;
@@ -141,13 +125,11 @@ a.select {
   
   li.subdir { padding-left: 10px;}
   
-  a.dirlink, a.share { 
+  a.dirlink, a.share, a.unshare, a.select { 
     float:right; 
     font-size: 14px;
     font-weight: bold; 
     background:#444; 
-    background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
-    background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
     color:#fff; 
     display:inline-block; 
     margin:3px; 
@@ -155,11 +137,24 @@ a.select {
     text-shadow: 0px -1px #000;    
     border-radius:3px;
     text-align:center;
-    min-width:60px;
+    min-width:70px;
+    text-transform: uppercase;
   }
   
+  a.dirlink, a.share {
+    background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
+    background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
+  }
   
+  a.unshare { 
+    background: -moz-linear-gradient(center bottom , #600000, #900000);
+    background: -webkit-gradient(linear, left top, left bottom, from(#900000), to(#600000));
+  }
   
+  a.select { 
+    background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
+  }
   
   
   

@@ -60,4 +60,21 @@ module ApplicationHelper
     Rails.logger.info "HOME #{home} INSPECT #{directories.inspect}"
     return directories
   end
+  
+  
+    def shared?(path)
+      @shares = Share.all
+      isShared = false
+      @shares.each do |s|
+        Rails.logger.info "SHARE #{s.name.inspect}"
+        if s.path == path
+          Rails.logger.info "RETURN TRUE FOR #{s.id}"
+          isShared = s.id
+          break
+        end
+      end
+      
+      isShared
+    end
+  
 end

@@ -1,5 +1,5 @@
 class Share
-  PROPERTIES = [:id, :name, :path, :writeable, :browseable, :read_only, :comment]
+  PROPERTIES = [:id, :name, :path, :writeable, :browseable]
   GLOBAL = [:workgroup, :security]
 
   attr_accessor *PROPERTIES
@@ -22,10 +22,10 @@ class Share
     bus = Bus.new
 
     begin
-      shares_map = bus.find_all("samba")
+      #shares_map = bus.find_all("samba")
       args = {}
       
-      tmp = bus.match("samba")
+      shares_map = bus.match("samba")
 
       shares_map.each do |elem|
         elem.each do |key, value|
@@ -36,6 +36,7 @@ class Share
         shares << share
       end
 
+      Rails.logger.error "*** DBUS RETURN #{shares.inspect}"
       return shares
 
     rescue DBus::Error => dbe
