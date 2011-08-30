@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag 'module.css' %>
 
-
 <style>
   #slideshow { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }
+  #edit_form { display:none; }
   .inner { height:420px; background:#fff; }
   .slide { width:940px; min-height:420px; margin-left:0px; float:left; }
 </style>
@@ -98,6 +98,7 @@
     });*/
 
     function slideTo(number){
+      $('#edit_form').hide();
       console.log("Slide to " + number)
       var $slides = $('#slideshow').find("div.slide");
       var width = parseInt($slides.width());

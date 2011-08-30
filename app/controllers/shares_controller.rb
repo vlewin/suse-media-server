@@ -4,17 +4,7 @@ class SharesController < ApplicationController
   def index
     begin
       @shares = Share.all
-      
-      Rails.logger.error "INSPECT #{@shares.inspect}"
-      
-      
-      #@global = @shares[0] if @shares[0].name == "global"
-      #Rails.logger.error "INSPECT #{@global.inspect}"
-      #Share.find('target[1]')
       @smb = Samba.running?
-      @dirs = scanHomeDirectory
-      
-      
     rescue RuntimeError => e
       flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
       redirect_to(:controller => :index, :action => 'index')
@@ -40,16 +30,32 @@ class SharesController < ApplicationController
     Rails.logger.debug "CREATE NEW SHARE #{params[:share].inspect}"
 
     @shares = Share.all
-    target_id = @shares.length
-    
     @share = Share.new(params[:share])
-    @share.id = "target[#{target_id+1}]"
     
-    Rails.logger.debug "CLASS #{@share.inspect}"
+    Rails.logger.debug "PARAMS ID? #{params[id].inspect}"
+    
+    if params["id"].nil?
+      target = "target[#{@shares.length+2}]"
+      @share.id = target
+      Rails.logger.debug "target #{target.inspect}"
+    end
+    
+    Rails.logger.debug "NEW SHARE #{@share.inspect}"
+    
+    #if @share.save
+#      @shares = Share.all
+#      render :partial => 'shares'
+#    else 
+#      render :error
+#    end
     
     if @share.save
       @shares = Share.all
-      render :partial => 'shares'
+ 
+      render :update do |page|
+        page.replace_html 'all-container', :partial => 'shares'
+        page.replace_html 'new-container', :partial => 'new'
+      end
     else 
       render :error
     end
@@ -69,14 +75,37 @@ class SharesController < ApplicationController
   end
   
   def destroy
-    @share = Share.find(params[:id])
+    if params["share"]
+      Rails.logger.debug "DESTROY SHARE WITH ID #{params["share"]["id"].inspect}"
+      @share = Share.find(params["share"]["id"])
+    else 
+      Rails.logger.debug "DESTROY SHARE WITH ID #{params["id"].inspect}"    
+      @share = Share.find(params["id"])
+    end
     
+    #if @share.destroy
+    #  @shares = Share.all
+    #  render :partial => 'shares'
+    #else 
+    #  render :error
+    #end
+    
+#    <%= remote_function (:url =>{ :action => "codeviewer", :id => @assignment.id, :uid => @uid },
+#                   :with => "'fid='+fid", :after => "$('working').hide();")%>
+
+  
     if @share.destroy
       @shares = Share.all
-      render :partial => 'shares'
+      
+      render :update do |page|
+        page.replace_html 'all-container', :partial => 'shares'
+        #Also update the annotation_summary_list
+        page.replace_html 'new-container', :partial => 'new'
+      end
     else 
-      render :error
+      render :text => "Something went wrong, please contact developer"
     end
+    
   end
 
   #SYSTEM ACTIONS
@@ -93,7 +122,7 @@ class SharesController < ApplicationController
   
   
   
-  
+
   
   
 

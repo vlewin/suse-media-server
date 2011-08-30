@@ -18,7 +18,7 @@ $(function () {
 
   //DELETE
   $('#del').live('click', function() {
-    var $values =  $('#shares').find('div.value');
+    var $values =  $('#all-container').find('div.value');
     var $placeholders =  $values.find('strong.remove-placeholder');
     var $links = $values.find('a.remove-share');
 

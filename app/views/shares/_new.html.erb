@@ -1,107 +1,67 @@
-<h2 class="mheading orange">
-  Autodiscovery <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
+<h2 class="mheading green">
+  Autodiscovery 
+  <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
   <p style="color:#889; font-size:10px;">
-    {INFO:} List all media directories in users home
+    List all media directories in users home
   </p>
 </h2>
 
-
-
+<% @dirs = scanHomeDirectory %>
 <% @dirs.each_with_index do |(name, path), index| %>
-  <% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform#{index+1}"},
-    :before => "$('#wait').show();",
-    :after => "$('#wait').fadeOut(); slideTo(0); ",
-    :update => "all-container" do |form| %>
+  <% target = shared?(path) %>
+  <% if target  %>
+    <% form_remote_for :share, :url => {:action => 'destroy'}, 
+      :html => {:id => "newform#{index+1}"},
+      :before => "$('#wait').show();",
+      :after => "$('#wait').fadeOut();" do |form| %>
+        
+      <div id="<%= name %>" class="line">
+        <div class="key">
+          <div class="image-container">
+            <img class="large" src="images/smb48.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name"><%= name.upcase %></span>
+            <span class="path"><%= path %></span>
+            <%= form.hidden_field :id, :value=> "#{target}"%>
+            <%= form.hidden_field :name, :value=> "#{name.upcase}" %>
+            <%= form.hidden_field :path, :value=> "#{path}" %>
+          </div>
+        </div>
+
+        <div class="value">
+          <a  href="#" class="unshare sumit" data-form="newform<%=index+1%>">UNSHARE</a>
+        </div>
+      </div>
+    <% end%>
     
-    <div id="<%= name %>" class="line">
-      <div class="key">
-        <div class="image-container">
-          <img class="large" src="images/video.png"/>
+  <% else%>
+    <% form_remote_for :share, :url => {:action => 'create'}, 
+      :html => {:id => "newform#{index+1}"},
+      :before => "$('#wait').show();",
+      :after => "$('#wait').fadeOut();" do |form| %>
+      
+      <div id="<%= name %>" class="line">
+        <div class="key">
+          <div class="image-container">
+            <img class="large" src="images/file48.png"/>
+          </div>
+          <div class="info-container">
+            <span class="name"><%= name.upcase %></span>
+            <span class="path"><%= path %></span>
+            <%= form.hidden_field :name, :value=> "#{name.upcase}" %>
+            <%= form.hidden_field :path, :value=> "#{path}" %>
+          </div>
         </div>
-        <div class="info-container">
-          <span class="name"><%= name.upcase %></span>
-          <span class="path"><%= path %></span>
-          <%= form.hidden_field :name, :value=> "#{name.upcase}" %>
-          <%= form.hidden_field :path, :value=> "#{path}" %>
-        </div>
-      </div>
 
-      <div class="value">
-        <a  href="#" class="share" data-form="newform<%=index+1%>">SHARE</a>
+        <div class="value">
+          <a  href="#" class="share sumit" data-form="newform<%=index+1%>">SHARE</a>
+        </div>
       </div>
-    </div>
-  <% end%>
+    <% end%>
+  <% end %>
 <% end %>
-
-<!-- <% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform1"},
-  :before => "$('#wait').show();",
-  :after => "$('#wait').fadeOut(); slideTo(0); ",
-  :update => "all-container" do |form| %>
-
-  <div id="video" class="line">
-    <div class="key">
-      <div class="image-container">
-        <img class="large" src="images/video.png"/>
-      </div>
-      <div class="info-container">
-        <span class="name">VIDEO</span>
-        <span class="path">{/root/Videos}</span>
-        <%= form.hidden_field :name, :value=> "VIDEO" %>
-        <%= form.hidden_field :path, :value=> "/root/Videos" %>
-      </div>
-    </div>
-
-    <div class="value">
-      <a  href="#" class="share" data-form="newform1">SHARE</a>
-    </div>
-  </div>
-<%end %>
-
-<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform2"},
-  :before => "$('#wait').show();",
-  :after => "$('#wait').fadeOut(); slideTo(0); ",
-  :update => "all-container" do |form| %>
-
-  <div id="audio" class="line">
-    <div class="key">
-      <div class="image-container">
-        <img class="large" src="images/audio.png"/>
-      </div>
-      <div class="info-container">
-        <span class="name">AUDIO</span>
-        <span class="path">{/root/Musik}</span>
-        <%= form.hidden_field :name, :value=> "AUDIO" %>
-        <%= form.hidden_field :path, :value=> "/root/Musik" %>
-      </div>
-    </div>
-    <div class="value">
-      <a  href="#" class="share" data-form="newform2">SHARE</a>
-    </div>
-  </div>
-<%end %>
-
-<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform3"},
-  :before => "$('#wait').show();",
-  :after => "$('#wait').fadeOut();",
-  :update => "all-container" do |form| %>
-  <div id="photo"  class="line">
-    <div class="key">
-      <div class="image-container">
-        <img class="large" src="images/photo.png"/>
-      </div>
-      <div class="info-container">
-        <span class="name">PHOTO</span>
-        <span class="path">{/root/Bilder}</span>
-        <%= form.hidden_field :name, :value=> "PHOTO" %>
-        <%= form.hidden_field :path, :value=> "/root/Bilder" %>
-      </div>
-      </div>
-    <div class="value">
-      <a href="#" class="share" data-form="newform3">SHARE</a>
-    </div>
-  </div>
-<%end %> -->
-
+  
 <br>
 
 <h2 class="mheading grey">
@@ -111,17 +71,16 @@
   </p>
 </h2>
 
-<!-- <div class="line"> <<< empty >>> </div> -->
-
-<% form_remote_for :share, :url => {:action => 'create'}, :html => {:id => "newform_custom"},
-  :before => "$('#wait').show();",
-  :after => "$('#wait').fadeOut(); slideTo(0); ",
-  :update => "all-container" do |form| %>
+<% form_remote_for :share, :url => {:action => 'create'}, 
+  :html => {:id => "newform_custom"},
+  :before => "$('#wait').show();", 
+  :loading => "$('#wait').show();", 
+  :after => "$('#wait').fadeOut(); slideTo(0); " do |form| %>
 
   <div id="custom-dir" class="line">
     <div class="key">
       <div class="image-container">
-        <img class="large" src="images/customfile48.png"/>
+        <img class="large" src="images/file48.png"/>
       </div>
       <div class="info-container">
         <span class="name" style="color:#8e9189">{CUSTOM}</span>
@@ -131,16 +90,13 @@
        </div>
     </div>
     <div class="value">
-      <a href="#" class="share" data-form="newform_custom">SHARE</a>
+      <a href="#" class="share sumit" data-form="newform_custom">SHARE</a>
       <a href="#" class="select" data-form="newform_custom">SELECT</a>
     </div>
   </div>
 <%end %>
 
-<div id="dir-chooser">
-<!--  <div id="controls"></div>
-  <div id="directories"></div>-->
-</div>
+<div id="dir-chooser"><!-- content from AJAX call --></div>
 
 <script type="text/javascript" src="/javascripts/dir-chooser.js" ></script>
 <%= stylesheet_link_tag 'dir-chooser.css' %>
@@ -150,14 +106,13 @@
     var home = "<%= detectHome %>"
     $('#dir-chooser').dirchooser({parent: home});
 
-    $('a.share').click(function() {
+    $('a.sumit').click(function() {
       formID = $(this).attr('data-form');
       console.log("SUBMIT FORM " + formID)
       $('#'+formID).submit();
     });
 
     $('#autodiscover').toggle({background: "orange", on: "on", off: "off", size: 100});
-
   });
 </script>
 
