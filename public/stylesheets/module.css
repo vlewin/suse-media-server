@@ -396,8 +396,8 @@ span.infomark {
 #new-container div.image-container { display:inline-block; padding:0px 5px; float:left;}
 #new-container div.info-container { display:inline-block; padding:0px 5px;  float:left;}
 
-#new-container span.name { display:inline-block; paddind:0px; }
-#new-container span.path { display:block; paddind: 0px 0px; margin:0; color:#888; font-size:16px; }
+#new-container span.name { display:inline-block; }
+#new-container span.path { display:block; color:#888; font-size:14px; }
 
 img.xsmall { width:16px; height:16px; border-radius:16px; }
 img.small { width:22px; height:22px; border-radius:22px; }
