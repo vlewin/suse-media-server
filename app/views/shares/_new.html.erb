@@ -13,7 +13,7 @@
     <% form_remote_for :share, :url => {:action => 'destroy'}, 
       :html => {:id => "newform#{index+1}"},
       :before => "$('#wait').show();",
-      :after => "$('#wait').fadeOut();" do |form| %>
+      :after => "$('#wait').fadeOut(1000);" do |form| %>
         
       <div id="<%= name %>" class="line">
         <div class="key">
@@ -39,7 +39,7 @@
     <% form_remote_for :share, :url => {:action => 'create'}, 
       :html => {:id => "newform#{index+1}"},
       :before => "$('#wait').show();",
-      :after => "$('#wait').fadeOut();" do |form| %>
+      :after => "$('#wait').fadeOut(1000);" do |form| %>
       
       <div id="<%= name %>" class="line">
         <div class="key">
@@ -67,7 +67,7 @@
 <h2 class="mheading grey">
   Custom path
   <p style="color:#889; font-size:10px;">
-    {INFO:} Click select and choose directory you want to share
+    Click select and choose directory you want to share
   </p>
 </h2>
 
@@ -90,8 +90,8 @@
        </div>
     </div>
     <div class="value">
-      <a href="#" class="share sumit" data-form="newform_custom">SHARE</a>
-      <a href="#" class="select" data-form="newform_custom">SELECT</a>
+      <a id="submitSelectDir" href="#" class="share sumit" style="display:none;" data-form="newform_custom">SHARE</a>
+      <a href="#" class="selectDir" data-form="newform_custom">SELECT</a>
     </div>
   </div>
 <%end %>

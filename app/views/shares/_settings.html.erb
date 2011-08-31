@@ -1,10 +1,13 @@
 <% @global = Share.find('target[1]') %>
 
-<h2 class="mheading grey">Global settings</h2>
+<h2 class="mheading grey">
+  Global settings
+  <span style="float:right; margin-right:20px;"><a id="edit_setings" href="#" class="btn blue">edit settings</a> </span>
+</h2>
 <div>
-  <% form_remote_for @global, :url => {:action => 'update'},
+  <% form_remote_for @global, :url => {:action => 'saveSettings'},
      :before => "$('#wait').show();",
-     :after => "$('#wait').fadeOut('slow');",
+     :after => "hideSubmit(); $('#wait').fadeOut(1000);",
      :html => { :id => "set_form", :class => "mform"},
      :update =>'set-container' do |form| %>
 
@@ -13,7 +16,7 @@
         <div class="key"> <%= form.label :workgroup %> </div>
         <div class="value uppercase"><%= form.text_field :workgroup %></div>
       </div>
-
+      
       <div class="line">
         <div class='key'><%= form.label :security %></div>
         <div class='value'> {
@@ -29,3 +32,9 @@
       </div>
 <% end %>
 
+<script>
+  $(function() {
+    //setTimeout( function() { showSave }, 150);
+
+  });
+</script>

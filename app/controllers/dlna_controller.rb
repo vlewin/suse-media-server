@@ -1,6 +1,10 @@
 class DlnaController < ApplicationController
   def index
-    @dlna = Dlna.all
-    Rails.logger.debug "\n*** CONFIG #{@dlna.inspect}"
+    begin
+      @dlna = Dlna.all
+    rescue RuntimeError => e
+      flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
+      redirect_to(:controller => :index, :action => 'index')
+    end
   end
 end

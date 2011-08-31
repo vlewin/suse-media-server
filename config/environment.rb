@@ -7,6 +7,18 @@ RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+
+
+  #config.action_controller.session = :cookie_store
+  config.action_controller.session = {
+    :key => '_sms_session',
+    :secret => '851939c37d94574e284ded8437d4ea3447dae24cc5bda61d8eaf2731d49273bc4c620'
+  }
+
+
+
+  #config.action_controller.session = { :key => "_suse_media_server_session", :secret => "2c4bde9b37b6c60357e97e05232539aee13ab67b3b9d43e8fe92e79cd7f6edcc7d9138443a8398b569342ac5ff4954390f56db0d428db172a5c8dc753599229f" }
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

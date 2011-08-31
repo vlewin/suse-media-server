@@ -2,7 +2,7 @@
 
 <% form_remote_for @share, :url => {:action => 'update'},
         :before => "$('#wait').show();",
-        :after => "$('#wait').fadeOut('slow');",
+        :after => "$('#wait').fadeOut(1000);",
         :html => {:id => "edit_form"},
         :update =>'edit-container' do |form| %>
 
