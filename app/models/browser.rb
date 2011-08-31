@@ -12,34 +12,34 @@ class Browser
 
     if File.exists?(@path) && File.readable?(@path)
       begin
-      
+
         Dir.entries(@path).each do |dir|
-          
+
           if File.directory?(File.join(@path, dir)) && dir[0,1]!="."
-            Rails.logger.error " - #{dir}"
+            #Rails.logger.error " - #{dir}"
 
             @dir = {"path" => File.join(@path, dir)}
-            
+
             @subpath = File.join(File.expand_path(@path), dir)
-            
-            
+
+
             if File.exists?(@subpath) && File.directory?(@subpath) && File.readable?(@subpath)
-              Rails.logger.error "FILE EXIST? #{@subpath} #{File.exists?(@subpath)}"
+              #Rails.logger.error "FILE EXIST? #{@subpath} #{File.exists?(@subpath)}"
               has_child = false
-              
-              
+
+
               Dir.entries(@subpath).each do |subdir|
-                Rails.logger.error "INSIDE DIR ENTRIES?"
-                if File.readable?(@subpath) && File.directory?(File.join(@subpath, subdir)) && subdir[0,1]!="." 
+                #Rails.logger.error "INSIDE DIR ENTRIES?"
+                if File.readable?(@subpath) && File.directory?(File.join(@subpath, subdir)) && subdir[0,1]!="."
                   has_child = true
                 end
               end
               @dir["children"] = has_child ?  "yes" : "no"
             end
-            
+
             @hash[dir] = @dir
           end
-          
+
         end
       rescue Errno::EACCES
         Rails.logger.error "ERROR: Permission denied - <#{dir}>"

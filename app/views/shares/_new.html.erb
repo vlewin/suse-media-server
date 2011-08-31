@@ -1,5 +1,5 @@
 <h2 class="mheading green">
-  Autodiscovery 
+  Autodiscovery
   <span style="float:right; margin-right:20px;">{<b style="color:green">on</b> | off}</span>
   <p style="color:#889; font-size:10px;">
     List all media directories in users home
@@ -10,11 +10,11 @@
 <% @dirs.each_with_index do |(name, path), index| %>
   <% target = shared?(path) %>
   <% if target  %>
-    <% form_remote_for :share, :url => {:action => 'destroy'}, 
+    <% form_remote_for :share, :url => {:action => 'destroy'},
       :html => {:id => "newform#{index+1}"},
       :before => "$('#wait').show();",
       :after => "$('#wait').fadeOut(1000);" do |form| %>
-        
+
       <div id="<%= name %>" class="line">
         <div class="key">
           <div class="image-container">
@@ -30,17 +30,17 @@
         </div>
 
         <div class="value">
-          <a  href="#" class="unshare sumit" data-form="newform<%=index+1%>">UNSHARE</a>
+          <a  href="#" class="unshare btn sumit" data-form="newform<%=index+1%>">UNSHARE</a>
         </div>
       </div>
     <% end%>
-    
+
   <% else%>
-    <% form_remote_for :share, :url => {:action => 'create'}, 
+    <% form_remote_for :share, :url => {:action => 'create'},
       :html => {:id => "newform#{index+1}"},
       :before => "$('#wait').show();",
       :after => "$('#wait').fadeOut(1000);" do |form| %>
-      
+
       <div id="<%= name %>" class="line">
         <div class="key">
           <div class="image-container">
@@ -55,13 +55,13 @@
         </div>
 
         <div class="value">
-          <a  href="#" class="share sumit" data-form="newform<%=index+1%>">SHARE</a>
+          <a  href="#" class="greenbtn btn sumit" data-form="newform<%=index+1%>">SHARE</a>
         </div>
       </div>
     <% end%>
   <% end %>
 <% end %>
-  
+
 <br>
 
 <h2 class="mheading grey">
@@ -71,10 +71,10 @@
   </p>
 </h2>
 
-<% form_remote_for :share, :url => {:action => 'create'}, 
+<% form_remote_for :share, :url => {:action => 'create'},
   :html => {:id => "newform_custom"},
-  :before => "$('#wait').show();", 
-  :loading => "$('#wait').show();", 
+  :before => "$('#wait').show();",
+  :loading => "$('#wait').show();",
   :after => "$('#wait').fadeOut(); slideTo(0); " do |form| %>
 
   <div id="custom-dir" class="line">
@@ -90,8 +90,8 @@
        </div>
     </div>
     <div class="value">
-      <a id="submitSelectDir" href="#" class="share sumit" style="display:none;" data-form="newform_custom">SHARE</a>
-      <a href="#" class="selectDir" data-form="newform_custom">SELECT</a>
+      <a id="submitSelectDir" href="#" class="greenbtn btn sumit" style="display:none;" data-form="newform_custom">SHARE</a>
+      <a href="#" class="selectDir btn bluebtn" data-form="newform_custom">SELECT</a>
     </div>
   </div>
 <%end %>

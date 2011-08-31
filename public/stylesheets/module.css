@@ -83,16 +83,16 @@ div.mhead a#submit {
   height:32px;
   line-height:32px;
 
-  
+
 
   float:left;
   box-shadow: 1px 0px 0px #444, -1px 0px 0px #444;
-  
+
   border-width: 1px 1px 1px 1px;
   border-style: solid;
   border-color: #222 #555 #777 #555;
   border-radius:3px;
-  
+
   width:0;
   padding:4px 0px;
   display:none;
@@ -198,8 +198,14 @@ div.mcontent div.line, div.mform div.line {
 }
 
 
-div.mcontent div.key, div.mform div.key { display:inline-block; width:30%; float:left; }
-div.mcontent div.value, div.mform div.value { display:inline-block; width:67%; padding-right:10px; float:right; text-align: right; }
+div.mcontent div.key, div.mform div.key { display:inline-block; width:50%; float:left; }
+div.mcontent div.value, div.mform div.value {
+  display:inline-block;
+  width:47%;
+/*  padding-right:10px;*/
+  float:right;
+  text-align: right;
+}
 
 /*div.mcontent div.key, div.mform div.key {  }*/
 /*div.mcontent div.value, div.mform div.value {  }*/
@@ -212,28 +218,23 @@ div.mcontent div.link {
   border-color: #ccc;
 
   font-size:20px;
-  line-height:32px;
   font-weight:bold;
 
   padding:5px 5px 5px 30px;
-/*  clear:both;*/
   overflow:hidden;
-
   position:relative;
-}
 
-div.mcontent div.link:hover {
-/*  box-shadow: 0px 0px 10px #222 inset;*/
+  padding-left:60px;
 }
-
 
 div.mcontent div.link:before {
-  content:url(../images/tt.png);
+
+  content:url(../images/custom.png);
+  content:url(../images/file48.png);
+  border-radius: 4px;
   position:absolute;
-  left:4px;
-  top:5px;
-  width:8px;
-  height:8px;
+  left:0px;
+  top:4px;
 }
 
 div.link div.key{
@@ -242,15 +243,6 @@ div.link div.key{
 div.link div.value {
    width:30%;
 }
-
-/*div.mcontent div.beforelink:before {*/
-/*  content:url(../images/tt.png);*/
-/*  position:absolute;*/
-/*  left:4px;*/
-/*  top:5px;*/
-/*  width:8px;*/
-/*  height:8px;*/
-/*}*/
 
 span.delcont {
   box-shadow: 0px 0px 0px #222 inset;
@@ -266,30 +258,12 @@ div.mcontent a.remove-share {
   display:none;
 }
 
-
-/*input[type=checkbox].delete {*/
-/*  vertical-align:middle;*/
-/*  background: #800000;*/
-/*}*/
-
 div.mcontent div.link a { color: #666; text-transform:uppercase; }
 div.mcontent div.link.active { background: #f0f0f0; };
 div.mcontent div.link:hover { background:#f0f0f0; }
 
 div.mform { width:0%; height:100%; float:right; display:none; padding:5px 0px 5px 10px; }
 div.mform div.last { color:#888; }
-
-form input[type=text] {
-  border:1px solid #ddd;
-  padding:5px 0px;
-  width:150px;
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
-  color:#454545;
-  border-radius:0px;
-
-}
 
 div.msettings { margin-bottom:30px; display:none;}
 
@@ -335,20 +309,16 @@ div#wait {
   background:grey;
   color:#fff;
   opacity: 0.80;
-
   position:absolute;
   z-index:1000;
   padding:20px 50px;
-
-  border-radius:10px;
-
+  border-radius:5px;
   top:110px;
   left:33%;
   right:33%
   width:50%;
   text-align:right;
   display:none;
-
   font-size: 30px;
   font-weight:bold;
   text-shadow: 0px -2px 0px #222;

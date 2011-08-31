@@ -1,16 +1,33 @@
+<style>
+#all-container span.name {
+    display: inline-block;
+}
+
+#all-container span.path {
+    color: #888888;
+    display: block;
+    font-size: 14px;
+}
+</style>
+
+
 <h2 class="mheading green">
   HOME Directories
   <p style="color:#889; font-size:12px;">
     {Info} Show all directories in users home
   </p>
 </h2>
-<% @dirs.each do |key, val| %>
+<% @dirs.each do |name, val| %>
   <div class="link beforelink">
     <div class='key'>
-      <%= key %>
+      <% name %>
+      <% val["path"] %>
+      <span class="name"><%= name.upcase %></span>
+      <span class="path"><%= val["path"] %></span>
     </div>
     <div class='value'>
-      <p><%= val["path"].inspect  %> HAS CHILDREN <%= val["children"] %></p>
+      <a  href="#" class="btn greenbtn sumit" data-form="newform">SHARE</a>
     </div>
   </div>
 <% end %>
+
