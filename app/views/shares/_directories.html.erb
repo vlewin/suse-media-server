@@ -1,0 +1,16 @@
+<h2 class="mheading green">
+  HOME Directories
+  <p style="color:#889; font-size:12px;">
+    {Info} Show all directories in users home
+  </p>
+</h2>
+<% @dirs.each do |key, val| %>
+  <div class="link beforelink">
+    <div class='key'>
+      <%= key %>
+    </div>
+    <div class='value'>
+      <p><%= val["path"].inspect  %> HAS CHILDREN <%= val["children"] %></p>
+    </div>
+  </div>
+<% end %>

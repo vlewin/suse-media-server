@@ -1,3 +1,4 @@
+require 'json'
 include ApplicationHelper
 
 class SharesController < ApplicationController
@@ -5,11 +6,16 @@ class SharesController < ApplicationController
   
   def index
     begin
-      @shares = Share.all
+      #@shares = Share.all
       cookies[:shares_number] = @shares.length unless @shares.nil?
       
       Rails.logger.error "\n*** CHECK number #{cookies[:shares_number]}"
       @smb = Samba.running?
+      
+      
+      browser = Browser.new('/')
+      @dirs = browser.get_content(detectHome);
+      
     rescue RuntimeError => e
       flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
       redirect_to(:controller => :index, :action => 'index')
@@ -100,12 +106,5 @@ class SharesController < ApplicationController
     end
     render :nothing => true
   end
-  
-  
-  
-
-  
-  
-
 end
 

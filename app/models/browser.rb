@@ -53,6 +53,7 @@ class Browser
       end
     end
 
+    Rails.logger.error "CLASS #{@hash.class} HASH #{@hash.inspect}"
     return @hash
   end
 
