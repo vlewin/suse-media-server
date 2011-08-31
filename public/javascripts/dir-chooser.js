@@ -13,7 +13,6 @@
             if(key == "children" && data[dir][key] == "yes") {
               html += '<li class="dir parent" data-child ="' + path +'">';
               html += '<label>' + dir + '</label>';
-//              html += '<a href="#" class="share" data-path ="' + path +'">select</a>'
               html += '<a href="#" class="dirlink" data-name="' + dir + '" data-path ="' + path +'">select</a>'
               html += '</li>';
             } else {
@@ -28,7 +27,7 @@
 
        html += '</ul>';
 
-       $('#controls').html('<a id="back" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
+       $('#controls').html('<a id="backDir" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
        methods.show(html);
     },
 
@@ -53,7 +52,7 @@
 
       //SHARE CLICKED
       $('a.dirlink').live('click', function() {
-        var $selects = $("#new-container").find('a.select');
+        var $selects = $("#new-container").find('a.selectDir');
 
         var dirname = $(this).attr('data-name').toUpperCase();
         var dirpath = $(this).attr('data-path');
@@ -78,14 +77,12 @@
           $ipath.val(dirpath);
         });
 
-        console.log("TODO: Do not forget to remove activeSelector class");
-
         methods.hide();
         return false;
       });
 
       //BACK
-      $('a#back').live('click', function() {
+      $('a#backDir').live('click', function() {
         var back = $(this).attr('data-back');
         if(back != parent) {
           var tmp = back.split('/');
@@ -108,6 +105,7 @@
     },
 
     hide : function( ) {
+      $('#submitSelectDir').show();
       $('#modalshade').hide();
       $('#dir-chooser').hide();
     }
@@ -125,7 +123,7 @@
     return $(function() {
       $this.html('<div id="controls"></div><div id="directories"></div>');
 
-      $('a.select').live('click', function() {
+      $('a.selectDir').live('click', function() {
         methods.ajax(opt.parent);
       });
 

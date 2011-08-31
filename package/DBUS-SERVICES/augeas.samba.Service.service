@@ -3,5 +3,3 @@
 Name=augeas.samba.Service
 Exec=/usr/local/sbin/augeasSambaService.rb
 User=root
-
-#use user suse-media-server

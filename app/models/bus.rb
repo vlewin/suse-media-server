@@ -5,26 +5,44 @@ class Bus
  attr_accessor :method
 
  def bus(serv)
-  if serv != "dlna"
-    bus = DBus.system_bus
-    ruby_service = bus.service("augeas.samba.Service")
-    obj = ruby_service.object("/augeas/samba/Service/Interface")
-    obj.introspect
-    obj.default_iface = "augeas.samba.Service.Interface"
-  else
-    bus = DBus.system_bus
-    ruby_service = bus.service("augeas.dlna.Service")
-    obj = ruby_service.object("/augeas/dlna/Service/Interface")
-    obj.introspect
-    obj.default_iface = "augeas.dlna.Service.Interface"
-  end
-  return obj
- end
+  case serv
+    when "smb"
+      bus = DBus.system_bus
+      ruby_service = bus.service("augeas.samba.Service")
+      obj = ruby_service.object("/augeas/samba/Service/Interface")
+      obj.introspect
+      obj.default_iface = "augeas.samba.Service.Interface"
+      return obj
+    when "dlna"
+      bus = DBus.system_bus
+      ruby_service = bus.service("augeas.dlna.Service")
+      obj = ruby_service.object("/augeas/dlna/Service/Interface")
+      obj.introspect
+      obj.default_iface = "augeas.dlna.Service.Interface"
+      return obj
+    else
+      raise "unknown dbus service #{serv}"
+      Rails.logger.error "unknown dbus service"
+    end
+end  
+#  if serv != "dlna"
+#    bus = DBus.system_bus
+#    ruby_service = bus.service("augeas.samba.Service")
+#    obj = ruby_service.object("/augeas/samba/Service/Interface")
+#    obj.introspect
+#    obj.default_iface = "augeas.samba.Service.Interface"
+#  else
+#    bus = DBus.system_bus
+#    ruby_service = bus.service("augeas.dlna.Service")
+#    obj = ruby_service.object("/augeas/dlna/Service/Interface")
+#    obj.introspect
+#    obj.default_iface = "augeas.dlna.Service.Interface"
+#  end
+#  return obj
+# end
 
 
  def send(srv, args)
-   Rails.logger.error "#{srv}"
-   Rails.logger.error "#{args}"
    dbus = self.bus(srv)
    ret = dbus.match('all')[0]
  end
@@ -55,8 +73,8 @@ class Bus
    returns
  end
 
- def exec(cmd)
-   dbus = self.bus(cmd)
+ def exec(srv, cmd)
+   dbus = self.bus(srv)
    dbus.exec(cmd)[0]
  end
 end

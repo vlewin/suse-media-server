@@ -28,7 +28,7 @@ div.mhead h4 { font-size:12px; color:#eee; padding: 0px 0px; }
 div.mhead div.leftcont { text-align:left; }
 div.mhead div.rightcont { text-align:right; }
 
-div.mhead div.actionscont {
+div.mhead div#actions {
   box-shadow: 0px 0px 2px #222 inset;
   border-radius:3px;
   border-width: 1px 1px 1px 1px;
@@ -73,9 +73,26 @@ div.mhead a.button img {
 }
 
 div.mhead a#submit {
+  color:#fff;
+  font-weight:bold;
+  font-size: 14px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow: 0px -1px 0 #222;
+
+  height:32px;
+  line-height:32px;
+
+  
+
+  float:left;
+  box-shadow: 1px 0px 0px #444, -1px 0px 0px #444;
+  
   border-width: 1px 1px 1px 1px;
   border-style: solid;
   border-color: #222 #555 #777 #555;
+  border-radius:3px;
+  
   width:0;
   padding:4px 0px;
   display:none;
@@ -97,6 +114,10 @@ div.mhead a#back {
   background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#353535));
 }
 
+div.mhead a#back.cancel {
+  background: -moz-linear-gradient(center bottom , #600000, #e00000) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#353535));
+}
 
 div.mhead a.button:hover {
   border-style: solid;
@@ -261,12 +282,12 @@ div.mform div.last { color:#888; }
 form input[type=text] {
   border:1px solid #ddd;
   padding:5px 0px;
-  width:124px;
+  width:150px;
   text-align:center;
   font-size:18px;
   font-weight:bold;
   color:#454545;
-  border-radius:3px;
+  border-radius:0px;
 
 }
 
@@ -376,7 +397,7 @@ span.infomark {
 #new-container div.info-container { display:inline-block; padding:0px 5px;  float:left;}
 
 #new-container span.name { display:inline-block; paddind:0px; }
-#new-container span.path { display:block; paddind: 0px 0px; margin:0; color:#888; font-size:12px; }
+#new-container span.path { display:block; paddind: 0px 0px; margin:0; color:#888; font-size:16px; }
 
 img.xsmall { width:16px; height:16px; border-radius:16px; }
 img.small { width:22px; height:22px; border-radius:22px; }

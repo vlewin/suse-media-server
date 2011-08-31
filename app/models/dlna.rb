@@ -12,45 +12,37 @@ class Dlna
   end
 
   def to_hash
-    #Hash[instance_variables.map { |var| [var[1..-1].to_sym, instance_variable_get(var)] }]
     Hash[instance_variables.map { |var| [var[1..-1].to_s, instance_variable_get(var)] }]
   end
 
   def self.all
-    shares = Array.new
-
-    Rails.logger.error "DLNA BUS"
-    bus = Bus.new()
-
-    map = bus.send("dlna", {})
-    args = {}
+    begin
+      shares = Array.new
+      bus = Bus.new()
+      map = bus.send("dlna", {})
+      args = {}
 
       map.each do |key, value|
         args[key] = value
       end
 
       share = Dlna.new(args)
-#      shares << share
+      return share
+    
+    rescue DBus::Error => dbe
+      if dbe.dbus_message.instance_variables.include?("@error_name") && dbe.dbus_message.error_name == "org.freedesktop.DBus.Error.AccessDenied"
+        Rails.logger.error "*** DLNA DBUS: ACCESS DENIED #{dbe.dbus_message.error_name.inspect}"
+        raise "You have no permissions!"
+      else
+        Rails.logger.error "*** DLNA DBUS:ERROR #{dbe.inspect}"
+        raise "Generic exception please report this issue:
+          <a href='https://github.com/vlewin/suse-media-server/issues'>github bugtracker</a>"
+      end
 
-    return share
-  end
-
-#  def self.find(id)
-#    bus = Bus.new
-#    hash = bus.find(id)
-#    args = {}
-
-#    hash.each do | key, value |
-#      args[key] = value
-#    end
-
-#    share = Share.new(args)
-#    return share
-#  end
-
- def save
-    bus = Bus.new
-    ret = bus.save(self.to_hash)
+    rescue Exception => e
+      Rails.logger.error "Caught exception: #{e.inspect}"
+      raise "Generic exception"
+    end
   end
 
 end

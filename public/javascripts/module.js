@@ -11,11 +11,41 @@ $(document).ready(function() {
   }, 10000);
 });
 
+function showSubmit(form) {
+  $('#actions').find('a.button').hide();
+  $("#submit").attr('data-submit', form).show().stop().animate({width: "100%" }, 200);
+  $("#back").addClass('cancel').html("CANCEL");
+}
 
-
+function hideSubmit() {
+  $submit = $("#submit");
+  $submit.attr('data-submit', '');
+    
+  $submit.stop().animate({width: "0" }, 100, function() {
+    $('#actions').find('a.button').show();
+    $submit.hide();
+  });
+    
+  $("#back").removeClass('cancel').html("BACK");
+}
 
 $(function () {
+  $('#submit').live('click', function() {
+     console.log($(this).attr('data-submit'))
+     $('#'+$(this).attr('data-submit')).submit();
+  });
 
+  
+  $('#edit_setings').live('click', function() {
+    showSubmit('set_form');
+  });
+
+  //TODO: Improve animation
+  $('#back.cancel').live('click', function() {
+    hideSubmit();
+    return false;
+  });
+  
   //DELETE
   $('#del').live('click', function() {
     var $values =  $('#all-container').find('div.value');
@@ -30,9 +60,11 @@ $(function () {
       $links.hide();
     }
   });
+  
+  
 
   // BACK
-  $('#back').click(function(){
+  /*$('#back').click(function(){
     form = $('#submit').data('form');
     if(form == 'form_share') {
       shrink();
@@ -45,7 +77,7 @@ $(function () {
     } else {
       return true;
     }
-  });
+  });*/
 
 //  $('a.action').live('click', function() {
 //    console.log("ACTION LINK IS CLICKED");

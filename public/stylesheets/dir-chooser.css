@@ -69,7 +69,7 @@
   color:#fff;
 }
 
-#controls #close, #controls #back { 
+#controls #close, #controls #backDir { 
   font-size: 16px; 
   background:#444; 
   color:#fff; 
@@ -79,7 +79,7 @@
   border-radius:3px;
 }
 
-#controls #back { 
+#controls #backDir { 
   float:left; 
   background: -moz-linear-gradient(center bottom , #222, #666) repeat scroll 0 0 transparent; 
   background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222));
@@ -94,17 +94,19 @@
   padding:10px; 
   margin:10px;
   background:#fff; 
-  border:1px solid #ccc; 
+  border:1px solid #e0e0e0; 
   border-radius:5px; 
 }
 
-  li { list-style: none;}
-  ul li:first-child { border-top: 0px solid #ccc; }
-  ul li:last-child { border:none; }
+  #directories li { list-style: none;}
+  #directories li:hover { background:#f5f5f5!important; }
   
-  li.dir { background: #fff; color:#888;  border-bottom:0px solid #ccc;  font-size:26px; padding-left:0px; position:relative; padding-left:40px; }
+  #directories ul li:first-child { border-top: 0px solid #ccc; }
+  #directories ul li:last-child { border:none; }
   
-  li.dir:before {
+  #directories li.dir { background: #fff; color:#888;  border-bottom:0px solid #ccc;  font-size:26px; padding-left:0px; position:relative; padding-left:40px; }
+  
+  #directories li.dir:before {
     content:url(../images/folder-grey.png);
     position:absolute;
     left:0;
@@ -112,10 +114,12 @@
   }
   
   
-  li.dir.parent { color: #c49846; padding-left:40px; }
+  #directories li.dir.parent { color: #c49846; padding-left:40px; }
+  #directories li.dir.parent { cursor:pointer;  color: #19AFE1; font-weight:bold; padding-left:40px; }  
+  #directories li.dir.parent label { cursor:pointer; }
 
-  li.dir.parent:before {
-    content:url(../images/folder-open.png);
+  #directories li.dir.parent:before {
+    content:url(../images/folder-open-blue.png);
     position:absolute;
     left:0;
     vertical-align:middle;
@@ -123,9 +127,9 @@
     height:14px; 
   }
   
-  li.subdir { padding-left: 10px;}
+  #directories li.subdir { padding-left: 10px;}
   
-  a.dirlink, a.share, a.unshare, a.select { 
+  a.dirlink, a.share, a.unshare, a.selectDir, a.btn { 
     float:right; 
     font-size: 14px;
     font-weight: bold; 
@@ -134,7 +138,7 @@
     display:inline-block; 
     margin:3px; 
     padding:3px 10px;
-    text-shadow: 0px -1px #000;    
+    text-shadow: 0px -1px #000;
     border-radius:3px;
     text-align:center;
     min-width:70px;
@@ -151,7 +155,12 @@
     background: -webkit-gradient(linear, left top, left bottom, from(#900000), to(#600000));
   }
   
-  a.select { 
+  a.selectDir { 
+    background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
+  }
+  
+  a.blue { 
     background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
     background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
   }

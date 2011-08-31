@@ -31,7 +31,7 @@ class AugeasSambaService < DBus::Object
   AUG_PATH = "/files" + CONF_PATH
 
   PROPERTIES = ["name", "path", "writeable", "browseable", "read_only", "guest_only", "comment"]
-  GLOBAL = ["workgroup", "security"]
+  GLOBAL = ["workgroup", "netbios_name", "security"]
 
   def syslog(message)
     Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s|
@@ -75,6 +75,8 @@ class AugeasSambaService < DBus::Object
 	      puts "ATTR #{a.split('/').last}"
 	    end
 	  end
+	else 
+	  puts "GLOBAL IN SEPARATE FUNCTION?? #{id}"  
 	end
 	
 	#shares.push({ "id" => target.to_s.split('/').last, "name" => aug.get(target)})
@@ -170,8 +172,8 @@ class AugeasSambaService < DBus::Object
 	
 	#WRITE NOBODY DEFAULT SETTINGS
         NOBODY_DEFAULTS.each do |key,value|
-	  puts "\n\n*** WRITE NOBODY DEFAULT SETTINGS"
  	  key = key.gsub(/_/, "\\ ")
+	  puts "*** SET NOBODY DEFAULT SETTINGS #{key} #{value}"
  	  aug.set("#{AUG_PATH}#{id}/#{key}", value)
         end
             
@@ -179,13 +181,14 @@ class AugeasSambaService < DBus::Object
         # WRITE GLOBAL DEFAULT SETTINGS
 	GLOBAL_DEFAULTS.each do |key,value|
 	  key = key.gsub(/_/, "\\ ")
+	  puts "*** SET GLOBAL DEFAULT SETTINGS #{key} #{value}"
           aug.set("#{AUG_PATH}#{id}/#{key}", value)
 	end
       end
        
        # WRITE USER SETTINGS FOR GLOBAL AND SHARE
        share.each do |key,value|
-         puts "DEBUG: SET USER SETTINGS #{AUG_PATH}#{id}/#{key} WITH VALUE #{value}"
+         puts "*** SET USER SETTINGS #{AUG_PATH}#{id}/#{key} WITH VALUE #{value}"
          aug.set("#{AUG_PATH}#{id}/#{key}", value)
        end	  
        
@@ -212,7 +215,7 @@ class AugeasSambaService < DBus::Object
     dbus_method :exec, "in command:s, out out:b" do |cmd|
       message = `#{cmd}`
       result = message.split('..').last
-      puts "\n\INFO: SAMBA CMD #{cmd.inspect} SAMBA is <#{result}>"
+      puts "\n\INFO: SAMBA CMD #{cmd.inspect} SAMBA is #{result}"
             
       # TODO: return result instead of boolean and handle it in smb modell !!!
       unless result.nil?

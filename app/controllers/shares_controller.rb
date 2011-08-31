@@ -1,9 +1,14 @@
 include ApplicationHelper
 
 class SharesController < ApplicationController
+  #session :on
+  
   def index
     begin
       @shares = Share.all
+      cookies[:shares_number] = @shares.length unless @shares.nil?
+      
+      Rails.logger.error "\n*** CHECK number #{cookies[:shares_number]}"
       @smb = Samba.running?
     rescue RuntimeError => e
       flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
@@ -11,68 +16,55 @@ class SharesController < ApplicationController
     end
   end
 
-#  def new
-#    @shares = Share.all
-#    target_id = @shares.length
-#    Rails.logger.debug "FORM FOR NEW SHARE target[#{target_id+1}]"
-#    
-#    @share = Share.new({ "id" => "target[#{target_id+1}]", "name" => "#{params[:name]}"})
-#    render :partial => 'form', :with => @share, :locals => {:share => @share } 
-#  end
-  
   def show
     @share = Share.find(params[:id])
     render :partial => 'share'
   end
   
-  
   def create
-    Rails.logger.debug "CREATE NEW SHARE #{params[:share].inspect}"
+    Rails.logger.debug "CREATE NEW SHARE #{params[:share].inspect} check number #{cookies[:shares_number]}"
 
-    @shares = Share.all
+    #@shares = Share.all
     @share = Share.new(params[:share])
     
-    Rails.logger.debug "PARAMS ID? #{params[id].inspect}"
-    
     if params["id"].nil?
-      target = "target[#{@shares.length+2}]"
+      number = cookies[:shares_number].to_i + 2
+      target = "target[#{number}]"
       @share.id = target
-      Rails.logger.debug "target #{target.inspect}"
     end
-    
-    Rails.logger.debug "NEW SHARE #{@share.inspect}"
-    
-    #if @share.save
-#      @shares = Share.all
-#      render :partial => 'shares'
-#    else 
-#      render :error
-#    end
     
     if @share.save
       @shares = Share.all
- 
+      cookies[:shares_number] = @shares.length unless @shares.nil?
+      
       render :update do |page|
         page.replace_html 'all-container', :partial => 'shares'
         page.replace_html 'new-container', :partial => 'new'
       end
-    else 
-      render :error
     end
 
   end
 
   def update
     @share = Share.new(params[:share])
-
     if @share.save
       @share = Share.find(params[:share][:id])
-      render :partial => 'share', :locals => {:name => @name}
+      render :partial => 'share'
+    else 
+      render :text => "Can not save share"
+    end
+  end
+  
+  def saveSettings
+    @share = Share.new(params[:share])
+    if @share.save
+      @share = Share.find(params[:share][:id])
+      render :partial => 'settings'
     else 
       render :error
     end
-
   end
+  
   
   def destroy
     if params["share"]
@@ -82,24 +74,13 @@ class SharesController < ApplicationController
       Rails.logger.debug "DESTROY SHARE WITH ID #{params["id"].inspect}"    
       @share = Share.find(params["id"])
     end
-    
-    #if @share.destroy
-    #  @shares = Share.all
-    #  render :partial => 'shares'
-    #else 
-    #  render :error
-    #end
-    
-#    <%= remote_function (:url =>{ :action => "codeviewer", :id => @assignment.id, :uid => @uid },
-#                   :with => "'fid='+fid", :after => "$('working').hide();")%>
-
   
     if @share.destroy
       @shares = Share.all
+      cookies[:shares_number] = @shares.length unless @shares.nil?
       
       render :update do |page|
         page.replace_html 'all-container', :partial => 'shares'
-        #Also update the annotation_summary_list
         page.replace_html 'new-container', :partial => 'new'
       end
     else 
