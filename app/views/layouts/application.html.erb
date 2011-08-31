@@ -4,16 +4,20 @@
   <head>
     <%= stylesheet_link_tag '960.css' %>
     <%= stylesheet_link_tag 'reset.css' %>
-    
+
+
     <%= stylesheet_link_tag 'application.css' %>
     <%= stylesheet_link_tag 'layout.css' %>
+
+    <%= stylesheet_link_tag 'module.css' %>
     <%= stylesheet_link_tag 'forms.css' %>
-    
+
+
     <%= stylesheet_link_tag 'flash.css' %>
 
     <%= javascript_include_tag 'jquery-1.4.3' %>
   </head>
-  
+
   <body style="position:relative;">
   <div id="container">
 
@@ -45,7 +49,7 @@
     </div>
 
     <%= flash[:notice] %>
-    
+
     <div id="content">
         <%= yield %>
     </div>
@@ -73,11 +77,9 @@
       </div>
     </div>
   </div>
-  
+
   <div id="modalshade"></div>
   </body>
-  
+
 </html>
-
-
 
