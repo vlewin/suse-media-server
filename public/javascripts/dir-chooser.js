@@ -5,30 +5,34 @@
       var html = '<ul id="dirs" class="dirs child" data-parent ="' + parent + '">';
       var path = '';
 
-      for (dir in data) {
-        for (key in data[dir]) {
+      if(typeof(data) == "string") {
+        html += '<li style="border:none;">' + '<h4 style="text-align:center; color:#a00000;">' + data + '</h4></li>';
+      } else {
+        for (dir in data) {
+          for (key in data[dir]) {
 
-          if(key == "path") { path = data[dir][key]; } else {
+            if(key == "path") { path = data[dir][key]; } else {
 
-            if(key == "children" && data[dir][key] == "yes") {
-              html += '<li class="dir parent" data-child ="' + path +'">';
-              html += '<label>' + dir + '</label>';
-              html += '<a href="#" class="dirlink" data-name="' + dir + '" data-path ="' + path +'">select</a>'
-              html += '</li>';
-            } else {
-              html += '<li class="dir">';
-              html += '<label>' + dir + '</label>';
-              html += '<a href="#" class="dirlink" data-name="' + dir + '" data-path ="' + path +'">select</a>'
-              html += '</li>';
+              if(key == "children" && data[dir][key] == "yes") {
+                html += '<li class="dir parent" data-child ="' + path +'">';
+                html += '' + dir + '';
+                html += '<a href="#" class="dirlink greenbtn" data-name="' + dir + '" data-path ="' + path +'">select</a>'
+                html += '</li>';
+              } else {
+                html += '<li class="dir">';
+                html += '<label>' + dir + '</label>';
+                html += '<a href="#" class="dirlink greenbtn" data-name="' + dir + '" data-path ="' + path +'">select</a>'
+                html += '</li>';
+              }
             }
           }
         }
       }
 
-       html += '</ul>';
+      html += '</ul>';
 
-       $('#controls').html('<a id="backDir" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
-       methods.show(html);
+      $('#controls').html('<a id="backDir" href="#" data-back="' + parent +'"> back</a>' + parent + '<a id="close" href="#">close</a><div class="clear"></div>')
+      methods.show(html);
     },
 
     ajax : function(dir) {
