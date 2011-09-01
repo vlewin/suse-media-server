@@ -10,10 +10,6 @@ html,body {
   color: #575757;
 }
 
-
-a { text-decoration:none;}
-
-
 div#container {
   position:relative;
   margin:0 auto;
@@ -31,11 +27,6 @@ div#header {
   border-color: #fff;
   box-shadow: 0px 0px 2px #aaa inset;
   background:#84B952;
-/*  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;*/
-/*  background: -webkit-gradient(linear, left top, left bottom, from(#2B78C6), to(#00A3D3));*/
-
-/*  background: -moz-linear-gradient(center bottom , #709F42, #84B952) repeat scroll 0 0 transparent;*/
-/*  background: -webkit-gradient(linear, left top, left bottom, from(#709F42), to(#84B952));*/
 }
 
 div#header h1 {
@@ -54,11 +45,8 @@ div#navbar {
   border-width: 0px 1px;
   border-style: solid;
   border-color: #ddd;
-   background: none repeat scroll 0 0 #FFFFFF;
-   border-radius: 0 0 0 0;
-/*    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);*/
-/*    background: -moz-linear-gradient(center bottom , #ccc, #ddd) repeat scroll 0 0 transparent;*/
-/*    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));*/
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-radius: 0 0 0 0;
 }
 
 div#content {
@@ -73,11 +61,52 @@ div#content {
 }
 
 div#footer {
-/*  position:absolute;*/
   position:relative;
   width:100%;
   bottom:0;
   padding:10px 0px;
   margin:50px 0px 0px 0px;
 }
+
+div#footer .footertext {
+  display:inline-block;
+  padding:1px 5px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0px #000;
+  font-size:22px;
+  line-height:22px;
+  color:#fff;
+  vertical-align:middle;
+  text-align:center;
+  background: #474747;
+  -moz-border-radius:10%;
+  border:0px solid #008000;
+}
+
+
+
+/*BETA BUTTON*/
+div#beta {
+  position: absolute;
+  width:74px;
+  height:74px;
+  padding:0px;
+  display:inline-block;
+  margin-right:20px;
+  right:0;
+  z-index:100;
+
+  box-shadow:0px 0px 10px #fff;
+  border-radius:100%;
+}
+
+div#beta img { position:absolute; }
+div#beta .shine {
+  width:74px; height:74px;
+  background:url('../images/sticker/beta-shine.png') no-repeat;
+  position:absolute;
+  background-position:-150px 0;
+  border-radius: 37px;
+}
+
 

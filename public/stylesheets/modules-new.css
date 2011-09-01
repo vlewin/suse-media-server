@@ -1,0 +1,190 @@
+a { text-decoration:none; text-align:center; }
+
+/* MODULE HEADER */
+
+div.moduleHead {
+  color:#fff;
+  background: #666;
+  background: -moz-linear-gradient(center top , #888, #454545) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#454545));
+  
+  border-width: 1px;
+  border-style: solid;
+  border-color: #666;
+  
+  border-radius: 3px 3px 0 0;
+  padding:5px 0px;
+  position:relative;
+  
+  text-shadow: 0px -1px 0 #000; 
+}
+
+/*div.moduleHead h2, div.moduleHead h4 { vertical-align:middle;} */
+div.moduleHead h4 { font-size:12px; color:#eee; }
+
+/*div.moduleHead div.left { text-align:left; }
+div.moduleHead div.right { text-align:right; }*/
+
+#actionToolbar {
+  box-shadow: 0px 0px 2px #222 inset;
+  border-radius:3px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  border-color: #222 #353535 #222 #353535;
+
+  float: right;
+  margin: 0 3px 0 0;
+  width: 185px;
+}
+
+#actionToolbar a.abtn {
+  color:#fff;
+  font-weight:bold;
+  font-size: 14px;
+  
+  padding: 4px 0px 6px 0px;
+
+  height:32px;
+  line-height:32px;
+  border-radius:3px;
+  
+  outline:1px solid transparent;
+  display:inline-block;
+  
+  float:left;
+  box-shadow: 1px 0px 0px #444, -1px 0px 0px #444;
+}
+
+#actionToolbar a.width25 { width:25.0%; }
+#actionToolbar a.width33 { width:33.3%; }
+#actionToolbar a.width50 { width:50.0%; }
+#actionToolbar a.width100 { width:50.0%; }
+
+#actionToolbar a.abtn:hover { background: #777; }
+#actionToolbar a.activeSlider { background: #247ec8; }
+
+a#back, a#submit {
+  color:#fff;
+  font-weight:bold;
+  font-size: 14px;
+  text-shadow: 0px -1px 0 #222;
+  
+  height:32px;
+  line-height:32px;
+
+  border-radius:3px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  border-color: #222 #353535 #353535 #353535;
+  
+  /*box-shadow: 0px 0px 2px #222 inset; */
+
+  display:inline-block;
+  padding:5px 0px;
+  overflow:hidden;
+}
+
+a#back {
+  min-width:60%;
+  background: -moz-linear-gradient(center bottom , #353535, #777) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#353535));
+}
+
+a#submit {
+  width:0;
+  max-width:99%;
+  float:left;
+  display:none;
+  background: -moz-linear-gradient(center bottom , #0E6C0E, #00A200) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00A200), to(#0E6C0E));
+}
+/* END MODULE HEADER */
+
+
+/* NOTIFICATION AND STATUS */
+div.notificationArea {
+  background:#FFFFF6;
+  background: -moz-linear-gradient(270deg, #FFFFF6, #FFFDE3) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFF6), to(#FFFDE3));
+  
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: #222 #ccc #eee #ccc;
+
+  color: #666;
+  font-size: 16px;
+  padding:12px 0px;
+}
+
+div.notificationArea img {
+  display:inline-block;
+  width:32px;
+  height:32px;
+  margin-right:5px;
+  vertical-align:bottom;
+}
+
+div.notificationArea span {
+  display:inline-block;
+  line-height:32px;
+  width:100%;
+  vertical-align:middle;
+  background:#fff;
+}
+
+div.notificationArea div.right {
+  width:185px;
+  padding: 0px 0px;
+  border:0px solid grey;
+  margin: 0 15px 0 0;
+}
+
+/* END NOTIFICATION AND STATUS*/
+
+/* MODULE BODY */
+
+div.moduleBody {
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: #ccc;
+  background:#fff;
+}
+
+#slides { margin: 0 auto; width:99%; min-height:420px; overflow:hidden; }
+#slides-container { height:420px; background:#fff; }
+#slides .slide {  width: 960px; min-height:420px; margin-left:0px; float:left; }
+
+/* END MODULE BODY */
+/* OTHERS MOVE TO ANOTHER LOCATION */
+
+div.left { text-align:left; }
+div.middle { text-align:center; }
+div.right { text-align:center; float:right; }
+
+
+div#waitAnimation {
+  background:#222;
+  color:#fff;
+  opacity: 0.80;
+  
+  position:absolute;
+  z-index:1000;
+  padding:20px 50px;
+  border-radius:5px;
+
+  top:110px;
+  left:33%;
+  right:33%
+  width:50%;
+  display:none;  
+  font-size: 30px;
+  font-weight:bold;
+  text-shadow: 0px -2px 0px #222;
+}
+
+div#waitAnimation img {
+  background:#fff;
+  border-radius:100%;
+  margin-right:10px; 
+  padding:5px;
+}
