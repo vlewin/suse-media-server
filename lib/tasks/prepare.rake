@@ -2,7 +2,7 @@ require 'fileutils'
 
 SBIN = "/usr/local/sbin/"
 SERVICES_SOURCE_DIR = File.join(RAILS_ROOT, '/package/SERVICES')
-SERVICES = ["augeasDLNAService.rb", "augeasSambaService.rb"]
+SERVICES = ["augeasDLNAService.rb", "augeasSambaService.rb", "augeasSMBService.rb"]
 
 README = File.join(RAILS_ROOT, 'README')
 
