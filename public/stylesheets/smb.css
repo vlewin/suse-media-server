@@ -1,0 +1,65 @@
+/* TRY TO COMBINE WITH ANOTHER STYLEHEETS*/
+
+#directoriesContainer div.line {
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-width: 0 0 1px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+  position: relative;
+}
+
+#directoriesContainer div.key { 
+  float:left;
+  width:60%
+}
+
+#directoriesContainer div.value { 
+  float:right;
+  width:40%
+}
+
+#directoriesContainer div.line a { color:#575757; }
+
+#directoriesContainer a.dirLink { }
+#directoriesContainer a.dirLink:before {
+  border-radius: 4px 4px 4px 4px;
+  content: url("../images/48/folder.png");
+  left: 0px; 
+  position: absolute;
+  top: 2px;
+}
+
+#directoriesContainer span.name {
+  display: inline-block;
+  padding-left:54px;
+}
+
+#directoriesContainer span.path {
+  color: #888888;
+  display: block;
+  font-size: 14px;
+  text-align:left;
+  padding-left:54px;
+}
+
+/*div.link:before {
+    border-radius: 4px 4px 4px 4px;
+    content: url("../images/48/folder.png");
+    left: 0;
+    position: absolute;
+    top: 2px;
+}
+
+div.mcontent div.link {
+    border-color: #CCCCCC;
+    border-style: solid;
+    border-width: 0 0 1px;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 5px 5px 5px 60px;
+    position: relative;
+}*/

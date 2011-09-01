@@ -1,0 +1,5 @@
+# DBus service activation config
+[D-BUS Service]
+Name=augeas.smb.Service
+Exec=/usr/local/sbin/augeasSMBService.rb
+User=root
