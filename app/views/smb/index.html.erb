@@ -27,8 +27,21 @@
 
 <div class="clear"></div>
 
-<div class="notificationArea container_12">
+
+<div id="moduleStatus" class="container_12">
   <div class="grid_3 left">
+    <span><img src="/images/samba.png" alt="Expanded" border="0" />{SAMBA}</span>
+  </div>
+  <div class="grid_6 middle">
+    <span>&nbsp;</span>
+  </div>
+  <div class="grid_3 right">
+    <span>{running/not used}</span>
+  </div>
+</div>
+
+<div id="notificationArea" class="container_12">
+<!--  <div class="grid_3 left">
     <span><img src="/images/samba.png" alt="Expanded" border="0" />{TEXT}</span>
   </div>
   <div class="grid_6 middle">
@@ -36,16 +49,16 @@
    </div>
   <div class="grid_3 right">
     <span>{CONFIRM}</span>
-   </div>
+  </div> -->
 </div>
 
 <div class="clear"></div>
 
 <div class="moduleBody container_12">
-  <div class=" grid_12">
+  <div>
     <div id="slides">
       <div id="slides-container">
-        <div id="first-slide" class="slide"><%= render :partial => "directories" %></div>
+        <div id="directoriesContainer" class="slide"><%= render :partial => "directories" %></div>
         <div class="slide">SECOND SLIDE</div>
         <div class="slide">THIRD SLIDE</div>
       </div>
@@ -56,32 +69,20 @@
 
 <script>
   
-  
+  // TODO: MOVE TO SEPARATE FILE
   function initSliders() {
-    console.info("init sliders")
     var $slides = $('#slides-container').find("div.slide");
-    
-    console.info($slides)
-
     var width = 960;
     var number = $slides.length;
-    
     var maxWidth = (width * number) + width;
-    $("#slides-container").css({ "width": maxWidth });
-    $("#slides-container").css("margin-left", "0");
+    $("#slides-container").css("margin-left", "0").css({ "width": maxWidth });
   }
 
   function slideTo(number){
-    console.log("Slide to " + number)
-    
     var $abtns = $('#actionToolbar').find('a.abtn');
-    
     var width = 960;
     var step = "-" + ((number * width)) + 'px';
-    $("#slides-container").stop().animate({ "margin-left": step }, 300, function() {
-      // add class active to current nav button
-    });
-    
+    $("#slides-container").stop().animate({ "margin-left": step }, 300);
     $abtns.removeClass('activeSlider');
     
     switch(number) {
@@ -95,7 +96,8 @@
         $('#settings').addClass("activeSlider");
         break;
       default:
-        //code to be executed if n is different from case 1 and 2
+        console.error("ERROR")
+        break;
     }
   }
   
@@ -103,4 +105,14 @@
     initSliders();
   });
 </script>
-
+<script>
+  function notify(className) {
+    $('#waitAnimation').fadeOut(1000);
+    setTimeout( function() {
+      $('#notificationArea').addClass(className).stop().slideDown(200);
+      setTimeout( function() {
+        $('#notificationArea').stop().slideUp(100);
+      }, 2000);
+    }, 500);
+  }
+</script>

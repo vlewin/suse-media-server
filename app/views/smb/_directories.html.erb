@@ -1,3 +1,48 @@
-<div>HELLO</div>
+<div class="grid_12"><h1>{HEADER}<h1></div>
 
-<%= @dirs.inspect %>
+<div class="grid_12">
+  <%= link_to_remote "CLICK TO TEST NOTIFICATION", 
+    :url => {:action => 'notify'}, 
+    :loading => "$('#waitAnimation').show();", 
+    :after => "notify('info');", 
+    :update => "notificationArea" 
+  %>
+</div>
+
+<div class="grid_2"><%= link_to_remote :PREV, 
+    :before => "$('#waitAnimation').show();", 
+    :loading => "$('#waitAnimation').fadeOut(500);", 
+    :update => "directoriesContainer",
+    :url => {:action => 'browse', :dir => @prev }
+  %></div>
+  
+<div class="grid_8"><h4 class="textCentered"><%= @prev %></h4></div>
+<div class="grid_2"><h4 class="textRight">NEXT</h4></div>
+<div class="grid_12">
+  
+  
+  
+  
+</div>
+
+<% @dirs.each do |n,h| %>
+  <% path = h["path"] %>
+  <div class="line grid_12">
+    <div class="key">
+    
+      <%= link_to_remote(
+        "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
+          :loading => "$('#waitAnimation').show();",
+          :after =>  "$('#waitAnimation').fadeOut(500);",
+          :html => {:class => "dirLink"},
+          :update => "directoriesContainer",
+          :url => {:action => 'browse', :dir => path })
+      %>
+    </div>
+    <div class="value textRight"><%= @shared.include?(path) %></div>
+  </div>
+<% end %>
+
+
+
+
