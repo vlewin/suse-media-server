@@ -1,0 +1,2 @@
+class Smb
+end

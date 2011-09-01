@@ -1,0 +1,106 @@
+<%= stylesheet_link_tag 'modules-new.css' %>
+<%= stylesheet_link_tag 'smb.css' %>
+
+<div id="waitAnimation"><label><img src="/images/ajax-loader.gif">please wait ...<label></div>
+
+<div class="moduleHead container_12">
+  <div class="grid_3 left">
+    <a id="back" href="/">BACK</a>
+  </div>
+
+  <div class="grid_6 middle">
+    <h2>Samba configuration</h2>
+    <h4>Access your files, videos, music and photo from any device in home network.</h4>
+  </div>
+
+  <div class="grid_3 right">
+    <div id="actionToolbar">
+      <span id="buttonCotainer">
+        <a id="browser" href="#"  onclick="slideTo(0)" class="abtn width33 activeSlider"><img src="/images/buttons/folder.png" /></a>
+        <a id="listview" href="#" onclick="slideTo(1)"  class="abtn width33"><img src="/images/buttons/list.png" /></a>
+        <a id="settings" href="#" onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>
+      </span>
+      <a id="submit" href="#">SAVE</a>
+    </div>
+  </div>
+</div> 
+
+<div class="clear"></div>
+
+<div class="notificationArea container_12">
+  <div class="grid_3 left">
+    <span><img src="/images/samba.png" alt="Expanded" border="0" />{TEXT}</span>
+  </div>
+  <div class="grid_6 middle">
+    <span>{MESSAGE}</span>
+   </div>
+  <div class="grid_3 right">
+    <span>{CONFIRM}</span>
+   </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="moduleBody container_12">
+  <div class=" grid_12">
+    <div id="slides">
+      <div id="slides-container">
+        <div id="first-slide" class="slide"><%= render :partial => "directories" %></div>
+        <div class="slide">SECOND SLIDE</div>
+        <div class="slide">THIRD SLIDE</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  
+  
+  function initSliders() {
+    console.info("init sliders")
+    var $slides = $('#slides-container').find("div.slide");
+    
+    console.info($slides)
+
+    var width = 960;
+    var number = $slides.length;
+    
+    var maxWidth = (width * number) + width;
+    $("#slides-container").css({ "width": maxWidth });
+    $("#slides-container").css("margin-left", "0");
+  }
+
+  function slideTo(number){
+    console.log("Slide to " + number)
+    
+    var $abtns = $('#actionToolbar').find('a.abtn');
+    
+    var width = 960;
+    var step = "-" + ((number * width)) + 'px';
+    $("#slides-container").stop().animate({ "margin-left": step }, 300, function() {
+      // add class active to current nav button
+    });
+    
+    $abtns.removeClass('activeSlider');
+    
+    switch(number) {
+      case 0:
+        $('#browser').addClass("activeSlider");
+        break;
+      case 1:
+        $('#listview').addClass("activeSlider");
+        break;
+      case 2:
+        $('#settings').addClass("activeSlider");
+        break;
+      default:
+        //code to be executed if n is different from case 1 and 2
+    }
+  }
+  
+  $(document).ready(function() {
+    initSliders();
+  });
+</script>
+
