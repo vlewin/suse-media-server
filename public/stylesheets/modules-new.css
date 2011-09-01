@@ -7,16 +7,16 @@ div.moduleHead {
   background: #666;
   background: -moz-linear-gradient(center top , #888, #454545) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#454545));
-  
+
   border-width: 1px;
   border-style: solid;
   border-color: #666;
-  
+
   border-radius: 3px 3px 0 0;
   padding:5px 0px;
   position:relative;
-  
-  text-shadow: 0px -1px 0 #000; 
+
+  text-shadow: 0px -1px 0 #000;
 }
 
 /*div.moduleHead h2, div.moduleHead h4 { vertical-align:middle;} */
@@ -41,16 +41,16 @@ div.moduleHead div.right { text-align:right; }*/
   color:#fff;
   font-weight:bold;
   font-size: 14px;
-  
+
   padding: 4px 0px 6px 0px;
 
   height:32px;
   line-height:32px;
   border-radius:3px;
-  
+
   outline:1px solid transparent;
   display:inline-block;
-  
+
   float:left;
   box-shadow: 1px 0px 0px #444, -1px 0px 0px #444;
 }
@@ -68,7 +68,7 @@ a#back, a#submit {
   font-weight:bold;
   font-size: 14px;
   text-shadow: 0px -1px 0 #222;
-  
+
   height:32px;
   line-height:32px;
 
@@ -76,7 +76,7 @@ a#back, a#submit {
   border-width: 1px 1px 1px 1px;
   border-style: solid;
   border-color: #222 #353535 #353535 #353535;
-  
+
   /*box-shadow: 0px 0px 2px #222 inset; */
 
   display:inline-block;
@@ -107,10 +107,15 @@ div#moduleStatus, div#notificationArea {
   border-style: solid;
   border-color: #222 #ccc #eee #ccc;
 
-  color: #666;
   font-size: 16px;
+  color: #666;
   padding:12px 0px;
   min-height: 32px;
+}
+
+div#moduleStatus p.moduleName, div#notificationArea p.moduleName  {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 div#moduleStatus img, div#notificationArea img {
@@ -118,7 +123,7 @@ div#moduleStatus img, div#notificationArea img {
   width:32px;
   height:32px;
   margin-right:5px;
-  vertical-align:bottom;
+  vertical-align:middle;
 }
 
 div#moduleStatus span, div#notificationArea span {
@@ -158,8 +163,18 @@ div.moduleBody {
   background:#fff;
 }
 
-div.moduleBody h1 { font-size:22px; margin:20px 0 0 0; padding:0; }
+div.moduleBody h2 {
+  font-size:22px; margin:20px 0 0 0; padding:0;
+  background: none repeat scroll 0 0 transparent;
+  border-bottom: 3px solid #A1B7A7;
+  color: #575757;
+  font-size: 22px;
+  margin-bottom: 10px;
+  padding: 12px 0;
+}
+
 div.moduleBody h4 { font-size:12px; color:#d5d5d5; }
+
 
 #slides { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }
 #slides-container { background:#fff; }
@@ -180,7 +195,7 @@ div#waitAnimation {
   background:#222;
   color:#fff;
   opacity: 0.80;
-  
+
   position:absolute;
   z-index:1000;
   padding:20px 50px;
@@ -190,7 +205,7 @@ div#waitAnimation {
   left:33%;
   right:33%
   width:50%;
-  display:none;  
+  display:none;
   font-size: 30px;
   font-weight:bold;
   text-shadow: 0px -2px 0px #222;
@@ -199,6 +214,7 @@ div#waitAnimation {
 div#waitAnimation img {
   background:#fff;
   border-radius:100%;
-  margin-right:10px; 
+  margin-right:10px;
   padding:5px;
 }
+
