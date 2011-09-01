@@ -11,23 +11,23 @@
   position: relative;
 }
 
-#directoriesContainer div.key { 
+#directoriesContainer div.key {
   float:left;
   width:60%
 }
 
-#directoriesContainer div.value { 
+#directoriesContainer div.value {
   float:right;
   width:40%
 }
 
-#directoriesContainer div.line a { color:#575757; }
+#directoriesContainer div.line a { color:#575757; text-align:left; display:inline-block; width:100%;}
 
 #directoriesContainer a.dirLink { }
 #directoriesContainer a.dirLink:before {
   border-radius: 4px 4px 4px 4px;
   content: url("../images/48/folder.png");
-  left: 0px; 
+  left: 0px;
   position: absolute;
   top: 2px;
 }
@@ -63,3 +63,4 @@ div.mcontent div.link {
     padding: 5px 5px 5px 60px;
     position: relative;
 }*/
+

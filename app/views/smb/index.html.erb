@@ -23,14 +23,14 @@
       <a id="submit" href="#">SAVE</a>
     </div>
   </div>
-</div> 
+</div>
 
 <div class="clear"></div>
 
 
 <div id="moduleStatus" class="container_12">
   <div class="grid_3 left">
-    <span><img src="/images/samba.png" alt="Expanded" border="0" />{SAMBA}</span>
+    <p class="moduleName"><img src="/images/samba.png" alt="Expanded" border="0" />SAMBA</p>
   </div>
   <div class="grid_6 middle">
     <span>&nbsp;</span>
@@ -68,7 +68,7 @@
 
 
 <script>
-  
+
   // TODO: MOVE TO SEPARATE FILE
   function initSliders() {
     var $slides = $('#slides-container').find("div.slide");
@@ -84,7 +84,7 @@
     var step = "-" + ((number * width)) + 'px';
     $("#slides-container").stop().animate({ "margin-left": step }, 300);
     $abtns.removeClass('activeSlider');
-    
+
     switch(number) {
       case 0:
         $('#browser').addClass("activeSlider");
@@ -100,7 +100,7 @@
         break;
     }
   }
-  
+
   $(document).ready(function() {
     initSliders();
   });
@@ -116,3 +116,4 @@
     }, 500);
   }
 </script>
+
