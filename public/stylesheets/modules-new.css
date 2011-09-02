@@ -173,7 +173,6 @@ div.moduleBody h2 {
   padding: 12px 0;
 }
 
-div.moduleBody h4 { font-size:12px; color:#d5d5d5; }
 
 
 #slides { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }
@@ -183,9 +182,8 @@ div.moduleBody h4 { font-size:12px; color:#d5d5d5; }
 /* END MODULE BODY */
 /* OTHERS MOVE TO ANOTHER LOCATION */
 
-div.left { float:left; }
-/*div.middle { text-align:center; }*/
-div.right { float:right; }
+.left { float:left; }
+.right { float:right; }
 
 .textLeft {text-align:left;}
 .textCentered {text-align:center;}
