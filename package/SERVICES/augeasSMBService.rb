@@ -43,19 +43,33 @@ class AugeasSMBService < DBus::Object
 
   dbus_interface "augeas.smb.Service.Interface" do
 
-    dbus_method :match, "in empty:s, out paths:as" do |path|
+    #dbus_method :match, "in empty:s, out paths:as" do |path|
+    #MATCH ALL SHARES
+    dbus_method :match, "in empty:s, out paths:a{ss}" do |path|
       paths = Array.new
+      shares = Array.new
+      hash = Hash.new
       aug = init()
 
       tmp = aug.match("#{AUG_PATH}*[label() != '#comment']")
-      tmp.each do |share|
-        target = share.to_s.split('/').last
-        paths.push(aug.get("#{share}/path")) unless target == "target[1]"
-      end
-     [paths]
+      
+      unless tmp.length < 2
+          tmp.each do |share|
+            target = share.to_s.split('/').last
+            paths.push(aug.get("#{share}/path")) unless target == "target[1]"
+            shares.push({ aug.get("#{share}/path") => target}) unless target == "target[1]"
+            hash[aug.get("#{share}/path")] = target unless target == "target[1]"
+          end
+       else 
+        hash[""] = ""
+       end
+      
+     puts hash.inspect
+     #[paths]
+     [hash] 
     end
 
-    #SET NODE
+    #SAVE SHARE
     dbus_method :set, "in share:a{ss}, out success:b" do |share|
       aug = init()
 
@@ -117,6 +131,20 @@ class AugeasSMBService < DBus::Object
        save = aug.save
        puts "\n\nINFO: SMS: SAVE OK? #{save}\n\n"
        save
+    end
+    
+    #DELETE SHARE
+    dbus_method :rm, "in shareID:s, out success:b" do |share|
+      puts "SMS: DESTROY share with ID #{share}"
+      puts "SMS: SHARE PATH #{AUG_PATH}#{share}"
+      
+      aug = init()
+      path = "#{AUG_PATH}#{share}"
+      aug.rm(path)
+      
+      saved = aug.save
+      puts "SMS: SAVE SUCCESSFUL? #{saved}"
+      saved
     end
 
 
