@@ -10,20 +10,24 @@ class SmbController < ApplicationController
       browser = Browser.new('/')
       Rails.logger.error "BROWSER NEW #{Time.now}"
 
-      @home = @current = detectHome
+      session["home"] = @current = detectHome
       Rails.logger.error "DETECT HOME #{Time.now}"
        
-      session["home"] = @home
-      @prev = @home
-      #session["home"] = @prev = @home
-      @dirs = browser.get_content(@home);
+      #session["home"] = @home
+      #@prev = @home
+      
+      @prev = session["home"]
+      
+      #@dirs = browser.get_content(@home);
+      @dirs = browser.get_content(session["home"]);
       endd = Time.now.to_f
       
       #Rails.logger.error "DIRS #{@dirs.inspect} \n"
       Rails.logger.error "GET CONTENT HOME #{Time.now}"
       
       Rails.logger.error "BEFORE RENDER #{endd - now}"
-      render :index, :locals => {:prev => @home }
+      render :index, :locals => {:prev => session["home"] }
+      
 
     rescue RuntimeError => e
       flash[:notice] = "<div id='flash'><div class='error'><b>ERROR:</b> #{e}</div></div>";
@@ -32,22 +36,41 @@ class SmbController < ApplicationController
   end
   
   def create
-    #Rails.logger.debug "CREATE NEW SHARE #{params[:share].inspect} check number #{cookies[:shares_number]}"
-    browser = Browser.new('/')
-    #@shares = Share.all
     @share = Smb.new(params[:share])
-    @dirs = browser.get_content(session["home"]);
-    @shared = Smb.all
     
     if @share.save
-      render :partial => 'directories', :locals => {:prev => session["home"] }
+      browser = Browser.new('/')
+      @path = params["dir"].nil? ? session["home"] : File.dirname(params["dir"])
+      @dirs = browser.get_content(@path);
+      @prev = File.dirname(@path) unless @path == session["home"]
+      @shared = Smb.all
+      render :partial => 'directories', :locals => { :prev => @prev }
     end
    
     Rails.logger.error "PARAMS #{params[:share].inspect}"
 
   end
   
-  
+  def destroy
+    @share = Smb.new(params["share"])
+
+    if @share.destroy
+      browser = Browser.new('/')
+      #TODO: BUG 
+      @path = params["dir"].nil? ? session["home"] : File.dirname(params["dir"])
+      @dirs = browser.get_content(@path);
+      @prev = File.dirname(@path) unless @path == session["home"]
+      @shared = Smb.all
+      
+      #notify("info", "message")
+      render :update do |page|
+        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+        page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "info", :message => "message" }
+      end
+      
+    end
+
+  end
 
   def browse
     browser = Browser.new('/')
@@ -77,10 +100,10 @@ class SmbController < ApplicationController
   end
 
 
-  def notify
+  def notify(type, message)
     @message = "JUST A MESSAGE"
     # use locals to define notification class, like "ERROR, INFO, CONFIRM ..."
-    render :partial => "notification", :with => { :message => @message }
+    render :partial => "notification", :locals => {:type => type, :message => message }
   end
 
 end

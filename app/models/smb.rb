@@ -40,6 +40,12 @@ class Smb
     ret = bus.set(self.to_hash)
     ret
   end
+  
+  def destroy
+    bus = Smb.initDBusObj
+#    bus.destroy("smb", self.to_hash) ? true : false
+    ret = bus.rm(self.id) ? true : false
+  end
 
 
 end

@@ -12,7 +12,7 @@
     </div>
     
     <div class="center navigation textCenter">
-      <p>HOME DIRECTORY "<%= @home %>"</p>
+      <p>HOME DIRECTORY "<%= session["home"] %>"</p>
     </div>
     
     <div class="right navigation">
@@ -22,12 +22,13 @@
         :loading => "$('#waitAnimation').fadeOut(500);",
         :update => "directoriesContainer",
         :html => {:class => "navLink textRight"},
-        :url => {:action => 'browse', :dir => @home})
+        :url => {:action=>'browse', :dir=>session["home"]})
       %> 
     </div>
     <div class="clear"></div>
   </div>
 </div>
+
 
 
 <% @dirs.each do |n,h| %>
@@ -40,37 +41,36 @@
         <span class='path'><%= h["path"] %></span>
       </a>
     <% else %>
-              <%= link_to_remote(
-          "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
-            :loading => "$('#waitAnimation').show();",
-            :after =>  "$('#waitAnimation').fadeOut(500);",
-            :update => "directoriesContainer",
-            :html => {:class => "dirLink"},
-            :url => {:action => 'browse', :dir => path })
+      <%= link_to_remote(
+        "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
+         :loading => "$('#waitAnimation').show();",
+         :after =>  "$('#waitAnimation').fadeOut(500);",
+         :update => "directoriesContainer",
+         :html => {:class => "dirLink"},
+         :url => {:action => 'browse', :dir => path })
         %>
     <% end %>
     
     </div>
     
-    <% unless @shared.include?(path) %>
+    <% unless @shared.include?(path)%>
       <div class="value textRight">
           <%= link_to_remote :SHARE,
-          :before => "$('#waitAnimation').show();",
-          :loading => "$('#waitAnimation').fadeOut(500);",
+          :loading => "$('#waitAnimation').show();",
+          :after => "notify()",
           :update => "directoriesContainer",
           :html => {:class => "shareDir greenBtn btn"},
-          :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path }
+          :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path, :dir=> path }
         %> 
       </div>
    
     <% else %>
       <div class="value textRight">
           <%= link_to_remote :UNSHARE,
-          :before => "$('#waitAnimation').show();",
-          :loading => "$('#waitAnimation').fadeOut(500);",
-          :update => "directoriesContainer",
+          :loading => "$('#waitAnimation').show();",
+          :after => "notify()",
           :html => {:class => "unshareDir blackBtn btn"},
-          :url => {:action => 'destroy', "share[name]"=> n.upcase, "share[path]" => path }
+          :url => {:action => 'destroy', "share[id]" => @shared[path], :dir=> path }
         %> 
       </div>    
     <% end %>
