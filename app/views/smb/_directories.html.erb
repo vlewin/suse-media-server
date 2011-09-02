@@ -1,45 +1,34 @@
 <div class="grid_12">
-  <h2 class="mheading green">
-    HOME Directories
-    <p style="color:#889; font-size:12px;">
-      Show all directories in users home
-
-    <span class="right"><%= link_to_remote "CLICK TO TEST NOTIFICATION",
-    :url => {:action => 'notify'},
-    :loading => "$('#waitAnimation').show();",
-    :after => "notify('info');",
-    :update => "notificationArea"
-  %></span>
-    </p>
-
-  </h2>
-</div>
-
-<div class="clear"></div>
-
-<div id="directoryNavigation">
-  <div class="grid_2 navigation">
-  <%= link_to_remote :PREV,
-    :before => "$('#waitAnimation').show();",
-    :loading => "$('#waitAnimation').fadeOut(500);",
-    :update => "directoriesContainer",
-    :html => {:class => "navLink textLeft"},
-    :url => {:action => 'browse', :dir => @prev }
-  %>
-  </div>
-  <div class="grid_8 navigation"><h4 class="textCentered"><%= @location.nil? ? @home : @location %></h4></div>
-  <div class="grid_2 navigation right">
-  <%= link_to_remote :HOME,
-    :before => "$('#waitAnimation').show();",
-    :loading => "$('#waitAnimation').fadeOut(500);",
-    :update => "directoriesContainer",
-    :html => {:class => "navLink textRight"},
-    :url => {:action => 'browse', :dir => @home }
-  %> 
+  <div class="navigationHeader" style="">
+    <div class="left navigation">
+    <%= link_to_remote( 
+       "<img src='/images/prev.png' class='small navImage' />PREV",
+      :before => "$('#waitAnimation').show();",
+      :loading => "$('#waitAnimation').fadeOut(500);",
+      :update => "directoriesContainer",
+      :html => {:class => "navLink left textLeft"},
+      :url => {:action => 'browse', :dir => @prev })
+    %>
+    </div>
+    
+    <div class="center navigation textCentered">
+      <p>HOME DIRECTORY "<%= @home %>"</p>
+    </div>
+    
+    <div class="right navigation">
+      <%= link_to_remote (
+        "<img src='/images/home.png' class='small navImage' />HOME",
+        :before => "$('#waitAnimation').show();",
+        :loading => "$('#waitAnimation').fadeOut(500);",
+        :update => "directoriesContainer",
+        :html => {:class => "navLink textRight"},
+        :url => {:action => 'browse', :dir => @home})
+      %> 
+    </div>
+    <div class="clear"></div>
   </div>
 </div>
 
-<div class="clear"></div>
 
 <% @dirs.each do |n,h| %>
   <% path = h["path"] %>
@@ -69,7 +58,7 @@
           :before => "$('#waitAnimation').show();",
           :loading => "$('#waitAnimation').fadeOut(500);",
           :update => "directoriesContainer",
-          :html => {:class => "shareDir"},
+          :html => {:class => "shareDir greenBtn btn"},
           :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path }
         %> 
       </div>
@@ -80,7 +69,7 @@
           :before => "$('#waitAnimation').show();",
           :loading => "$('#waitAnimation').fadeOut(500);",
           :update => "directoriesContainer",
-          :html => {:class => "unshareDir"},
+          :html => {:class => "unshareDir blackBtn btn"},
           :url => {:action => 'destroy', "share[name]"=> n.upcase, "share[path]" => path }
         %> 
       </div>    

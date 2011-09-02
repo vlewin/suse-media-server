@@ -43,7 +43,7 @@ class AugeasSMBService < DBus::Object
 
   dbus_interface "augeas.smb.Service.Interface" do
 
-    dbus_method :shared, "in empty:s, out paths:as" do |path|
+    dbus_method :match, "in empty:s, out paths:as" do |path|
       paths = Array.new
       aug = init()
 
@@ -55,7 +55,7 @@ class AugeasSMBService < DBus::Object
      [paths]
     end
 
-#SET NODE
+    #SET NODE
     dbus_method :set, "in share:a{ss}, out success:b" do |share|
       aug = init()
 
