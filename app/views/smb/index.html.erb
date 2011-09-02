@@ -36,21 +36,18 @@
     <span>&nbsp;</span>
   </div>
   <div class="grid_3 right">
-    <span>{running/not used}</span>
+    <span>
+      <%= link_to_remote "NOTIFY {TEST}",
+        :url => {:action => 'notify'},
+        :loading => "$('#waitAnimation').show();",
+        :after => "notify('info');",
+        :update => "notificationArea"
+      %>
+    </span>
   </div>
 </div>
 
-<div id="notificationArea" class="container_12">
-<!--  <div class="grid_3 left">
-    <span><img src="/images/samba.png" alt="Expanded" border="0" />{TEXT}</span>
-  </div>
-  <div class="grid_6 middle">
-    <span>{MESSAGE}</span>
-   </div>
-  <div class="grid_3 right">
-    <span>{CONFIRM}</span>
-  </div> -->
-</div>
+<div id="notificationArea" class="container_12"><!-- MESSAGE --></div>
 
 <div class="clear"></div>
 

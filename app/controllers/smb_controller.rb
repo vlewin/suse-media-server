@@ -1,20 +1,28 @@
 include ApplicationHelper
-
+      
 class SmbController < ApplicationController
   def index
     begin
-      @shared = Smb.getShared
-      Rails.logger.error("SHARED #{@shared.inspect}")
+      now = Time.now.to_f
+      @shared = Smb.all
+      Rails.logger.error "\nGET SHARES #{Time.now}"
 
       browser = Browser.new('/')
-      @home = @current = detectHome 
+      Rails.logger.error "BROWSER NEW #{Time.now}"
+
+      @home = @current = detectHome
+      Rails.logger.error "DETECT HOME #{Time.now}"
+       
       session["home"] = @home
       @prev = @home
-
       #session["home"] = @prev = @home
       @dirs = browser.get_content(@home);
-      #Rails.logger.error "DIRS #{@dirs.inspect} \n"
+      endd = Time.now.to_f
       
+      #Rails.logger.error "DIRS #{@dirs.inspect} \n"
+      Rails.logger.error "GET CONTENT HOME #{Time.now}"
+      
+      Rails.logger.error "BEFORE RENDER #{endd - now}"
       render :index, :locals => {:prev => @home }
 
     rescue RuntimeError => e
@@ -29,7 +37,7 @@ class SmbController < ApplicationController
     #@shares = Share.all
     @share = Smb.new(params[:share])
     @dirs = browser.get_content(session["home"]);
-    @shared = Smb.getShared
+    @shared = Smb.all
     
     if @share.save
       render :partial => 'directories', :locals => {:prev => session["home"] }
@@ -43,7 +51,7 @@ class SmbController < ApplicationController
 
   def browse
     browser = Browser.new('/')
-    @shared = Smb.getShared
+    @shared = Smb.all
 
     # Do not allow user to browse root directories
     #BUG: CHECK PARAMS AND HOME

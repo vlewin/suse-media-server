@@ -28,24 +28,17 @@ class Smb
     return obj
   end
 
-  def self.getShared
+  def self.all
     shared = Array.new
     bus = initDBusObj
-    shared = bus.shared("")[0]
-    Rails.logger.error "SHARES MAP #{shared.inspect}"
+    shared = bus.match("")[0]
     return shared
   end
   
    def save
     bus = Smb.initDBusObj
-    Rails.logger.error "#{self.inspect}"
-
-    if bus.set(self.to_hash)
-      return true
-    else
-      Rails.logger.error "ERROR: CAN NOT SAVE SHARE"
-      return false
-    end
+    ret = bus.set(self.to_hash)
+    ret
   end
 
 
