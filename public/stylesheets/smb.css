@@ -1,5 +1,9 @@
 /* TRY TO COMBINE WITH ANOTHER STYLEHEETS*/
 
+#directoriesContainer div.link:last-child {
+  border:none;
+}
+
 #directoriesContainer div.link {
   border-color: #CCCCCC;
   border-style: solid;
