@@ -2,49 +2,89 @@
   <h2 class="mheading green">
     HOME Directories
     <p style="color:#889; font-size:12px;">
-      {Info} Show all directories in users home
-    </p>
-  </h2>
-</div>
+      Show all directories in users home
 
-<div class="grid_12">
-  <%= link_to_remote "CLICK TO TEST NOTIFICATION",
+    <span class="right"><%= link_to_remote "CLICK TO TEST NOTIFICATION",
     :url => {:action => 'notify'},
     :loading => "$('#waitAnimation').show();",
     :after => "notify('info');",
     :update => "notificationArea"
-  %>
+  %></span>
+    </p>
+
+  </h2>
 </div>
 
-<div class="grid_2"><%= link_to_remote :PREV,
+<div class="clear"></div>
+
+<div id="directoryNavigation">
+  <div class="grid_2 navigation">
+  <%= link_to_remote :PREV,
     :before => "$('#waitAnimation').show();",
     :loading => "$('#waitAnimation').fadeOut(500);",
     :update => "directoriesContainer",
+    :html => {:class => "navLink textLeft"},
     :url => {:action => 'browse', :dir => @prev }
-  %></div>
-
-<div class="grid_8"><h4 class="textCentered"><%= @prev %></h4></div>
-<div class="grid_2"><h4 class="textRight">NEXT</h4></div>
-<div class="grid_12">
-
-
+  %>
+  </div>
+  <div class="grid_8 navigation"><h4 class="textCentered"><%= @location.nil? ? @home : @location %></h4></div>
+  <div class="grid_2 navigation right">
+  <%= link_to_remote :HOME,
+    :before => "$('#waitAnimation').show();",
+    :loading => "$('#waitAnimation').fadeOut(500);",
+    :update => "directoriesContainer",
+    :html => {:class => "navLink textRight"},
+    :url => {:action => 'browse', :dir => @home }
+  %> 
+  </div>
 </div>
+
+<div class="clear"></div>
 
 <% @dirs.each do |n,h| %>
   <% path = h["path"] %>
-  <div class="line grid_12">
+    <div class="link grid_12">
     <div class="key">
-
-      <%= link_to_remote(
-        "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
-          :loading => "$('#waitAnimation').show();",
-          :after =>  "$('#waitAnimation').fadeOut(500);",
-          :html => {:class => "dirLink"},
-          :update => "directoriesContainer",
-          :url => {:action => 'browse', :dir => path })
-      %>
+      <% unless h["children"] == "yes" %>
+        <a class="dirLine">
+        <span class='name'><%= n.upcase%></span>
+        <span class='path'><%= h["path"] %></span>
+      </a>
+    <% else %>
+              <%= link_to_remote(
+          "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
+            :loading => "$('#waitAnimation').show();",
+            :after =>  "$('#waitAnimation').fadeOut(500);",
+            :update => "directoriesContainer",
+            :html => {:class => "dirLink"},
+            :url => {:action => 'browse', :dir => path })
+        %>
+    <% end %>
+    
     </div>
-    <div class="value textRight"><%= @shared.include?(path) %></div>
+    
+    <% unless @shared.include?(path) %>
+      <div class="value textRight">
+          <%= link_to_remote :SHARE,
+          :before => "$('#waitAnimation').show();",
+          :loading => "$('#waitAnimation').fadeOut(500);",
+          :update => "directoriesContainer",
+          :html => {:class => "shareDir"},
+          :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path }
+        %> 
+      </div>
+   
+    <% else %>
+      <div class="value textRight">
+          <%= link_to_remote :UNSHARE,
+          :before => "$('#waitAnimation').show();",
+          :loading => "$('#waitAnimation').fadeOut(500);",
+          :update => "directoriesContainer",
+          :html => {:class => "unshareDir"},
+          :url => {:action => 'destroy', "share[name]"=> n.upcase, "share[path]" => path }
+        %> 
+      </div>    
+    <% end %>
   </div>
 <% end %>
 

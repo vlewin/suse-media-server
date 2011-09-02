@@ -42,6 +42,7 @@ class AugeasSMBService < DBus::Object
   end
 
   dbus_interface "augeas.smb.Service.Interface" do
+
     dbus_method :shared, "in empty:s, out paths:as" do |path|
       paths = Array.new
       aug = init()
@@ -53,6 +54,72 @@ class AugeasSMBService < DBus::Object
       end
      [paths]
     end
+
+#SET NODE
+    dbus_method :set, "in share:a{ss}, out success:b" do |share|
+      aug = init()
+
+      puts "INFO: INSECT SHARE BEFORE SET #{share.inspect}"      
+
+      #store ID and NAME BEFORE YOU DELETE THEM
+      id = share["id"]
+      name = share["name"]
+      
+      #delete ID and SHARE NAME from HASH
+      share.delete("id")
+      share.delete("name")
+      
+      targets = Array.new
+
+      #get nubmer of existing shares and set ID for new share
+      if id.nil? 
+        id = "target[#{aug.match("#{AUG_PATH}*[label() != '#comment']").length + 1}]"
+        puts "ID IS NOT DEF #{id}"
+      end
+      
+      unless aug.get("#{AUG_PATH}#{id}") == "global"
+	    nodes = aug.match("#{AUG_PATH}*[label() != '#comment']")
+    	nodes.each do | target |
+	      targets << aug.get(target)
+	   end
+	
+	#IF NAME IS NOT EXIST
+	unless targets.include?(name)   
+	  puts "INFO: CREATE NEW NODE <#{name}>"
+	  puts "DEBUG: AUG.SET: #{AUG_PATH}#{id} \tNAME  #{name}"
+	  aug.set("#{AUG_PATH}#{id}", name)
+	else
+	  puts "INFO: UPDATE EXISTING NODE <#{name}>"
+	end
+	
+	    #WRITE NOBODY DEFAULT SETTINGS
+        NOBODY_DEFAULTS.each do |key,value|
+     	  key = key.gsub(/_/, "\\ ")
+	      puts "*** SET NOBODY DEFAULT SETTINGS #{key} #{value}"
+ 	      aug.set("#{AUG_PATH}#{id}/#{key}", value)
+        end
+            
+      else
+        # WRITE GLOBAL DEFAULT SETTINGS
+	    GLOBAL_DEFAULTS.each do |key,value|
+    	  key = key.gsub(/_/, "\\ ")
+	      puts "*** SET GLOBAL DEFAULT SETTINGS #{key} #{value}"
+          aug.set("#{AUG_PATH}#{id}/#{key}", value)
+	    end
+      end
+       
+       # WRITE USER SETTINGS FOR GLOBAL AND SHARE
+       share.each do |key,value|
+         puts "*** SET USER SETTINGS #{AUG_PATH}#{id}/#{key} WITH VALUE #{value}"
+         aug.set("#{AUG_PATH}#{id}/#{key}", value)
+       end	  
+       
+       save = aug.save
+       puts "\n\nINFO: SMS: SAVE OK? #{save}\n\n"
+       save
+    end
+
+
 
   end
 end
