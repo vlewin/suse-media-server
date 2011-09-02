@@ -186,7 +186,7 @@ div.moduleBody h2 {
 .right { float:right; }
 
 .textLeft {text-align:left;}
-.textCentered {text-align:center;}
+.textCenter {text-align:center;}
 .textRight {text-align:right;}
 
 div#waitAnimation {

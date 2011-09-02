@@ -37,9 +37,10 @@
   </div>
   <div class="grid_3 right">
     <span>
-      <%= link_to_remote "NOTIFY {TEST}",
+      <%= link_to_remote "click",
         :url => {:action => 'notify'},
         :loading => "$('#waitAnimation').show();",
+        :html => { :class=> "right"},
         :after => "notify('info');",
         :update => "notificationArea"
       %>
