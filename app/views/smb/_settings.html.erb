@@ -1,0 +1,72 @@
+  <h2 class="mheading green">
+    Global settings
+    <p style="color:#889; font-size:10px;">
+      {Info} Warning
+    </p>
+  </h2>
+ 
+
+<div class="clear"></div>
+
+
+<div class="moduleForm">
+    <div class="line">
+      <div class="key">
+        Workgroup
+        <span class="description">Workgroup-Name or NT-Domain-Name</span>
+      </div>
+      <div class="value uppercase">
+        <%= text_field_tag("share[workgroup]", global.workgroup, :class=>"textField")  %>
+      </div>
+      <div class='action'>
+        <%= link_to_remote "submit", 
+          :url=> { :controller=> "smb", :action => "saveSettings" },
+          :html => {:class => "btn greenBtn textRight"},
+          :with=>"'share[id]=target[1]' + '&share[workgroup]='+$('#share_workgroup').val()" 
+        %>
+      </div>    
+    </div>
+    
+    <div class="line">
+      <div class="key">
+        Netbios name
+        <span class="description">is the computer name (usually same as your hostname)</span>
+      </div>
+      <div class="value uppercase">
+        <%= text_field_tag("share[netbios_name]", global.netbios_name)  %>
+      </div>
+      <div class='action'>
+        <%= link_to_remote "submit", 
+          :url=> { :controller=> "smb", :action => "saveSettings" },
+          :html => {:class => "btn greenBtn textRight"},
+          :with=>"'share[id]=#{global.id}' + '&share[netbios_name]='+$('#share_netbios_name').val()" 
+        %>
+      </div>
+    </div>  
+      
+    <div class="line">
+      <div class="key">
+        Security mode
+        <span class="description">defines in which mode Samba will operate</span>
+      </div>
+      <div class="value uppercase">
+        <%= global.security %>
+      </div>
+      <div class='action'>
+        <%= link_to_remote "submit", 
+          :url=> { :controller=> "smb", :action => "saveSettings" },
+          :html => {:class => "btn greenBtn textRight"},
+          :with=>"'share[id]=target[1]' + '&share[security]=share'" 
+        %>
+      </div>
+    </div>
+</div>
+
+<script>
+  function getValue() {
+    console.log($('#share_workgroup').val())
+    return "test"
+  }
+</script>
+
+

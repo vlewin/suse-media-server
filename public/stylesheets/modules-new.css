@@ -112,6 +112,8 @@ div#moduleStatus, div#notificationArea {
 div#moduleStatus p.moduleName, div#notificationArea p.moduleName  {
   font-size: 22px;
   font-weight: bold;
+  margin-top:2px;
+  vertical-align:middle;
   color: #666;
 }
 
@@ -124,7 +126,7 @@ div#moduleStatus img, div#notificationArea img {
   margin-top:-2px;
 }
 
-div#moduleStatus span, div#notificationArea span {
+div#moduleStatus span.message, div#notificationArea span.message {
   display:inline-block;
   line-height:32px;
   width:100%;
@@ -202,6 +204,49 @@ div.moduleBody h2 {
   /*padding: 12px 0;*/
 }
 
+
+/*div.moduleBody .moduleForm { border: 1px solid grey; }*/
+
+div.moduleBody .moduleForm div.line {
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-width: 0 0 1px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+  position: relative;
+}
+
+div.moduleBody .moduleForm div.key{ float:left; width:50%; color:#888; }
+div.moduleBody .moduleForm div.value { float:left; width:30%; }
+div.moduleBody .moduleForm div.action { float:right; width:20%; }
+
+div.moduleBody .moduleForm span.description {
+  color: #bababa;
+  display: block;
+  font-size: 12px;
+  text-align:left;
+}
+
+div.moduleBody .moduleForm input[type="text"]:hover {
+  border-left: 5px solid orange; 
+}
+
+div.moduleBody .moduleForm input[type="text"] {
+  /*border:0;
+  border-left:3px solid transparent;
+  border-top:1px dotted #bababa; 
+  border-bottom:1px dotted #bababa; */
+  border:1px dotted #ccc; 
+  border-left:5px solid #ccc;
+  
+  
+  padding:0px 5px;
+  font-weight:bold;
+  font-size: 20px;
+  color:#575757;
+}
 
 
 #slides { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }

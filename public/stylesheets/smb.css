@@ -18,7 +18,7 @@
 
 .navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
 .navigationHeader .center { float:left; display:inline-block; margin:0 auto; width:80%; position:relative;}
-#directoriesContainer div.key, #listview div.key { float:left; width:60% }
+#directoriesContainer div.key, #listview div.key { float:left; width:40% }
 #directoriesContainer div.value, #listview div.value { float:right; width:40% }
 
 #directoriesContainer a.dirLine:before { 
@@ -39,7 +39,7 @@
 
 #listview div.share:before { 
   border-radius: 4px 4px 4px 4px;
-  content: url("../images/48/samba.png");
+  content: url("../images/48/folder-shared.png");
   left: 0px;
   position: absolute;
   top: 4px;

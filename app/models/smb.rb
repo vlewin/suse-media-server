@@ -1,14 +1,32 @@
 require "dbus"
 
+module System
+  #attr_accessor :return
+  
+  #def initialize(status)
+  #  @status = status
+  #end
+  
+  def self.exec(cmd)
+    bus = Smb.initDBusObj
+    answer = bus.exec(cmd)[0]
+    answer
+  end
+end
+
+
 class Smb
+  include System
+  
   PROPERTIES = [:id, :name, :path]
-  GLOBAL = [:workgroup, :security]
+  GLOBAL = [:workgroup, :security, :netbios_name]
 
   attr_accessor *PROPERTIES
   attr_accessor *GLOBAL
 
   def initialize(args)
     if args.is_a? Hash
+      Rails.logger.error "INIT ARGS #{args.inspect}"
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
@@ -29,6 +47,7 @@ class Smb
   end
 
   def self.all
+    #TODO: Detect first start and save/destroy action, cache results
     shared = Array.new
     bus = initDBusObj
     shared = bus.match("")[0]
@@ -36,18 +55,61 @@ class Smb
     return shared
   end
   
+  def self.find(id)
+    bus = Smb.initDBusObj
+    hash = bus.get(id)[0]
+    args = Hash.new
+
+    
+    hash.each do | key, value |
+      args[key] = value
+    end
+
+    Rails.logger.error "#{args.inspect}"
+    share = Smb.new(args)
+    return share
+  end
+  
    def save
     bus = Smb.initDBusObj
+    Rails.logger.error "MODEL:: SAVE SHARE #{self.inspect}"
     ret = bus.set(self.to_hash)
+    #TODO: check exit value
+    status = Smb.restart
     ret
   end
   
   def destroy
     bus = Smb.initDBusObj
-#    bus.destroy("smb", self.to_hash) ? true : false
     ret = bus.rm(self.id) ? true : false
+    #TODO: check exit value
+    status = Smb.restart
+    ret
+   end
+  
+  def self.running?
+    status = System.exec("/etc/init.d/smb status")
+    Rails.logger.error "\n*** SMB.RUNNING returns #{status}"
+    status
   end
-
-
+  
+  def self.restart
+    status = System.exec("/etc/init.d/smb restart")
+    Rails.logger.error "\n*** SMB RESTART returns #{status}"
+    status
+  end
+  
+  def self.control
+    Rails.logger.error "\n*** CHECK SMB STATUS returns #{Smb.running?}"
+    if Smb.running?
+      status = System.exec("/etc/init.d/smb stop")
+    else 
+      status = System.exec("/etc/init.d/smb start")
+    end
+    
+    Rails.logger.error "\n*** returns #{status}"
+    status
+  end
+  
 end
 

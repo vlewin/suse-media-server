@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'modules-new.css' %>
 <%= stylesheet_link_tag 'smb.css' %>
+<%= stylesheet_link_tag 'toggle.css' %>
 
 <div id="waitAnimation"><label><img src="/images/ajax-loader.gif">please wait ...<label></div>
 
@@ -26,7 +27,15 @@
            :url => {:action => 'all'})
         %>
         
-        <a id="settings" href="#" onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>
+        <%= link_to_remote(
+          "<img src='/images/buttons/settings.png' />",
+           :before => "slideTo(2);",
+           :html => {:id=>"settings", :class => "abtn width33"},
+           :update => "globalSettings",
+           :url => {:action => 'getSettings'})
+        %>
+        
+        <!--<a id="settings" href="#" onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>-->
       </span>
       <a id="submit" href="#">SAVE</a>
     </div>
@@ -64,14 +73,20 @@
       <span>&nbsp;</span>
     </div>
     <div class="grid_3 right">
-      <span>STATUS</span>
+      <span>
+        <% form_remote_for "status", :url => {:controller => "smb", :action => 'action'},
+           :before => "$('#wait').show();", :html => {:id => 'actionForm'},
+           :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
+           <%= form.check_box("status", { :id=> 'action', :class => 'ftoggle smb', :checked  => Smb.running? }, "start", "stop") %>
+        <% end %>
+      </span>
     </div>
   </div>
   <div class="clear"></div>
 </div>
 <div class="clear"></div>
 
-<div id="notificationArea" class="container_12"><!-- MESSAGE --></div>
+<div id="notificationArea" class="container_12"></div>
 
 <div class="clear"></div>
 
@@ -91,7 +106,7 @@
         </div>
 
         <div class="slide">
-          <div class="grid_12">
+          <div id="globalSettings" class="grid_12">
             <h2>Global Settings
                 <p style="color:#889; font-size:10px;">{Info} COMING SOON ...</p>
             </h2>
@@ -105,6 +120,8 @@
 </div>
 
 
+
+<%= javascript_include_tag 'toggle-new' %>
 <script>
 
   // TODO: MOVE TO SEPARATE FILE
@@ -128,7 +145,7 @@
         $('#browser').addClass("activeSlider");
         break;
       case 1:
-        $('#listview').addClass("activeSlider");
+        $('#list').addClass("activeSlider");
         break;
       case 2:
         $('#settings').addClass("activeSlider");
@@ -140,6 +157,9 @@
   }
 
   $(document).ready(function() {
+    $('[type=checkbox].smb').toggle({on: "running", off: "unused", size: 180, id: "smb"});
+    $('#smb').live('click', function() { $('#actionForm').submit(); });
+    
     initSliders();
   });
 </script>
@@ -154,4 +174,6 @@
     }, 500);
   }
 </script>
+
+
 
