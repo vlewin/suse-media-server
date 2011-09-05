@@ -1,11 +1,11 @@
-<%= @type %>
-<%= @message %>
-<div class="info">
+<% Rails.logger.error "INSPECT #{type.inspect}" %>
+
+<div class="<%= type %>">
   <div class="grid_3 left">
-    <p class="moduleName"><img src="/images/samba.png" alt="Expanded" border="0" />SAMBA</p>
+    <p class="moduleName"><img src="/images/<%= type %>.png" alt="Expanded" border="0" />SAMBA</p>
   </div>
   <div class="grid_6 textCenter">
-    <span> MESSAGE </span>
+    <span> <%= message %> </span>
   </div>
   <div class="grid_3 right">
     <span>&nbsp;</span>

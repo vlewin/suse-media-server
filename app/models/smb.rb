@@ -32,6 +32,7 @@ class Smb
     shared = Array.new
     bus = initDBusObj
     shared = bus.match("")[0]
+    Rails.logger.error "SHARED FROM DBUS #{shared.inspect}"
     return shared
   end
   

@@ -1,0 +1,29 @@
+<div class="grid_12">
+  <h2 class="mheading green">
+    Shared folders list
+    <p style="color:#889; font-size:10px;">
+      {Info} Show all shares
+    </p>
+  </h2>
+  <% unless @shared.include?("nil") && @shared.has_value?("nil") %>
+    <% @shared.each do |path, id| %>
+      <div class="line share">
+        <div class="key">
+          <span class="name"><%= path.split('/').last() %></span>
+          <span class="path"><%= path %></span>
+        </div>
+        <div class="value textRight">
+            <%= link_to_remote :UNSHARE,
+            :loading => "$('#waitAnimation').show();",
+            :after => "notify();",
+            :html => {:class => "unshareDir blackBtn btn"},
+            :url => {:action => 'destroy', "share[id]" => id, :listview => true }
+          %> 
+        </div>
+     </div>
+    <% end %>
+  <% else %>
+    <h4>You haven't shared any directory yet, please switch back to directory browser</h4>
+  <% end %>
+</div>
+

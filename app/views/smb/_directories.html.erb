@@ -16,7 +16,7 @@
     </div>
     
     <div class="right navigation">
-      <%= link_to_remote (
+      <%= link_to_remote(
         "<img src='/images/home.png' class='small navImage' />HOME",
         :before => "$('#waitAnimation').show();",
         :loading => "$('#waitAnimation').fadeOut(500);",
@@ -58,7 +58,6 @@
           <%= link_to_remote :SHARE,
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
-          :update => "directoriesContainer",
           :html => {:class => "shareDir greenBtn btn"},
           :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path, :dir=> path }
         %> 
