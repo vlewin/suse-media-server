@@ -54,7 +54,7 @@ class Browser
     end
 
     #Rails.logger.error "CLASS #{@hash.class} HASH #{@hash.inspect}"
-    return @hash
+    return @hash.sort
   end
 
 

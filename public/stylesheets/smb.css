@@ -1,10 +1,10 @@
 /* TRY TO COMBINE WITH ANOTHER STYLEHEETS*/
 
-#directoriesContainer div.link:last-child {
+#directoriesContainer div.link:last-child, #listview div.line:last-child{
   border:none;
 }
 
-#directoriesContainer div.link {
+#directoriesContainer div.link, #listview div.line {
   border-color: #CCCCCC;
   border-style: solid;
   border-width: 0 0 1px;
@@ -13,12 +13,13 @@
   overflow: hidden;
   padding: 5px 0px 5px 0px;
   position: relative;
+  
 }
 
 .navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
 .navigationHeader .center { float:left; display:inline-block; margin:0 auto; width:80%; position:relative;}
-#directoriesContainer div.key { float:left; width:60% }
-#directoriesContainer div.value { float:right; width:40% }
+#directoriesContainer div.key, #listview div.key { float:left; width:60% }
+#directoriesContainer div.value, #listview div.value { float:right; width:40% }
 
 #directoriesContainer a.dirLine:before { 
   border-radius: 4px 4px 4px 4px;
@@ -27,6 +28,7 @@
   position: absolute;
   top: 2px;
 }
+
 #directoriesContainer a.dirLink:before {
   border-radius: 4px 4px 4px 4px;
   content: url("../images/48/folder-open.png");
@@ -35,16 +37,24 @@
   top: 2px;
 }
 
+#listview div.share:before { 
+  border-radius: 4px 4px 4px 4px;
+  content: url("../images/48/samba.png");
+  left: 0px;
+  position: absolute;
+  top: 4px;
+}
+
 #directoriesContainer a.dirLink {text-align:left; display:inline-block;}
 
-#directoriesContainer span.name {
+#directoriesContainer span.name, #listview span.name {
   display: inline-block;
   padding-left:54px;
   color:#575757;
   text-align:left; 
 }
 
-#directoriesContainer span.path {
+#directoriesContainer span.path, #listview span.path {
   color: #888888;
   display: block;
   font-size: 14px;
@@ -57,13 +67,6 @@ img.navImage { margin:-5px 5px 0px 0px; }
 .navigation p { font-size:22px; color:#bababa; font-weight:bold;  }
 .navigation a.navLink { display:inline-block; vertical-align:middle; font-weight:bold; font-size:22px; color:#bababa;}
 .navigation a.navLink:hover { color:orange; }
-
-/* #directoriesContainer a.shareDir { color:green; }
-#directoriesContainer a.unshareDir { color:#575757; } */
-
-
-
-
 
 
 /* MOVE TO BUTTONS.CSS*/

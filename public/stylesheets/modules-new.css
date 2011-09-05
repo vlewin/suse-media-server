@@ -106,16 +106,13 @@ div#moduleStatus, div#notificationArea {
   border-width: 0px 1px 1px 1px;
   border-style: solid;
   border-color: #222 #ccc #eee #ccc;
-
-  font-size: 16px;
-  color: #666;
-  padding:12px 0px;
   min-height: 32px;
 }
 
 div#moduleStatus p.moduleName, div#notificationArea p.moduleName  {
   font-size: 22px;
   font-weight: bold;
+  color: #666;
 }
 
 div#moduleStatus img, div#notificationArea img {
@@ -124,6 +121,7 @@ div#moduleStatus img, div#notificationArea img {
   height:32px;
   margin-right:5px;
   vertical-align:middle;
+  margin-top:-2px;
 }
 
 div#moduleStatus span, div#notificationArea span {
@@ -138,24 +136,49 @@ div#moduleStatus div.right, div#notificationArea div.right {
   margin: 0 15px 0 0;
 }
 
-div#moduleStatus {
-  background:blue;
+div#moduleStatus div.statusWrapper {
+  background: #FFFFF6;
   background: -moz-linear-gradient(270deg, #FFFFF6, #FFFDE3) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#FFFFF6), to(#FFFDE3));
+
+  font-weight:bold;
+  font-size:18px;
+ 
+  overflow:hidden;
+  padding:12px 0px;
+  vertical-align:middle;
 }
 
 div#notificationArea { display: none; position:absolute; top:61px; }
 
-div#notificationArea.info {
-  background-color: #E9F1F4;
+div#notificationArea div.info, div#notificationArea div.success, div#notificationArea div.error {
+ overflow:hidden;
+ padding:12px 0px; 
+ font-weight:bold;
+ font-size:18px;
+}
+
+div#notificationArea .info {
+  background: #E9F1F4;
   background: -moz-linear-gradient(270deg, #D8DEE2, #E9F1F4) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#D8DEE2), to(#E9F1F4));
 }
 
-div#notificationArea.success {
-  background-color: green;
+div#notificationArea .success {
+  background-color: #F1F7F1;
+  border-bottom: 1px solid #C5E7C5;
+  color: #4D7B0F;
   /*background: -moz-linear-gradient(270deg, #D8DEE2, #E9F1F4) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#D8DEE2), to(#E9F1F4));*/
+}
+
+div#notificationArea .error {
+  color: #bb593e;
+  background-color: #FFDBDB;
+  /*border-color: #B50000;*/
+  border-bottom: 1px solid #bb593e;
+/*  background-color: #F1F7F1;
+  border-bottom: 1px solid #bb593e;*/
 }
 
 /* END NOTIFICATION AND STATUS*/
@@ -176,7 +199,7 @@ div.moduleBody h2 {
   color: #575757;
   font-size: 22px;
   margin-bottom: 10px;
-  padding: 12px 0;
+  /*padding: 12px 0;*/
 }
 
 
