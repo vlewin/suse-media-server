@@ -43,7 +43,6 @@ class AugeasSMBService < DBus::Object
 
   dbus_interface "augeas.smb.Service.Interface" do
 
-    #dbus_method :match, "in empty:s, out paths:as" do |path|
     #MATCH ALL SHARES
     dbus_method :match, "in empty:s, out paths:a{ss}" do |path|
       paths = Array.new
@@ -61,12 +60,37 @@ class AugeasSMBService < DBus::Object
             hash[aug.get("#{share}/path")] = target unless target == "target[1]"
           end
        else 
-        hash[""] = ""
+        hash["nil"] = "nil"
        end
       
      puts hash.inspect
      #[paths]
      [hash] 
+    end
+    
+    
+    #GET NODE BY TARGET ID
+    dbus_method :get, "in target:s, out matched:a{ss}" do |target|
+      #children = Hash.new
+
+      aug = init()
+      keys = aug.match("#{AUG_PATH}#{target}/*")
+
+      hash = Hash.new
+      hash["id"] = target
+      
+      keys.each do | key |
+        #augeas crashed if attribute has whitespace
+
+        name = key.split('/').last.match(/\s/)? key.split('/').last.gsub(/\s/, "_") : key.split('/').last        
+        key = key.match(/\s/)? key.gsub(/\s/, "\\ ") : key
+
+        if GLOBAL.include?(name)
+          hash[name] = aug.get(key)
+        end
+      end
+
+      return [hash]
     end
 
     #SAVE SHARE
@@ -148,6 +172,33 @@ class AugeasSMBService < DBus::Object
     end
 
 
+    dbus_method :exec, "in command:s, out status:b" do |cmd|
+      status = `#{cmd}`
+      status_string = status.split('..').last
+
+      #TODO: return result instead of boolean and handle it in smb modell ???
+      #return result      
+      
+      if cmd == '/etc/init.d/smb status'
+        if status_string.match("running")
+          puts "\n\INFO: SAMBA is running #{status_string}"
+          return true
+        else 
+          puts "\n\INFO: SAMBA is unused #{status_string}"
+          return false
+        end
+      else
+        check = `/etc/init.d/smb status`
+        if check.match("done")
+          puts "\n\INFO: CHECK SMB status after #{cmd} and RETURN #{status_string}"
+          return true
+        else 
+          puts "\n\INFO: CHECK SMB status after #{cmd} and RETURN #{status_string}"
+          return false
+        end
+
+      end
+    end
 
   end
 end
