@@ -8,23 +8,49 @@ bus = DBus::system_bus
 service = bus.request_service("augeas.smb.Service")
 
 class AugeasSMBService < DBus::Object
+#   DEFAULTS
+
+#   workgroup = WORKGROUP
+#   security = share
+#   restrict anonymous = no
+#   guest account = nobody
+#   map to guest = Bad User
+
+#   netbios name = Linux
+#   usershare allow guests = Yes
+
+#   NOT USED
+#   "unix_extensions" => "yes" 
   GLOBAL_DEFAULTS = {
+    "security" => "share",
     "restrict_anonymous" => "no", 
     "guest_account" => "nobody", 
-    "security" => "share",
-    "unix_extensions" => "yes" 
+    "map_to_guest" => "Bad User",
+    "usershare_allow_guests" => "Yes"
   }
 
+#   WORKING DEFAULTS
+
+#   read only = no
+#   available = yes
+#   guest ok = yes
+#   force group = users
+#   inherit acls = yes
+#   writeable = yes
+#   browseable = yes
+#   guest only = yes
+#   path = /home/mrstealth/SAMBA/Musik
+
+  #BUG: WRITE ACCESS
+  #ONLY WITH CHMOD 775
   NOBODY_DEFAULTS = {
+    "read_only" => "no",
+    "available" => "yes",
     "guest_ok" => "yes",
     "inherit_acls" => "yes",
-    "read_only" => "no",
-    "guest_only" => "yes",
-    "browseable" => "yes",
     "writeable" => "yes",
-    "available" => "yes",
-    "create_mask" => "0660",
-    "directory_mask" => "0770",
+    "browseable" => "yes",
+    "guest_only" => "yes",
     "force_group" => "users"
   }
 

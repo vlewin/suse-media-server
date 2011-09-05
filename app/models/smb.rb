@@ -2,11 +2,11 @@ require "dbus"
 
 module System
   #attr_accessor :return
-  
+
   #def initialize(status)
   #  @status = status
   #end
-  
+
   def self.exec(cmd)
     bus = Smb.initDBusObj
     answer = bus.exec(cmd)[0]
@@ -17,7 +17,7 @@ end
 
 class Smb
   include System
-  
+
   PROPERTIES = [:id, :name, :path]
   GLOBAL = [:workgroup, :security, :netbios_name]
 
@@ -54,13 +54,13 @@ class Smb
     Rails.logger.error "SHARED FROM DBUS #{shared.inspect}"
     return shared
   end
-  
+
   def self.find(id)
     bus = Smb.initDBusObj
     hash = bus.get(id)[0]
     args = Hash.new
 
-    
+
     hash.each do | key, value |
       args[key] = value
     end
@@ -69,7 +69,7 @@ class Smb
     share = Smb.new(args)
     return share
   end
-  
+
    def save
     bus = Smb.initDBusObj
     Rails.logger.error "MODEL:: SAVE SHARE #{self.inspect}"
@@ -78,7 +78,7 @@ class Smb
     status = Smb.restart
     ret
   end
-  
+
   def destroy
     bus = Smb.initDBusObj
     ret = bus.rm(self.id) ? true : false
@@ -86,30 +86,29 @@ class Smb
     status = Smb.restart
     ret
    end
-  
+
   def self.running?
     status = System.exec("/etc/init.d/smb status")
     Rails.logger.error "\n*** SMB.RUNNING returns #{status}"
     status
   end
-  
+
   def self.restart
-    status = System.exec("/etc/init.d/smb restart")
-    Rails.logger.error "\n*** SMB RESTART returns #{status}"
-    status
+    smbd = System.exec("/etc/init.d/smb restart")
+    nmbd = System.exec("/etc/init.d/nmb restart")
+    smbd && nmbd ? true : false
   end
-  
+
   def self.control
-    Rails.logger.error "\n*** CHECK SMB STATUS returns #{Smb.running?}"
     if Smb.running?
-      status = System.exec("/etc/init.d/smb stop")
-    else 
-      status = System.exec("/etc/init.d/smb start")
+      smbd = System.exec("/etc/init.d/smb stop")
+      nmbd = System.exec("/etc/init.d/nmb stop")
+    else
+      smbd = System.exec("/etc/init.d/smb start")
+      nmbd = System.exec("/etc/init.d/nmb start")
     end
-    
-    Rails.logger.error "\n*** returns #{status}"
-    status
+
+    smbd && nmbd ? true : false
   end
-  
 end
 
