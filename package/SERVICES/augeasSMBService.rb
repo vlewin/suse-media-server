@@ -121,14 +121,14 @@ class AugeasSMBService < DBus::Object
 	      targets << aug.get(target)
 	   end
 	
-	#IF NAME IS NOT EXIST
-	unless targets.include?(name)   
-	  puts "INFO: CREATE NEW NODE <#{name}>"
-	  puts "DEBUG: AUG.SET: #{AUG_PATH}#{id} \tNAME  #{name}"
-	  aug.set("#{AUG_PATH}#{id}", name)
-	else
-	  puts "INFO: UPDATE EXISTING NODE <#{name}>"
-	end
+	    #IF NAME IS NOT EXIST
+	    unless targets.include?(name)   
+	      puts "INFO: CREATE NEW NODE <#{name}>"
+	      puts "DEBUG: AUG.SET: #{AUG_PATH}#{id} \tNAME  #{name}"
+	      aug.set("#{AUG_PATH}#{id}", name)
+	    else
+	      puts "INFO: UPDATE EXISTING NODE <#{name}>"
+	    end
 	
 	    #WRITE NOBODY DEFAULT SETTINGS
         NOBODY_DEFAULTS.each do |key,value|
@@ -148,6 +148,7 @@ class AugeasSMBService < DBus::Object
        
        # WRITE USER SETTINGS FOR GLOBAL AND SHARE
        share.each do |key,value|
+         key = key.gsub(/_/, "\\ ")
          puts "*** SET USER SETTINGS #{AUG_PATH}#{id}/#{key} WITH VALUE #{value}"
          aug.set("#{AUG_PATH}#{id}/#{key}", value)
        end	  
