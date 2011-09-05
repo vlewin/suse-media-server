@@ -1,7 +1,6 @@
 a { text-decoration:none; text-align:center; }
 
 /* MODULE HEADER */
-
 div.moduleHead {
   color:#fff;
   background: #666;
@@ -19,7 +18,7 @@ div.moduleHead {
   text-shadow: 0px -1px 0 #000;
 }
 
-div.moduleHead h2 { text-align:center;} 
+div.moduleHead h2 { text-align:center;}
 div.moduleHead h4 { font-size:12px; color:#eee; }
 
 /*div.moduleHead div.left { text-align:left; }
@@ -145,7 +144,7 @@ div#moduleStatus div.statusWrapper {
 
   font-weight:bold;
   font-size:18px;
- 
+
   overflow:hidden;
   padding:12px 0px;
   vertical-align:middle;
@@ -155,7 +154,7 @@ div#notificationArea { display: none; position:absolute; top:61px; }
 
 div#notificationArea div.info, div#notificationArea div.success, div#notificationArea div.error {
  overflow:hidden;
- padding:12px 0px; 
+ padding:12px 0px;
  font-weight:bold;
  font-size:18px;
 }
@@ -168,6 +167,7 @@ div#notificationArea .info {
 
 div#notificationArea .success {
   background-color: #F1F7F1;
+  background-color: #d7f5d7;
   border-bottom: 1px solid #C5E7C5;
   color: #4D7B0F;
   /*background: -moz-linear-gradient(270deg, #D8DEE2, #E9F1F4) repeat scroll 0 0 transparent;
@@ -230,18 +230,18 @@ div.moduleBody .moduleForm span.description {
 }
 
 div.moduleBody .moduleForm input[type="text"]:hover {
-  border-left: 5px solid orange; 
+  border-left: 5px solid orange;
 }
 
 div.moduleBody .moduleForm input[type="text"] {
   /*border:0;
   border-left:3px solid transparent;
-  border-top:1px dotted #bababa; 
+  border-top:1px dotted #bababa;
   border-bottom:1px dotted #bababa; */
-  border:1px dotted #ccc; 
+  border:1px dotted #ccc;
   border-left:5px solid #ccc;
-  
-  
+
+
   padding:0px 5px;
   font-weight:bold;
   font-size: 20px;

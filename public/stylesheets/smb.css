@@ -13,15 +13,15 @@
   overflow: hidden;
   padding: 5px 0px 5px 0px;
   position: relative;
-  
+
 }
 
 .navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
 .navigationHeader .center { float:left; display:inline-block; margin:0 auto; width:80%; position:relative;}
-#directoriesContainer div.key, #listview div.key { float:left; width:40% }
-#directoriesContainer div.value, #listview div.value { float:right; width:40% }
+#directoriesContainer div.key, #listview div.key { float:left; width:70% }
+#directoriesContainer div.value, #listview div.value { float:right; width:30% }
 
-#directoriesContainer a.dirLine:before { 
+#directoriesContainer a.dirLine:before {
   border-radius: 4px 4px 4px 4px;
   content: url("../images/48/folder.png");
   left: 0px;
@@ -37,7 +37,7 @@
   top: 2px;
 }
 
-#listview div.share:before { 
+#listview div.share:before {
   border-radius: 4px 4px 4px 4px;
   content: url("../images/48/folder-shared.png");
   left: 0px;
@@ -51,7 +51,7 @@
   display: inline-block;
   padding-left:54px;
   color:#575757;
-  text-align:left; 
+  text-align:left;
 }
 
 #directoriesContainer span.path, #listview span.path {
@@ -92,7 +92,7 @@ a.greenBtn {
     background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
     background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
   }
-  
+
 a.blueBtn {
     color:#fff!important;
     background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
