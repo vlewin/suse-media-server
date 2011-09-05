@@ -1,19 +1,19 @@
-<h1>SUSE Media Server is a web front end for SAMBA (file sharing) and DLNA (streaming) configuration</h1>
+SUSE Media Server is a web front end for SAMBA (file sharing) and DLNA (streaming) configuration
 
 TODO LIST 
 ---------------------------------------------------------------------
 [WIP]:
-- dynamic flash[:notice] for messages
-- fix: automatically detect user name and pass as param to smb.conf (permissions)
-- fix: automatically detect "home" directory
+- expand notification functionality (confirm dialog) **
+- add validation for global settings **
+- DLNA module ***
 
 [NEXT]:
-- systen monitoring (CPU, RAM, HDD)*
 - provide system action for REBOOT and SHUTDOWN **
-- provide mobile view for mobile devices (JQuery Mobile/Sencha touch)*
+- systen monitoring (CPU, RAM, HDD)*
+- provide mobile view for mobile devices (JQuery Mobile/Sencha touch ???)*
 
 [NEXT NEXT]:
-- Login screen ***
+- Login screen **
 - FTP server configuration*
 - File browser (FTP)*
 - Jquery AjaxTerminal*
@@ -21,12 +21,13 @@ TODO LIST
 [NEXT NEXT NEXT]
 - Debian support
 
---------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 
 INFO: 
   Kill running D-BUS service: "pkill -f augeasSambaService.rb"
-  Log out from running D-BUS service to "/var/log/messages" with: Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info "YOUR MESSAGE" }
----------------------------------------------------------------------------------------------------------------------------------------------------
+  Log out from running D-BUS service to "/var/log/messages"
+  Syslog.open($0, Syslog::LOG_PID | Syslog::LOG_CONS) { |s| s.info "YOUR MESSAGE" }
+-----------------------------------------------------------------------------------
 
 PRIORITY:
   Minor  *
