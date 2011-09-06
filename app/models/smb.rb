@@ -26,7 +26,6 @@ class Smb
 
   def initialize(args)
     if args.is_a? Hash
-      Rails.logger.error "INIT ARGS #{args.inspect}"
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
@@ -51,7 +50,6 @@ class Smb
     shared = Array.new
     bus = initDBusObj
     shared = bus.match("")[0]
-    Rails.logger.error "SHARED FROM DBUS #{shared.inspect}"
     return shared
   end
 
@@ -60,20 +58,18 @@ class Smb
     hash = bus.get(id)[0]
     args = Hash.new
 
-
     hash.each do | key, value |
       args[key] = value
     end
 
-    Rails.logger.error "#{args.inspect}"
     share = Smb.new(args)
     return share
   end
 
    def save
     bus = Smb.initDBusObj
-    Rails.logger.error "MODEL:: SAVE SHARE #{self.inspect}"
     ret = bus.set(self.to_hash)
+
     #TODO: check exit value
     status = Smb.restart
     ret
@@ -82,6 +78,7 @@ class Smb
   def destroy
     bus = Smb.initDBusObj
     ret = bus.rm(self.id) ? true : false
+
     #TODO: check exit value
     status = Smb.restart
     ret
@@ -89,7 +86,6 @@ class Smb
 
   def self.running?
     status = System.exec("/etc/init.d/smb status")
-    Rails.logger.error "\n*** SMB.RUNNING returns #{status}"
     status
   end
 
