@@ -71,8 +71,8 @@ class AugeasSMBService < DBus::Object
 
     #MATCH ALL SHARES
     dbus_method :match, "in empty:s, out paths:a{ss}" do |path|
-      paths = Array.new
-      shares = Array.new
+#      paths = Array.new
+#      shares = Array.new
       hash = Hash.new
       aug = init()
 
@@ -81,8 +81,8 @@ class AugeasSMBService < DBus::Object
       unless tmp.length < 2
           tmp.each do |share|
             target = share.to_s.split('/').last
-            paths.push(aug.get("#{share}/path")) unless target == "target[1]"
-            shares.push({ aug.get("#{share}/path") => target}) unless target == "target[1]"
+ #           paths.push(aug.get("#{share}/path")) unless target == "target[1]"
+            #shares.push({ aug.get("#{share}/path") => target}) unless target == "target[1]"
             hash[aug.get("#{share}/path")] = target unless target == "target[1]"
           end
        else 

@@ -1,12 +1,6 @@
 require "dbus"
 
 module System
-  #attr_accessor :return
-
-  #def initialize(status)
-  #  @status = status
-  #end
-
   def self.exec(cmd)
     bus = Smb.initDBusObj
     answer = bus.exec(cmd)[0]

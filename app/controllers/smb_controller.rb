@@ -96,12 +96,14 @@ class SmbController < ApplicationController
     end
   end
   
-  def browse
+  def navigate
     browser = Browser.new('/')
     @shared = Smb.all
-    @home = session["home"]
-    @location = params["dir"]
+    #@home = session["home"]
+
+    #@location = params["dir"]
     # Do not allow user to browse root directories
+    
     params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
     @dirs = browser.get_content(params["dir"]);
 

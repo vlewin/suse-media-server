@@ -12,9 +12,6 @@ class AugeasDlnaService < DBus::Object
 
   PROPERTIES = ["media_dir", "inotify", "friendly_name", "serial", "model_number"]
 
-# PROPERTIES.each { |p| attr_reader p }
-
-
   def init
     augeas = Augeas::open("/", "/usr/share/libaugeas0/augeas/lenses/dist", Augeas::NO_MODL_AUTOLOAD)
     augeas.transform(:lens => "Minidlna.lns", :incl => "/etc/minidlna.conf")
@@ -23,36 +20,42 @@ class AugeasDlnaService < DBus::Object
   end
 
   dbus_interface "augeas.dlna.Service.Interface" do
-
-    dbus_method :match, "in tmp:s, out matched:a{ss}" do |path|
-      config = Hash.new
-      aug = init()
-
-      parents = aug.match("#{AUG_PATH }*[label() != '#comment']")
-
-      puts parents
-      puts "\n"
-
-
-      parents.each do | p |
-        value = aug.get(p)
-        key = p.split('/').last
-
-        
-        if key.match("media_dir")
-          puts key.sub('[', '').chomp(']')
-          key = key.sub('[', '').chomp(']')
-          #key.sub('[', '_').sub(']', '')
-          config[key] = value.sub('[', '_')
-        else
-          if PROPERTIES.include?(key)
-            config[key] = value
-          end
+  
+    #TODO: Find a better solution for media types (A,V,P) handling
+    #a{sa{ss}} for {"a"=>{"type"=>"s", "path"=>"s"}}
+    dbus_method :match, "in empty:s, out directories:a{sa{ss}}" do |path|
+      augeas = init()
+      
+      nodes = augeas.match("#{AUG_PATH }*[label() != '#comment']")
+      dirs = Hash.new
+      
+      nodes.each do | node |
+        if node.match("media_dir")
+          id = node.split('/').last
+          media = augeas.get("#{AUG_PATH}#{id}")
+          dirs[media.split(',').last] = {"id" => id, "type" => media.split(',').first}
         end
       end
-
-      [config]
+      
+     [dirs]
     end
+
+    dbus_method :set, "in media:a{ss}, out status:b" do |media|
+      augeas = init()
+      
+      #puts "MEDIA DIR #{media.inspect} ***"
+      #puts "GET NODES"
+      
+      count = augeas.match("#{AUG_PATH}media_dir").length
+      puts media["path"]
+      
+      
+      
+      id = count + 1
+      augeas.set("#{AUG_PATH}media_dir[#{id}]",media["path"])
+      augeas.save
+    end
+
 
     dbus_method :get, "in target:s, out matched:a{ss}" do |target|
       children = Hash.new
