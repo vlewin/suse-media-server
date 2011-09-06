@@ -16,10 +16,12 @@ module Minidlna =
  *************************************************************************)
 
 let eol        = Util.eol
-let indent     = del /[ \t]*(\n[ \t]+)?/ " "
+(* let indent     = del /[ \t]*(\n[ \t]+)?/ " " *)
+let indent  = Util.indent
 let comment    = Util.comment
 let empty      = Util.empty
-let eq         = del /[ \t]*=/ "="
+(* let eq         = del /[ \t]*=/ " =" *)
+let eq      = Util.del_str "="
 let word       = /[A-Za-z0-9_.-]+/
 
 (* The value of a parameter, after the '=' sign. Postfix allows that
