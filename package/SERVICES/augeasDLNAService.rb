@@ -21,7 +21,7 @@ class AugeasDlnaService < DBus::Object
 
   dbus_interface "augeas.dlna.Service.Interface" do
   
-    #TODO: Find a better solution for media types (A,V,P) handling
+    #TODO: Find a solution for media types (A,V,P) handling
     #a{sa{ss}} for {"a"=>{"type"=>"s", "path"=>"s"}}
     dbus_method :match, "in empty:s, out directories:a{sa{ss}}" do |path|
       augeas = init()
@@ -33,7 +33,9 @@ class AugeasDlnaService < DBus::Object
         if node.match("media_dir")
           id = node.split('/').last
           media = augeas.get("#{AUG_PATH}#{id}")
-          dirs[media.split(',').last] = {"id" => id, "type" => media.split(',').first}
+          media.split(',').length>1? type= media.split(',').first : type=""
+
+          dirs[media.split(',').last] = {"id" => id, "type" => type}
         end
       end
       
@@ -42,47 +44,21 @@ class AugeasDlnaService < DBus::Object
 
     dbus_method :set, "in media:a{ss}, out status:b" do |media|
       augeas = init()
-      
-      #puts "MEDIA DIR #{media.inspect} ***"
-      #puts "GET NODES"
-      
-      count = augeas.match("#{AUG_PATH}media_dir").length
-      puts media["path"]
-      
-      
-      
-      id = count + 1
+
+      id = augeas.match("#{AUG_PATH}media_dir").length + 1
       augeas.set("#{AUG_PATH}media_dir[#{id}]",media["path"])
       augeas.save
     end
+    
+    dbus_method :rm, "in id:s, out status:b" do |id|
+      augeas = init()
 
-
-    dbus_method :get, "in target:s, out matched:a{ss}" do |target|
-      children = Hash.new
-
-      aug = init()
-      array = aug.match("#{AUG_PATH}#{target}/*")
-
-      children["id"] = target
-      children["name"] = aug.get("#{AUG_PATH}#{target}")
-
-      array.each do | a |
-        child = a.split('/').last
-
-        #augeas crashed if child node has a white space in his name
-        if PROPERTIES.include?(child)
-          if child.match(/\s/)
-            child = child.gsub(/\s/, "\\ ")
-            children[a.split('/').last] = aug.get("#{AUG_PATH}#{target}/#{child}")
-          else
-            children[a.split('/').last] = aug.get(a) unless aug.get(a).empty?
-          end
-        end
-     end
-
-      puts "FOUND #{children.inspect}"
-      return [children]
+      puts "ID #{id}"
+      augeas.rm("#{AUG_PATH}#{id}")
+      augeas.save
+      true
     end
+
 
   end
 end
