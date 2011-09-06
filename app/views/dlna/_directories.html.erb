@@ -50,8 +50,9 @@
     <% end %>
     
     </div>
-    <% unless @media.has_key?(path)%>
+    <% unless @media_dirs.has_key?(path)%>
       <div class="value textRight">
+        <span>A &nbsp; P &nbsp; V &nbsp;</span>
         <%= link_to_remote "STREAM",
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
@@ -63,11 +64,12 @@
     <% else %>
       <%=  %>
       <div class="value textRight">
+        <span>A &nbsp; P &nbsp; V &nbsp; <%= @media_dirs[path]["type"] %></span>
           <%= link_to_remote :STOP,
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "unshareDir blackBtn btn"},
-          :url => {:action => 'destroy', "media[id]" => @media[path]["id"], :dir=> path }
+          :url => {:action => 'destroy', "media[id]" => @media_dirs[path]["id"], :dir=> path }
         %> 
       </div>    
     <% end %>
