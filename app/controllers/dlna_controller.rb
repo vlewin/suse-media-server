@@ -2,47 +2,65 @@ include ApplicationHelper
 
 class DlnaController < ApplicationController
   def index
-    @media = DLNA.all
-    
-    browser = Browser.new('/')
-    session["home"] = @current = detectHome
-
+    @media_dirs = DLNA.all
+    session["home"] = detectHome
     @prev = session["home"]
-    @dirs = browser.get_content(session["home"]);
+    @dirs = list(session["home"])
+
+    Rails.logger.error "MEDIA DIRS #{@media_dirs.inspect}"
     render :index, :locals => {:prev => session["home"] }
   end
   
   def create
     @media = DLNA.new(params[:media])
-    Rails.logger.error "MEDIA #{params[:media].inspect}"
     
     if @media.save
-    #  browser = Browser.new('/')
-    #  @path = params["dir"].nil? ? session["home"] : File.dirname(params["dir"])
-    #  @dirs = browser.get_content(@path);
-    #  @prev = File.dirname(@path) unless @path == session["home"]
-    #  @shared = Smb.all
-    #  @message = "Share successfully added!"
-      
-    #  render :update do |page|
-    #    page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-    #    page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
-    #  end
+      params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
+      @dirs = list(@prev)
+      @media_dirs = DLNA.all
 
-    #else
-    #  @message = "Something went wrong!"
-    #  render :partial => 'notification', :locals => { :type => "error", :message => @message }
+      @message = "Directory successfully added!"
+      
+      render :update do |page|
+        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+      end
+
+    else
+      @message = "Something went wrong!"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
+    end
+  end
+  
+  def destroy
+    @media = DLNA.new(params[:media])
+    
+    if @media.destroy
+      params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
+      @dirs = list(@prev)
+      @media_dirs = DLNA.all
+
+      @message = "Directory successfully destroyed!"
+      
+      render :update do |page|
+        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+      end
     end
   end
   
   def navigate
-    browser = Browser.new('/')
-
-    @media = DLNA.all
+    @media_dirs = DLNA.all
     params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
-    @dirs = browser.get_content(params["dir"]);
+    @dirs = list(params["dir"])
 
     render :partial => "directories", :locals => {:prev => @prev, :dirs => @dirs }
+  end
+  
+  def list(path)
+    browser = Browser.new('/')
+    dirs = browser.get_content(path);
+    return dirs
   end
   
 end

@@ -35,16 +35,17 @@ class SmbController < ApplicationController
       @dirs = browser.get_content(@path);
       @prev = File.dirname(@path) unless @path == session["home"]
       @shared = Smb.all
-      @message = "Share successfully added!"
+      @message = "Directory successfully added!"
       
       render :update do |page|
         page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-        page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+#        page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
       end
 
     else
       @message = "Something went wrong!"
-      render :partial => 'notification', :locals => { :type => "error", :message => @message }
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
     end
   end
   
@@ -53,7 +54,7 @@ class SmbController < ApplicationController
     
     if @share.destroy
       @shared = Smb.all
-      @message = "Share successfully destroyed!"
+      @message = "Directory successfully removed form the list!"
       browser = Browser.new('/')
             
       unless params["listview"]
@@ -63,7 +64,8 @@ class SmbController < ApplicationController
         
         render :update do |page|
           page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-          page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+#          page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+          page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
         end
       else 
         @dirs = browser.get_content(session["home"]);
@@ -71,7 +73,8 @@ class SmbController < ApplicationController
         
         render :update do |page|
           page.replace_html 'listview', :partial => 'listview', :locals => { :shared => @shared }
-          page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+          #page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
+          page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }          
           page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
         end
       end
@@ -92,7 +95,8 @@ class SmbController < ApplicationController
       render :partial => 'settings', :locals => { :global => share }
     else
       @message = "Something went wrong!"
-      render :partial => 'notification', :locals => { :type => "error", :message => @message }
+#      render :partial => 'notification', :locals => { :type => "error", :message => @message }
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
     end
   end
   
@@ -107,6 +111,7 @@ class SmbController < ApplicationController
     params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
     @dirs = browser.get_content(params["dir"]);
 
+    #render :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
     render :partial => "directories", :locals => {:prev => @prev, :dirs => @dirs }
   end
 

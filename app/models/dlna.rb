@@ -42,5 +42,14 @@ class DLNA
     ret
   end
   
+  def destroy
+    bus = DLNA.initDBusObj
+    ret = bus.rm(self.id) ? true : false
+
+    #TODO: check exit value
+    #status = Smb.restart
+    ret
+   end
+  
 end
 
