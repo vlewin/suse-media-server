@@ -21,9 +21,6 @@ div.moduleHead {
 div.moduleHead h2 { text-align:center;}
 div.moduleHead h4 { font-size:12px; color:#eee; }
 
-/*div.moduleHead div.left { text-align:left; }
-div.moduleHead div.right { text-align:right; }*/
-
 #actionToolbar {
   box-shadow: 0px 0px 2px #222 inset;
   border-radius:3px;
@@ -182,7 +179,6 @@ div#notificationArea .error {
 /*  background-color: #F1F7F1;
   border-bottom: 1px solid #bb593e;*/
 }
-
 /* END NOTIFICATION AND STATUS*/
 
 /* MODULE BODY */
@@ -203,9 +199,6 @@ div.moduleBody h2 {
   margin-bottom: 10px;
   /*padding: 12px 0;*/
 }
-
-
-/*div.moduleBody .moduleForm { border: 1px solid grey; }*/
 
 div.moduleBody .moduleForm div.line {
   border-color: #CCCCCC;
@@ -229,28 +222,17 @@ div.moduleBody .moduleForm span.description {
   text-align:left;
 }
 
-div.moduleBody .moduleForm input[type="text"]:hover {
-  border-left: 5px solid orange;
-}
-
 div.moduleBody .moduleForm input[type="text"] {
-  /*border:0;
-  border-left:3px solid transparent;
-  border-top:1px dotted #bababa;
-  border-bottom:1px dotted #bababa; */
   border:1px dotted #ccc;
-  border-left:5px solid #ccc;
-
-
-  padding:0px 5px;
+  padding:1px 5px;
   font-weight:bold;
   font-size: 20px;
   color:#575757;
 }
-
+div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; }
 
 #slides { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }
-#slides-container { background:#fff; }
+#slides-container { background:#fff; width:3840px; margin-left:0; }
 #slides .slide {  width: 960px; float:left; min-height:1px; }
 
 /* END MODULE BODY */

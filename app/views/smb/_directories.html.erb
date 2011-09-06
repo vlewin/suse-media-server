@@ -1,14 +1,14 @@
 <div class="grid_12">
   <div class="navigationHeader" style="">
     <div class="left navigation">
-    <%= link_to_remote( 
-       "<img src='/images/prev.png' class='small navImage' />PREV",
-      :before => "$('#waitAnimation').show();",
-      :loading => "$('#waitAnimation').fadeOut(500);",
-      :update => "directoriesContainer",
-      :html => {:class => "navLink left textLeft"},
-      :url => {:action => 'browse', :dir => @prev })
-    %>
+      <%= link_to_remote( 
+        "<img src='/images/prev.png' class='small navImage' />PREV",
+        :loading => "$('#waitAnimation').show();",
+        :after => "$('#waitAnimation').fadeOut(500);",
+        :update => "directoriesContainer",
+        :html => {:class => "navLink left textLeft"},
+        :url => {:action => 'browse', :dir => @prev })
+      %>
     </div>
     
     <div class="center navigation textCenter">
@@ -18,8 +18,8 @@
     <div class="right navigation">
       <%= link_to_remote(
         "<img src='/images/home.png' class='small navImage' />HOME",
-        :before => "$('#waitAnimation').show();",
-        :loading => "$('#waitAnimation').fadeOut(500);",
+        :loading => "$('#waitAnimation').show();",
+        :after => "$('#waitAnimation').fadeOut(500);",
         :update => "directoriesContainer",
         :html => {:class => "navLink textRight"},
         :url => {:action=>'browse', :dir=>session["home"]})
@@ -28,8 +28,6 @@
     <div class="clear"></div>
   </div>
 </div>
-
-
 
 <% @dirs.each do |n,h| %>
   <% path = h["path"] %>
@@ -55,7 +53,7 @@
     
     <% unless @shared.include?(path)%>
       <div class="value textRight">
-          <%= link_to_remote :SHARE,
+        <%= link_to_remote :SHARE,
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "shareDir greenBtn btn"},

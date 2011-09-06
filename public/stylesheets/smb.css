@@ -1,8 +1,6 @@
 /* TRY TO COMBINE WITH ANOTHER STYLEHEETS*/
 
-#directoriesContainer div.link:last-child, #listview div.line:last-child{
-  border:none;
-}
+#directoriesContainer div.link:last-child, #listview div.line:last-child{ border:none; }
 
 #directoriesContainer div.link, #listview div.line {
   border-color: #CCCCCC;
@@ -13,7 +11,6 @@
   overflow: hidden;
   padding: 5px 0px 5px 0px;
   position: relative;
-
 }
 
 .navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
@@ -77,7 +74,6 @@ a.btn {
   background:#444;
   color:#fff;
   display:inline-block;
-  /*margin:3px;*/
   vertical-align:middle;
   padding:3px 10px;
   text-shadow: 0px -1px #000;
@@ -88,19 +84,19 @@ a.btn {
 }
 
 a.greenBtn {
-    color:#fff!important;
-    background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
-    background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
-  }
+  color:#fff!important;
+  background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
+  background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
+}
 
 a.blueBtn {
-    color:#fff!important;
-    background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
+  color:#fff!important;
+  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
 }
 
 a.blackBtn {
-    background: -moz-linear-gradient(center bottom , #222, #666) repeat scroll 0 0 transparent;
+  background: -moz-linear-gradient(center bottom , #222, #666) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222));
 }
 
@@ -108,8 +104,6 @@ a.redBtn {
   background: -moz-linear-gradient(center bottom , #761e1e, #BC2E2E) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#BC2E2E), to(#761e1e));
 }
-
-
 
 img.xsmall { width:16px; height:16px; display:inline-block; vertical-align:middle; }
 img.small { width:22px; height:22px;  display:inline-block; vertical-align:middle;}
