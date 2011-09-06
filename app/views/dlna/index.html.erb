@@ -1,119 +1,149 @@
-<%= stylesheet_link_tag 'module.css' %>
+<%= stylesheet_link_tag 'modules-new.css' %>
+<%= stylesheet_link_tag 'buttons.css' %>
+<%= stylesheet_link_tag 'toggle.css' %>
 
-<div>
-  <div class="container_12 mhead">
-    <div class="grid_2 blcontainer">
-      <a href="/" id="back" class="button">BACK</a>
-    </div>
+<% stylesheet_link_tag 'smb.css' %>
 
-    <div class="grid_8">
-      <h2>DLNA-Server configuration</h2>
-      <h4>Stream your videos, music and photos to any device over a home network.</h4>
-    </div>
+<div id="waitAnimation"><label><img src="/images/ajax-loader.gif">please wait ...<label></div>
 
-    <div class="grid_2 brcontainer">
-      <a href="/" id="submit" class="button">SAVE</a>
-    </div>
+<div class="moduleHead container_12">
+  <div class="grid_3 left">
+    <a id="back" href="/">BACK</a>
   </div>
 
-  <div class="clear"></div>
-
-  <div class="container_12 mbody">
-    <div class="mstatus">
-      <div class="grid_6">
-        <p class="left">
-          <img src="/images/dlna.png" alt="Expanded" border="0" />
-          DLNA status:
-        </p>
-      </div>
-      <div class="grid_6 right">
-        <%= check_box("samba", "status", { :class => 'ftoggle' }) %>
-      </div>
-      <div class="clear"></div>
-    </div>
-
-
-
-    <div class="grid_12">
-      <div id="mcontent" class="mcontent">
-        <% form_remote_for @dlna, :url => {:action => 'update'},
-          :before => "$('#wait').show(); console.log('wait');",
-          :after => "console.log('finished'); expand($(this)); $('#wait').fadeOut('slow');",
-          :update =>'mform' do |form| %>
-
-        <%= form.hidden_field :id %>
-
-        <div class="">
-          <h2 style="background:none; margin-bottom:10px; border-bottom:3px solid #A1B7A7; color:#575757;">Settings</h2>
-        </div>
-
-        <div class="line">
-          <div class='key'> <%= form.label :friendly_name %> </div>
-          <div class='value'>
-            <%= @dlna.friendly_name %>
-          </div>
-        </div>
-
-        <div class="line">
-          <div class='key'> <%= form.label :inotify %> </div>
-          <div class='value'>
-            <%= @dlna.inotify %>
-          </div>
-        </div>
-
-        <div class="">
-          &nbsp;
-        </div>
-
-        <div class="">
-          <h2 style="background:none; margin-bottom:10px; border-bottom:3px solid #C79E61; color:#575757;">Folders</h2>
-        </div>
-
-        <div class="line">
-          <div class='key'>
-            <img src="/images/audio-sym.png" style="height: 30px; width:30px; " alt="Expanded" border="0" />
-            <%= form.label "Audio" %>
-          </div>
-          <div class='value'>
-            <%= @dlna.media_dir1 %>
-          </div>
-        </div>
-
-        <div class="line">
-          <div class='key'>
-            <img src="/images/video-sym.png" style="height: 30px; width:30px; " alt="Expanded" border="0" />
-            <%= form.label "Video" %>
-          </div>
-          <div class='value'>
-            <%= @dlna.media_dir2 %>
-          </div>
-        </div>
-
-        <div class="line">
-          <div class='key'>
-            <img src="/images/photo-sym.png" style="height: 30px; width:30px; " alt="Expanded" border="0" />
-            <%= form.label "Photo" %>
-          </div>
-          <div class='value'>
-            <%= @dlna.media_dir3 %>
-          </div>
-        </div>
-<% end %>
-
-
-      </div>
-    </div>
+  <div class="grid_6 middle">
+    <h2>DLNA-Server configuration</h2>
+    <h4>Stream your videos, music and photos to any device over a home network.</h4>
   </div>
 
-  <div class="clear"></div>
-
+  <div class="grid_3 right">
+    <div id="actionToolbar">
+      <span id="buttonCotainer">
+        <a id="browser" href="#"  onclick="slideTo(0)" class="abtn width33 activeSlider"><img src="/images/buttons/folder.png" /></a>
+        <%= link_to_remote(
+          "<img src='/images/buttons/list.png' />",
+           :before => "slideTo(1);",
+           :html => {:id=>"list", :class => "abtn width33"},
+           :url => {:action => 'all'})
+        %>
+        
+        <%= link_to_remote(
+          "<img src='/images/buttons/settings.png' />",
+           :before => "slideTo(2);",
+           :html => {:id=>"settings", :class => "abtn width33"},
+           :update => "globalSettings",
+           :url => {:action => 'getSettings'})
+        %>
+      </span>
+      <a id="submit" href="#">SAVE</a>
+    </div>
+  </div>
 </div>
 
-<%= javascript_include_tag 'ftoggle' %>
+<div class="clear"></div>
 
+<div id="moduleStatus" class="container_12">
+  <div class="statusWrapper">
+    <div class="grid_3 left">
+      <p class="moduleName"><img src="/images/dlna.png" alt="Expanded" border="0" />DLNA</p>
+    </div>
+    <div class="grid_6 textCenter">
+      <span>&nbsp;</span>
+    </div>
+    <div class="grid_3 right">
+      <span>
+        <% form_remote_for "status", :url => {:controller => "smb", :action => 'action'},
+           :before => "$('#wait').show();", :html => {:id => 'actionForm'},
+           :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
+           <%= form.check_box("status", { :id=> 'action', :class => 'ftoggle dlna', :checked  => Smb.running? }, "start", "stop") %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<div id="notificationArea" class="container_12"></div>
+
+<div class="clear"></div>
+
+<div class="moduleBody container_12">
+  <div>
+    <div id="slides">
+      <div id="slides-container">
+      
+        <div id="directoriesContainer" class="slide">
+          <%= render :partial => "directories" %>
+        </div>
+
+        <div id="listview" class="slide">
+          <div class="grid_12">
+            <h2>Shared folders list
+              <p style="color:#889; font-size:10px;">{Info} Show all shares</p>
+            </h2>
+            <h4><img src="images/ajax-loader.gif"> Please wait ...</h4>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div id="globalSettings" class="grid_12">
+            <h2>Global Settings
+                <p style="color:#889; font-size:10px;">{Info} COMING SOON ...</p>
+            </h2>
+            <h4><img src="images/ajax-loader.gif"> Please wait ...</h4>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'toggle-new' %>
 <script>
-  jQuery(document).ready(function() {
-    $('[type=checkbox].ftoggle').slider({on: "running", off: "unused", size: 180});
+  function slideTo(number){
+    var $abtns = $('#actionToolbar').find('a.abtn');
+    var width = 960;
+    var step = "-" + ((number * width)) + 'px';
+    $("#slides-container").stop().animate({ "margin-left": step }, 300);
+    $abtns.removeClass('activeSlider');
+
+    switch(number) {
+      case 0:
+        $('#browser').addClass("activeSlider");
+        break;
+      case 1:
+        $('#list').addClass("activeSlider");
+        break;
+      case 2:
+        $('#settings').addClass("activeSlider");
+        break;
+      default:
+        console.error("ERROR")
+        break;
+    }
+  }
+
+  $(document).ready(function() {
+    $('[type=checkbox].dlna').toggle({on: "running", off: "unused", size: 180, id: "smb"});
+    $('#smb').live('click', function() { $('#actionForm').submit(); });
+    
+    //initSliders();
   });
 </script>
+
+<script>
+  function notify() {
+    $('#waitAnimation').fadeOut(1000);
+    setTimeout( function() {
+      $('#notificationArea').clearQueue().stop().slideDown(250);
+      setTimeout( function() {
+        $('#notificationArea').clearQueue().stop().slideUp(100);
+      }, 2000);
+    }, 500);
+  }
+</script>
+
+
 

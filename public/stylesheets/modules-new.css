@@ -235,7 +235,88 @@ div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; 
 #slides-container { background:#fff; width:3840px; margin-left:0; }
 #slides .slide {  width: 960px; float:left; min-height:1px; }
 
+#listview div.line {
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-width: 0 0 1px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+  position: relative;
+}
+
+#listview div.share:before {
+  border-radius: 4px 4px 4px 4px;
+  content: url("../images/48/folder-shared.png");
+  left: 0px;
+  position: absolute;
+  top: 4px;
+}
+
 /* END MODULE BODY */
+
+/* DIRECTORY BROWSER */
+
+#directoriesContainer div.link:last-child, #listview div.line:last-child{ border:none; }
+
+#directoriesContainer div.link, #listview div.line {
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-width: 0 0 1px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+  position: relative;
+}
+
+.navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
+.navigationHeader .center { float:left; display:inline-block; margin:0 auto; width:80%; position:relative;}
+#directoriesContainer div.key, #listview div.key { float:left; width:70% }
+#directoriesContainer div.value, #listview div.value { float:right; width:30% }
+
+#directoriesContainer a.dirLine:before {
+  border-radius: 4px 4px 4px 4px;
+  content: url("../images/48/folder.png");
+  left: 0px;
+  position: absolute;
+  top: 2px;
+}
+
+#directoriesContainer a.dirLink:before {
+  border-radius: 4px 4px 4px 4px;
+  content: url("../images/48/folder-open.png");
+  left: 0px;
+  position: absolute;
+  top: 2px;
+}
+
+#directoriesContainer a.dirLink {text-align:left; display:inline-block;}
+
+#directoriesContainer span.name, #listview span.name {
+  display: inline-block;
+  padding-left:54px;
+  color:#575757;
+  text-align:left;
+}
+
+#directoriesContainer span.path, #listview span.path {
+  color: #888888;
+  display: block;
+  font-size: 14px;
+  text-align:left;
+  padding-left:54px;
+}
+
+#directoryNavigation { overflow:hidden; clear:both; padding:15px 0px; }
+img.navImage { margin:-5px 5px 0px 0px; }
+.navigation p { font-size:22px; color:#bababa; font-weight:bold;  }
+.navigation a.navLink { display:inline-block; vertical-align:middle; font-weight:bold; font-size:22px; color:#bababa;}
+.navigation a.navLink:hover { color:orange; }
+
+/* END DIRECTORY BROWSER */
+
 /* OTHERS MOVE TO ANOTHER LOCATION */
 
 .left { float:left; }
@@ -271,4 +352,11 @@ div#waitAnimation img {
   margin-right:10px;
   padding:5px;
 }
+
+/* IMAGES */
+img.xsmall { width:16px; height:16px; display:inline-block; vertical-align:middle; }
+img.small { width:22px; height:22px;  display:inline-block; vertical-align:middle;}
+img.medium { width:32px; height:32px; display:inline-block;  vertical-align:middle; }
+img.large { width:48px; height:48px; }
+img.xlarge { width:64px; height:64px;}
 

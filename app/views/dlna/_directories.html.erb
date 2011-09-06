@@ -50,24 +50,24 @@
     <% end %>
     
     </div>
-    
-    <% unless @shared.include?(path)%>
+    <% unless @media.has_key?(path)%>
       <div class="value textRight">
-        <%= link_to_remote :SHARE,
+        <%= link_to_remote "STREAM",
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "shareDir greenBtn btn"},
-          :url => {:action => 'create', "share[name]"=> n.upcase, "share[path]" => path, :dir=> path }
+          :url => {:action => 'create', "media[path]" => path, :dir=> path }
         %> 
       </div>
    
     <% else %>
+      <%=  %>
       <div class="value textRight">
-          <%= link_to_remote :UNSHARE,
+          <%= link_to_remote :STOP,
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "unshareDir blackBtn btn"},
-          :url => {:action => 'destroy', "share[id]" => @shared[path], :dir=> path }
+          :url => {:action => 'destroy', "media[id]" => @media[path]["id"], :dir=> path }
         %> 
       </div>    
     <% end %>

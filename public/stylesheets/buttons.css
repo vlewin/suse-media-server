@@ -1,0 +1,41 @@
+/* MOVE TO BUTTONS.CSS*/
+a.btn {
+  float:right;
+  font-size: 14px;
+  font-weight: bold;
+  background:#444;
+  color:#fff;
+  display:inline-block;
+  vertical-align:middle;
+  padding:3px 10px;
+  text-shadow: 0px -1px #000;
+  border-radius:3px;
+  text-align:center;
+  min-width:70px;
+  text-transform: uppercase;
+}
+
+a.greenBtn {
+  color:#fff!important;
+  background: -moz-linear-gradient(center bottom , #0a7705, #52ac4e);
+  background: -webkit-gradient(linear, left top, left bottom, from(#52ac4e), to(#0a7705));
+}
+
+a.blueBtn {
+  color:#fff!important;
+  background: -moz-linear-gradient(center bottom , #2B78C6, #00A3D3) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00A3D3), to(#2B78C6));
+}
+
+a.blackBtn {
+  background: -moz-linear-gradient(center bottom , #222, #666) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222));
+}
+
+a.redBtn {
+  background: -moz-linear-gradient(center bottom , #761e1e, #BC2E2E) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#BC2E2E), to(#761e1e));
+}
+
+
+
