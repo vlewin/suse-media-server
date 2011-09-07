@@ -10,6 +10,16 @@ class DlnaController < ApplicationController
     render :index, :locals => {:prev => session["home"] }
   end
   
+  def listview
+    @types = {"M" => "mixed", "A" => "music", "P" => "pictures", "V" => "videos"}
+    @media_dirs = DLNA.all
+    sleep(0.5) #???
+    
+    render :update do |page|
+      page.replace_html 'listview', :partial => 'listview'
+    end
+  end
+  
   def create
     params[:media]["type"] = params[:type] unless params[:type].empty?
     @media = DLNA.new(params[:media])
@@ -32,20 +42,48 @@ class DlnaController < ApplicationController
     end
   end
   
+#  def destroy
+#    @media = DLNA.new(params[:media])
+#    
+#    if @media.destroy
+#      params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
+#      @dirs = list(@prev)
+#      @media_dirs = DLNA.all#
+
+#      @message = "Directory successfully destroyed!"
+      
+#      render :update do |page|
+#        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+#        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+#      end
+#    end
+#  end
+
   def destroy
     @media = DLNA.new(params[:media])
     
     if @media.destroy
-      params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
-      @dirs = list(@prev)
       @media_dirs = DLNA.all
-
-      @message = "Directory successfully destroyed!"
+      @message = "Directory successfully removed from the list"  
       
-      render :update do |page|
-        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+      unless params["listview"]
+        params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
+        @dirs = list(@prev)
+        
+        render :update do |page|
+          page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+          page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+        end
+      else 
+        #@dirs = browser.get_content(session["home"]);
+        #@prev =  session["home"]
+        
+        render :update do |page|
+          page.replace_html 'listview', :partial => 'listview'
+          page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
+        end
       end
+      
     end
   end
   

@@ -64,7 +64,6 @@ class SmbController < ApplicationController
         
         render :update do |page|
           page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-#          page.replace_html 'notificationArea', :partial => 'notification', :locals => { :type => "success", :message => @message }
           page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
         end
       else 
