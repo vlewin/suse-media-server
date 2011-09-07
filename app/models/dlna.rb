@@ -1,6 +1,16 @@
 require "dbus"
 
+module System
+  def self.exec(cmd)
+    bus = DLNA.initDBusObj
+    state = bus.exec(cmd)[0]
+    return state
+  end
+end
+
 class DLNA
+  include System
+  
   PROPERTIES = [:id, :path, :type]
   SETTINGS = [:friendly_name, :inotify, :serial, :model_number]
 
@@ -37,19 +47,24 @@ class DLNA
   
   def save
     bus = DLNA.initDBusObj
-    ret = bus.set(self.to_hash)
-    #status = Smb.restart
-    ret
+    state = bus.set(self.to_hash)
+    restart = DLNA.restart
+    
+    state && restart ? true : false
   end
   
   def destroy
     bus = DLNA.initDBusObj
-    ret = bus.rm(self.id) ? true : false
-
-    #TODO: check exit value
-    #status = Smb.restart
-    ret
+    state = bus.rm(self.id)
+    restart = DLNA.restart
+    
+    state && restart ? true : false
    end
+   
+   def self.restart
+    state = System.exec("/etc/init.d/minidlna restart")
+    state ? true : false
+  end
   
 end
 
