@@ -33,7 +33,7 @@ class AugeasDlnaService < DBus::Object
         if node.match("media_dir")
           id = node.split('/').last
           media = augeas.get("#{AUG_PATH}#{id}")
-          media.split(',').length>1? type= media.split(',').first : type=""
+          media.split(',').length>1? type= media.split(',').first : type="M"
 
           dirs[media.split(',').last] = {"id" => id, "type" => type}
         end
@@ -46,17 +46,46 @@ class AugeasDlnaService < DBus::Object
       augeas = init()
 
       id = augeas.match("#{AUG_PATH}media_dir").length + 1
-      augeas.set("#{AUG_PATH}media_dir[#{id}]",media["path"])
+      path = media["path"]
+      
+      #if media type add it to media path
+      if media["type"]
+        path = "#{media["type"]},#{media["path"]}"
+      end
+
+      augeas.set("#{AUG_PATH}media_dir[#{id}]", path)
       augeas.save
     end
     
     dbus_method :rm, "in id:s, out status:b" do |id|
       augeas = init()
-
-      puts "ID #{id}"
       augeas.rm("#{AUG_PATH}#{id}")
       augeas.save
       true
+    end
+    
+    #EXEC CMD
+    dbus_method :exec, "in command:s, out status:b" do |cmd|
+
+      status = `#{cmd}` #TODO ALLOW ONLY MINIDLNA COMMANDS
+      string = status.split('..').last
+       
+      #puts "CMD #{cmd} and RETURN STRING #{string}"
+      #SWITCH CASE 
+
+      case cmd
+        when "/etc/init.d/minidlna status"
+          puts "#{cmd} returns #{string}"
+          string.match("running")? true : false
+        when "/etc/init.d/minidlna start", "/etc/init.d/minidlna stop"
+          puts "#{cmd} returns #{string}"
+          string.match("done")? true : false
+        when "/etc/init.d/minidlna restart"
+          puts "#{cmd} returns #{string}"
+          string.match("done")? true : false
+        else
+          puts "FAILED: CMD #{cmd} RETURN STRING #{string}"   
+      end
     end
 
 

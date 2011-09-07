@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<% @dirs.each do |n,h| %>
+<% @dirs.each_with_index do |(n,h), index| %>
   <% path = h["path"] %>
     <div class="link grid_12">
     <div class="key">
@@ -38,34 +38,44 @@
         <span class='name'><%= n.upcase%></span>
         <span class='path'><%= h["path"] %></span>
       </a>
-    <% else %>
-      <%= link_to_remote(
-        "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
-         :loading => "$('#waitAnimation').show();",
-         :after =>  "$('#waitAnimation').fadeOut(500);",
-         :update => "directoriesContainer",
-         :html => {:class => "dirLink"},
-         :url => {:action => 'navigate', :dir => path })
-        %>
-    <% end %>
-    
+      <% else %>
+        <%= link_to_remote(
+          "<span class='name'>#{n.upcase}</span><span class='path'>#{h["path"]}</span>",
+           :loading => "$('#waitAnimation').show();",
+           :after =>  "$('#waitAnimation').fadeOut(500);",
+           :update => "directoriesContainer",
+           :html => {:class => "dirLink"},
+           :url => {:action => 'navigate', :dir => path })
+          %>
+      <% end %>
     </div>
+    
     <% unless @media_dirs.has_key?(path)%>
       <div class="value textRight">
-        <span>A &nbsp; P &nbsp; V &nbsp;</span>
+        <span class="options left textCenter">
+          <a href="#" class="type" value="A">A</a>
+          <a href="#" class="type" value="P">P</a>
+          <a href="#" class="type" value="V">V</a>
+          <input id="optionsField<%=index%>" type="hidden" class="optionsField" name="media[type]" />
+        </span>
+        
         <%= link_to_remote "STREAM",
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "shareDir greenBtn btn"},
+          :with=>"'type='+$('#optionsField#{index}').val()",
           :url => {:action => 'create', "media[path]" => path, :dir=> path }
         %> 
       </div>
    
     <% else %>
-      <%=  %>
+      
       <div class="value textRight">
-        <span>A &nbsp; P &nbsp; V &nbsp; <%= @media_dirs[path]["type"] %></span>
-          <%= link_to_remote :STOP,
+        <span class="options left textCenter">
+          <a href="#" class="activetype"><%= @media_dirs[path]["type"] %></a>
+        </span>
+
+        <%= link_to_remote :STOP,
           :loading => "$('#waitAnimation').show();",
           :after => "notify()",
           :html => {:class => "unshareDir blackBtn btn"},
@@ -76,3 +86,13 @@
   </div>
 <% end %>
 
+<script>
+  // SET MEDIA TYPE BEFORE SEND
+  $options = $('#directoriesContainer span.options').find('a.type');
+  
+  $options.live('click', function() {
+    $(this).parent().find('a.activetype').removeClass("activetype");
+    $(this).addClass("activetype");
+    $(this).parent().find('input.optionsField').val($(this).text());
+  });
+</script>

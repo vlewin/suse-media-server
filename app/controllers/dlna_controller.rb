@@ -12,6 +12,8 @@ class DlnaController < ApplicationController
   end
   
   def create
+    params[:media]["type"] = params[:type] unless params[:type].empty?
+    
     @media = DLNA.new(params[:media])
     
     if @media.save

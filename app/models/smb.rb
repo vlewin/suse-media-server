@@ -3,8 +3,8 @@ require "dbus"
 module System
   def self.exec(cmd)
     bus = Smb.initDBusObj
-    answer = bus.exec(cmd)[0]
-    answer
+    state = bus.exec(cmd)[0]
+    state
   end
 end
 
