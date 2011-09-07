@@ -23,18 +23,17 @@ class DlnaController < ApplicationController
   # GET GLOBAL SETTINGS FOR MINIDLNA
   def getSettings
     @settings = DLNA.settings
-    Rails.logger.error "SETTINGS #{@settings.inspect}"
-    #sleep(0.7) #???
+    sleep(0.5) #???
     render :partial => 'settings'
   end
   
   # SET GLOBAL SETTINGS FOR MINIDLNA
   def saveSettings
-    share = Smb.new(params["share"])
+    settings = DLNA.new(params["settings"])
     
-    if share.save
-      share = Smb.find(params[:share][:id])
-      render :partial => 'settings', :locals => { :global => share }
+    if settings.saveSettings
+      @settings = DLNA.settings
+      render :partial => 'settings'
     else
       @message = "Something went wrong!"
       render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }

@@ -59,7 +59,7 @@ class AugeasDlnaService < DBus::Object
         end
       end
      
-     puts "RETURN #{settings.inspect}"
+     puts "*** RETURN #{settings.inspect}"
      [settings]
     end
 
@@ -78,11 +78,20 @@ class AugeasDlnaService < DBus::Object
       augeas.save
     end
     
+    dbus_method :setSettings, "in settings:a{ss}, out status:b" do |settings|
+      augeas = init()
+      puts "*** SETTINGS #{settings.inspect}"
+      settings.each do |key, value|
+        augeas.set("#{AUG_PATH}#{key}", value)
+      end
+      
+      augeas.save
+    end
+    
     dbus_method :rm, "in id:s, out status:b" do |id|
       augeas = init()
       augeas.rm("#{AUG_PATH}#{id}")
       augeas.save
-      true
     end
     
     #EXEC CMD
