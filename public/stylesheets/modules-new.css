@@ -236,6 +236,8 @@ div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; 
 #slides-container { background:#fff; width:3840px; margin-left:0; }
 #slides .slide {  width: 960px; float:left; min-height:1px; }
 
+
+
 #listview div.line {
   border-color: #CCCCCC;
   border-style: solid;
@@ -254,6 +256,11 @@ div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; 
   position: absolute;
   top: 4px;
 }
+
+#listview div.mixed:before { content: url("../images/48/folder-shared.png"); border-radius: 4px; left: 0px; position: absolute; top: 4px; }
+#listview div.music:before { content: url("../images/48/folder-music.png"); border-radius: 4px; left: 0px; position: absolute; top: 4px; }
+#listview div.pictures:before { content: url("../images/48/folder-pictures.png"); border-radius: 4px; left: 0px; position: absolute; top: 4px; }
+#listview div.videos:before { content: url("../images/48/folder-videos.png"); border-radius: 4px; left: 0px; position: absolute; top: 4px; }
 
 /* END MODULE BODY */
 
