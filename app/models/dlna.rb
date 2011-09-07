@@ -52,7 +52,7 @@ class DLNA
     hash = bus.settings("")[0]
     
     hash.each do | key, value |
-      Rails.logger.error "KEY #{key} VALUE #{value}"
+      Rails.logger.debug "KEY #{key} VALUE #{value}"
       args[key] = value
     end
 
@@ -65,6 +65,13 @@ class DLNA
     state = bus.set(self.to_hash)
     restart = DLNA.restart
     
+    state && restart ? true : false
+  end
+  
+  def saveSettings
+    bus = DLNA.initDBusObj
+    state = bus.setSettings(self.to_hash)
+    restart = DLNA.restart
     state && restart ? true : false
   end
   

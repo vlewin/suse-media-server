@@ -1,42 +1,113 @@
 <h2 class="mheading green">
   Global settings
-  <p style="color:#889; font-size:10px;">
+  <!--<p style="color:#889; font-size:10px;">
     {Info} Warning
-  </p>
+  </p>-->
 </h2>
 
-<%= @globals.inspect %>
 <div class="moduleForm">
   <div class="line">
   
     <div class="key">
-      Workgroup
-      <span class="description">Workgroup-Name or NT-Domain-Name</span>
+      Friendly name
+      <span class="description">Name that shows up on a client</span>
     </div>
   
     <div class="value uppercase">
-      textfiled
+      <%= text_field_tag("settings[friendly_name]", @settings.friendly_name, :class=>"textField")  %>
     </div>
   
     <div class='action'>
-     
+      <%= link_to_remote "submit", 
+        :url=> { :controller=> "dlna", :action => "saveSettings" },
+        :html => {:class => "btn greenBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :with=>"'settings[friendly_name]='+$('#settings_friendly_name').val()" 
+      %>
     </div>    
   </div>
     
   <div class="line">
     <div class="key">
-      Netbios name
-      <span class="description">is the computer name (usually same as your hostname)</span>
+      Inotify
+      <span class="description">Automatically discover new files (default is yes)</span>
     </div>
   
     <div class="value uppercase">
-      textfiled
+      <%= text_field_tag("settings[inotify]", @settings.inotify, :class=>"textField")  %>
     </div>
   
     <div class='action'>
-     
+      <%= link_to_remote "submit", 
+        :url=> { :controller=> "dlna", :action => "saveSettings" },
+        :html => {:class => "btn greenBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :with=>"'settings[inotify]='+$('#settings_inotify').val()" 
+      %>
     </div>
-  </div>  
-      
+  </div>
+  
+  <div class="line">
+    <div class="key">
+      Network interface
+      <span class="description">Network interface to bind to (default is eth0)</span>
+    </div>
+  
+    <div class="value uppercase">
+      <%= text_field_tag("settings[network_interface]", @settings.network_interface, :class=>"textField")  %>
+    </div>
+  
+    <div class='action'>
+      <%= link_to_remote "submit", 
+        :url=> { :controller=> "dlna", :action => "saveSettings" },
+        :html => {:class => "btn greenBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :with=>"'settings[network_interface]='+$('#settings_network_interface').val()" 
+      %>
+    </div>
+  </div>    
     
 </div>
+
+
+<h2 class="mheading orange">
+  Trouble-shooting
+  <!--<p style="color:#889; font-size:10px;">
+    {Info} DESCRIPTION
+  </p>-->
+</h2>
+
+<div class="moduleForm">
+  
+  <div class="line">
+    <div class="key">
+      Rescan media folders
+      <span class="description">Newly added directories are not visible on the client</span>
+    </div>
+  
+    <div class="value uppercase">
+    </div>
+  
+    <div class='action'>
+      RESCAN
+    </div>    
+  </div>
+
+  <div class="line">
+    <div class="key">
+      Restart miniDLNA deamon
+      <span class="description">Client can not connect to miniDLNA server or server is not visible</span>
+    </div>
+  
+    <div class="value uppercase">
+    </div>
+  
+    <div class='action'>
+      RESTART
+    </div>    
+  </div>  
+  
+</div>  
