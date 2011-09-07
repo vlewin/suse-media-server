@@ -6,7 +6,7 @@
     </p>
   </h2>
   
-  <% unless @media_dirs.empty? %>
+  <% unless @media_dirs.nil? || @media_dirs.empty? %>
     <% @media_dirs.each do |path, hash| %>
       <div class="line <%= @types[hash["type"]]%>">
         <div class="key">

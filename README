@@ -2,21 +2,23 @@ SUSE Media Server is a web front end for SAMBA (file sharing) and DLNA (streamin
 
 TODO LIST 
 ---------------------------------------------------------------------
-[WIP]:
-- expand notification functionality (confirm dialog) **
-- add validation for global settings **
-- DLNA module ***
+[WIP] *** :
+- DLNA: rebuild MINIDLNA RPM with SQLITE3 as BuildRequire ***
+- DLNA: add reload/rescan action to rcminidlna with /usr/sbin/minidlna -f /etc/minidlna.conf -R ***
+- SMB/DLNA: add validation for global settings **
+- SMB/DLNA: allow user to change default directory (global settings section) **
+- expand notification functionality (confirm dialog) *
 
-[NEXT]:
-- provide system action for REBOOT and SHUTDOWN **
-- systen monitoring (CPU, RAM, HDD)*
+[NEXT] **:
+- provide system action for REBOOT and SHUTDOWN ***
+- FTP server configuration **
 - provide mobile view for mobile devices (JQuery Mobile/Sencha touch ???)*
 
-[NEXT NEXT]:
-- Login screen **
-- FTP server configuration*
-- File browser (FTP)*
-- Jquery AjaxTerminal*
+[NEXT NEXT] *:
+- Login screen 
+- Systen monitoring (CPU, RAM, HDD)
+- File Manager module 
+- Jquery AjaxTerminal
 
 [NEXT NEXT NEXT]
 - Debian support

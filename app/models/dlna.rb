@@ -12,7 +12,7 @@ class DLNA
   include System
   
   PROPERTIES = [:id, :path, :type]
-  SETTINGS = [:friendly_name, :inotify, :serial, :model_number]
+  SETTINGS = [:friendly_name, :inotify, :network_interface]
 
   attr_accessor *PROPERTIES
   attr_accessor *SETTINGS
@@ -40,9 +40,24 @@ class DLNA
 
   def self.all
     bus = initDBusObj
-    args = Hash.new
+    #args = Hash.new
     dirs = bus.match("")[0]
     dirs
+  end
+  
+  def self.settings
+    bus = initDBusObj
+
+    args = Hash.new
+    hash = bus.settings("")[0]
+    
+    hash.each do | key, value |
+      Rails.logger.error "KEY #{key} VALUE #{value}"
+      args[key] = value
+    end
+
+    settings = DLNA.new(args)
+    settings
   end
   
   def save
