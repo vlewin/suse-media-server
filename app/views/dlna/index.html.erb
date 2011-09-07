@@ -55,10 +55,10 @@
     </div>
     <div class="grid_3 right">
       <span>
-        <% form_remote_for "status", :url => {:controller => "smb", :action => 'action'},
+        <% form_remote_for "status", :url => {:controller => "dlna", :action => 'action'},
            :before => "$('#wait').show();", :html => {:id => 'actionForm'},
            :after => "$('#wait').fadeOut('slow');", :update =>'mform' do |form| %>
-           <%= form.check_box("status", { :id=> 'action', :class => 'ftoggle dlna', :checked  => Smb.running? }, "start", "stop") %>
+           <%= form.check_box("status", { :id=> 'action', :class => 'ftoggle dlna', :checked  => DLNA.running? }, "start", "stop") %>
         <% end %>
       </span>
     </div>

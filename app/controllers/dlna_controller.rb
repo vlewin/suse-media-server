@@ -7,13 +7,11 @@ class DlnaController < ApplicationController
     @prev = session["home"]
     @dirs = list(session["home"])
 
-    Rails.logger.error "MEDIA DIRS #{@media_dirs.inspect}"
     render :index, :locals => {:prev => session["home"] }
   end
   
   def create
     params[:media]["type"] = params[:type] unless params[:type].empty?
-    
     @media = DLNA.new(params[:media])
     
     if @media.save
@@ -63,6 +61,11 @@ class DlnaController < ApplicationController
     browser = Browser.new('/')
     dirs = browser.get_content(path);
     return dirs
+  end
+  
+  def action
+    @status = DLNA.control
+    render :nothing => true
   end
   
 end

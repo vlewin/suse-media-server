@@ -61,8 +61,23 @@ class DLNA
     state && restart ? true : false
    end
    
+   def self.running?
+    state = System.exec("/etc/init.d/minidlna status")
+    state
+   end
+  
    def self.restart
     state = System.exec("/etc/init.d/minidlna restart")
+    state ? true : false
+   end
+   
+   def self.control
+    if DLNA.running?
+      state = System.exec("/etc/init.d/minidlna stop")
+    else
+      state = System.exec("/etc/init.d/minidlna start")
+    end
+    
     state ? true : false
   end
   
