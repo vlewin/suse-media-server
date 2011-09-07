@@ -13,10 +13,31 @@ class DlnaController < ApplicationController
   def listview
     @types = {"M" => "mixed", "A" => "music", "P" => "pictures", "V" => "videos"}
     @media_dirs = DLNA.all
-    sleep(0.5) #???
+    sleep(0.7) #???
     
     render :update do |page|
       page.replace_html 'listview', :partial => 'listview'
+    end
+  end
+  
+  # GET GLOBAL SETTINGS FOR MINIDLNA
+  def getSettings
+    @settings = DLNA.settings
+    Rails.logger.error "SETTINGS #{@settings.inspect}"
+    #sleep(0.7) #???
+    render :partial => 'settings'
+  end
+  
+  # SET GLOBAL SETTINGS FOR MINIDLNA
+  def saveSettings
+    share = Smb.new(params["share"])
+    
+    if share.save
+      share = Smb.find(params[:share][:id])
+      render :partial => 'settings', :locals => { :global => share }
+    else
+      @message = "Something went wrong!"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
     end
   end
   
@@ -42,29 +63,12 @@ class DlnaController < ApplicationController
     end
   end
   
-#  def destroy
-#    @media = DLNA.new(params[:media])
-#    
-#    if @media.destroy
-#      params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
-#      @dirs = list(@prev)
-#      @media_dirs = DLNA.all#
-
-#      @message = "Directory successfully destroyed!"
-      
-#      render :update do |page|
-#        page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
-#        page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
-#      end
-#    end
-#  end
-
   def destroy
     @media = DLNA.new(params[:media])
     
     if @media.destroy
-      @media_dirs = DLNA.all
       @message = "Directory successfully removed from the list"  
+      @media_dirs = DLNA.all
       
       unless params["listview"]
         params["dir"] == session["home"]? @prev = session["home"] : @prev = File.dirname(params["dir"])
@@ -75,11 +79,14 @@ class DlnaController < ApplicationController
           page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
         end
       else 
-        #@dirs = browser.get_content(session["home"]);
-        #@prev =  session["home"]
+        @types = {"M" => "mixed", "A" => "music", "P" => "pictures", "V" => "videos"}
+        
+        @dirs = list(session["home"]);
+        @prev =  session["home"]
         
         render :update do |page|
-          page.replace_html 'listview', :partial => 'listview'
+          page.replace_html 'directoriesContainer', :partial => 'directories', :locals => { :prev => @prev }
+          page.replace_html 'listview', :partial => 'listview', :locals => { :media_dirs => @media_dirs }
           page.replace_html 'notificationArea', :partial => '/shared/notification', :locals => { :type => "success", :message => @message }
         end
       end

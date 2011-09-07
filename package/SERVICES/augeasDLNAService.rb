@@ -10,7 +10,7 @@ class AugeasDlnaService < DBus::Object
   CONF_PATH = "/etc/minidlna.conf/"
   AUG_PATH = "/files" + CONF_PATH
 
-  PROPERTIES = ["media_dir", "inotify", "friendly_name", "serial", "model_number"]
+  GLOBALS = ["network_interface", "friendly_name", "inotify"]
 
   def init
     augeas = Augeas::open("/", "/usr/share/libaugeas0/augeas/lenses/dist", Augeas::NO_MODL_AUTOLOAD)
@@ -21,7 +21,6 @@ class AugeasDlnaService < DBus::Object
 
   dbus_interface "augeas.dlna.Service.Interface" do
   
-    #TODO: Find a solution for media types (A,V,P) handling
     #a{sa{ss}} for {"a"=>{"type"=>"s", "path"=>"s"}}
     dbus_method :match, "in empty:s, out directories:a{sa{ss}}" do |path|
       augeas = init()
@@ -40,6 +39,28 @@ class AugeasDlnaService < DBus::Object
       end
       
      [dirs]
+    end
+    
+    dbus_method :settings, "in empty:s, out globals:a{ss}" do |path|
+      augeas = init()
+      
+      nodes = augeas.match("#{AUG_PATH }*[label() != '#comment']")
+      dirs = Hash.new
+      settings = Hash.new
+      #puts "NODES #{nodes.inspect}\n"
+      
+      nodes.each do | node |
+        target = node.split('/').last
+        #puts "TARGET #{target.inspect}"
+        if GLOBALS.include?(target)
+          #puts "NODE #{node.inspect}"
+          settings[target] = augeas.get(node)
+          #puts "NODE #{node} AND TARGET #{target}"
+        end
+      end
+     
+     puts "RETURN #{settings.inspect}"
+     [settings]
     end
 
     dbus_method :set, "in media:a{ss}, out status:b" do |media|
@@ -66,7 +87,6 @@ class AugeasDlnaService < DBus::Object
     
     #EXEC CMD
     dbus_method :exec, "in command:s, out status:b" do |cmd|
-
       status = `#{cmd}` #TODO ALLOW ONLY MINIDLNA COMMANDS
       string = status.split('..').last
        
@@ -75,13 +95,10 @@ class AugeasDlnaService < DBus::Object
 
       case cmd
         when "/etc/init.d/minidlna status"
-          puts "#{cmd} returns #{string}"
           string.match("running")? true : false
         when "/etc/init.d/minidlna start", "/etc/init.d/minidlna stop"
-          puts "#{cmd} returns #{string}"
           string.match("done")? true : false
         when "/etc/init.d/minidlna restart"
-          puts "#{cmd} returns #{string}"
           string.match("done")? true : false
         else
           puts "FAILED: CMD #{cmd} RETURN STRING #{string}"   
