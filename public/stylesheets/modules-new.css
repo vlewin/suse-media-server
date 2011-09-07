@@ -228,9 +228,9 @@ div.moduleBody .moduleForm input[type="text"] {
 div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; }
 
 #directoriesContainer span.options { display:inline-block; width:50%; }
-#directoriesContainer div.value span.options a.type { color:#bababa; margin:0px 10px; }
+#directoriesContainer div.value span.options a.type { color:#bababa; margin:0px 5px; }
 #directoriesContainer div.value span.options a.type:hover { color:orange; }
-#directoriesContainer div.value span.options a.activetype { color:orange; margin:0px 10px; }
+#directoriesContainer div.value span.options a.activetype { color:orange; margin:0px 5px; }
 
 #slides { margin: 0 auto; width:100%; min-height:420px; overflow:hidden; }
 #slides-container { background:#fff; width:3840px; margin-left:0; }

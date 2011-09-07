@@ -52,7 +52,7 @@
     
     <% unless @media_dirs.has_key?(path)%>
       <div class="value textRight">
-        <span class="options left textCenter">
+        <span class="options left textRight">
           <a href="#" class="type" value="A">A</a>
           <a href="#" class="type" value="P">P</a>
           <a href="#" class="type" value="V">V</a>
@@ -71,7 +71,7 @@
     <% else %>
       
       <div class="value textRight">
-        <span class="options left textCenter">
+        <span class="options left textRight">
           <a href="#" class="activetype"><%= @media_dirs[path]["type"] %></a>
         </span>
 
