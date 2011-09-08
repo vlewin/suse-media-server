@@ -1,6 +1,11 @@
+<% @types = {"success" => "info", "error" => "error"} %>
 <div class="<%= type %>">
   <div class="grid_3 left">
-    <p class="moduleName"><img src="/images/<%= type %>.png" alt="Expanded" border="0" />SAMBA</p>
+    <p class="moduleName">
+      <!--<img src="/images/<%= type %>.png" alt="Expanded" border="0" />-->
+      <!-- TODO: find/create better notification icons-->
+      {ICON} <%= @types[type].to_s.upcase %>:
+     </p>
   </div>
   <div class="grid_6 textCenter">
     <span class="message"> <%= message %> </span>

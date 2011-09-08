@@ -147,7 +147,14 @@ div#moduleStatus div.statusWrapper {
   vertical-align:middle;
 }
 
-div#notificationArea { display: none; position:absolute; top:61px; }
+div#notificationArea { 
+  display: none; 
+  position:absolute; 
+  top:61px; 
+  min-height:32px; 
+  background: transparent; 
+  border-bottom: 1px solid transparent;
+}
 
 div#notificationArea div.info, div#notificationArea div.success, div#notificationArea div.error {
  overflow:hidden;
@@ -160,6 +167,7 @@ div#notificationArea .info {
   background: #E9F1F4;
   background: -moz-linear-gradient(270deg, #D8DEE2, #E9F1F4) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#D8DEE2), to(#E9F1F4));
+  border-bottom: 1px solid #E9F1F4;
 }
 
 div#notificationArea .success {
@@ -167,17 +175,12 @@ div#notificationArea .success {
   background-color: #d7f5d7;
   border-bottom: 1px solid #C5E7C5;
   color: #4D7B0F;
-  /*background: -moz-linear-gradient(270deg, #D8DEE2, #E9F1F4) repeat scroll 0 0 transparent;
-  background: -webkit-gradient(linear, left top, left bottom, from(#D8DEE2), to(#E9F1F4));*/
 }
 
 div#notificationArea .error {
   color: #bb593e;
   background-color: #FFDBDB;
-  /*border-color: #B50000;*/
   border-bottom: 1px solid #bb593e;
-/*  background-color: #F1F7F1;
-  border-bottom: 1px solid #bb593e;*/
 }
 /* END NOTIFICATION AND STATUS*/
 
@@ -193,12 +196,17 @@ div.moduleBody {
 div.moduleBody h2 {
   font-size:22px; margin:20px 0 0 0; padding:0;
   background: none repeat scroll 0 0 transparent;
-  border-bottom: 3px solid #A1B7A7;
   color: #575757;
   font-size: 22px;
   margin-bottom: 10px;
   /*padding: 12px 0;*/
 }
+
+  
+div.moduleBody h2.green { border-bottom: 3px solid #A1B7A7; }
+div.moduleBody h2.grey { border-bottom: 3px solid #bbb; }
+div.moduleBody h2.orange { border-bottom:3px solid #C79E61; }
+div.moduleBody h2.blue { border-bottom:3px solid #aec3d9; }
 
 div.moduleBody .moduleForm div.line {
   border-color: #CCCCCC;
@@ -209,15 +217,17 @@ div.moduleBody .moduleForm div.line {
   overflow: hidden;
   padding: 5px 0px 5px 0px;
   position: relative;
+  color:#777;
 }
 
-div.moduleBody .moduleForm div.key{ float:left; width:50%; color:#888; }
+div.moduleBody .moduleForm div.line:hover { color:#353535!important; }
+div.moduleBody .moduleForm div.line:last-child { border:none; }
+
+div.moduleBody .moduleForm div.key{ float:left; width:50%;  }
 div.moduleBody .moduleForm div.value { float:left; width:30%; }
 div.moduleBody .moduleForm div.action { float:right; width:20%; }
 
-
-
-div.moduleBody .moduleForm span.description { color: #bababa; display: block; font-size: 12px; text-align:left; }
+div.moduleBody .moduleForm span.description { color: #aaa; display: block; font-size: 12px; text-align:left; }
 div.moduleBody .moduleForm input[type="text"] {
   border:1px dotted #ccc;
   padding:1px 5px;
@@ -225,7 +235,8 @@ div.moduleBody .moduleForm input[type="text"] {
   font-size: 20px;
   color:#575757;
 }
-div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; }
+
+div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid #aec3d9; }
 
 #directoriesContainer span.options { display:inline-block; width:50%; }
 #directoriesContainer div.value span.options a.type { color:#bababa; margin:0px 5px; }
@@ -278,6 +289,8 @@ div.moduleBody .moduleForm input[type="text"]:hover { border: 1px solid orange; 
   padding: 5px 0px 5px 0px;
   position: relative;
 }
+
+#directoriesContainer div.link:hover, #listview div.line:hover { color:#353535!important; }
 
 .navigationHeader { border-bottom:3px solid #bababa; padding:10px 0px; margin:10px 0px 10px 0px; }
 .navigationHeader .center { float:left; display:inline-block; margin:0 auto; width:80%; position:relative;}

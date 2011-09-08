@@ -85,22 +85,32 @@ class DLNA
    
    def self.running?
     state = System.exec("/etc/init.d/minidlna status")
+    #Rails.logger.error "\nDLNA RUNNING #{state.inspect}"
     state
    end
   
    def self.restart
     state = System.exec("/etc/init.d/minidlna restart")
-    state ? true : false
+    #Rails.logger.error "\nDLNA RESTART #{state.inspect}"
+    state
+   end
+   
+   def self.rescan
+    state = System.exec("/etc/init.d/minidlna rescan")
+    #Rails.logger.error "\nDLNA RESCAN #{state.inspect}"
+    state
    end
    
    def self.control
     if DLNA.running?
       state = System.exec("/etc/init.d/minidlna stop")
+      #Rails.logger.error "\nDLNA STOP #{state.inspect}"
     else
       state = System.exec("/etc/init.d/minidlna start")
+      #Rails.logger.error "\nDLNA START #{state.inspect}"
     end
     
-    state ? true : false
+    state
   end
   
 end

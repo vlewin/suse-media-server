@@ -1,9 +1,4 @@
-  <h2 class="mheading green">
-    Global settings
-    <p style="color:#889; font-size:10px;">
-      {Info} Warning
-    </p>
-  </h2>
+<h2 class="mheading blue">Global settings</h2>
  
 
 <div class="clear"></div>
@@ -34,7 +29,7 @@
   <div class="line">
     <div class="key">
       Netbios name
-      <span class="description">is the computer name (usually same as your hostname)</span>
+      <span class="description">Computer name (usually same as your hostname)</span>
     </div>
   
     <div class="value uppercase">
@@ -55,7 +50,7 @@
   <div class="line">
     <div class="key">
       Security mode
-      <span class="description">defines in which mode Samba will operate</span>
+      <span class="description">Defines in which mode Samba will operate</span>
     </div>
   
     <div class="value uppercase">
@@ -72,5 +67,50 @@
       %>
     </div>
   </div>
-    
+   
 </div>
+
+<h2 class="mheading grey"> Trouble-shooting </h2>
+
+<div class="moduleForm">
+  <div class="line">
+    <div class="key">
+      Restart SMB and NMB deamons
+      <span class="description">Client can not mount shared folreds or SMB server is not visible</span>
+    </div>
+  
+    <div class="value uppercase">
+    </div>
+  
+    <div class='action'>
+      <%= link_to_remote "restart", 
+        :url=> { :controller=> "smb", :action => "restart" },
+        :html => {:class => "btn redBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :update => "notificationArea",
+        :after => "notify()"
+      %>
+    </div>    
+  </div>
+  
+  <div class="line">
+    <div class="key">
+      Grant write permissions
+      <span class="description">Client can access shared folders, but can't create any file or directory</span>
+    </div>
+  
+    <div class="value uppercase">
+    </div>
+  
+    <div class='action'>
+      <%= link_to_remote "grant", 
+        :url=> { :controller=> "smb", :action => "permissions" },
+        :html => {:class => "btn redBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :update => "notificationArea",
+        :after => "notify()"
+      %>
+    </div>    
+  </div>    
+  
+</div>  

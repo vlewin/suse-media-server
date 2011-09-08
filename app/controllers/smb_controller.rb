@@ -119,6 +119,26 @@ class SmbController < ApplicationController
     @status = Smb.control
     render :nothing => true
   end
+  
+  def restart
+    if Smb.restart
+      @message = "Services successfully restarted!"      
+      render :partial => '/shared/notification', :locals => { :type => "success", :message => @message }      
+    else
+      @message = "An error occurred during services restart"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
+    end
+  end
+  
+  def permissions
+    if Smb.permissions
+      @message = "Write permissions granted!"
+      render :partial => '/shared/notification', :locals => { :type => "success", :message => @message }      
+    else
+      @message = "Operation not permitted!"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
+    end
+  end
 
 end
 

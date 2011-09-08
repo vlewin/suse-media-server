@@ -199,15 +199,11 @@ class AugeasSambaService < DBus::Object
 
 
     dbus_method :rm, "in share:a{ss}, out success:b" do |share|
-      syslog("SMS: DESTROY share with ID #{share["id"]}")
-      syslog("SMS: SHARE PATH #{AUG_PATH}#{share["id"]}")
-      
       aug = init()
       path = "#{AUG_PATH}#{share["id"]}"
       aug.rm(path)
       
       saved = aug.save
-      syslog("SMS: SAVE SUCCESSFUL? #{saved}")
       saved
     end
 
@@ -215,21 +211,23 @@ class AugeasSambaService < DBus::Object
     dbus_method :exec, "in command:s, out out:b" do |cmd|
       message = `#{cmd}`
       result = message.split('..').last
+      success = false
       puts "\n\INFO: SAMBA CMD #{cmd.inspect} SAMBA is #{result}"
             
       # TODO: return result instead of boolean and handle it in smb modell !!!
       unless result.nil?
         if result.match("running")
-          return true
+          success = true
         elsif result.match("unused")
-          return false
+          success = false
         elsif result.match("done")
-          return true
+          success = true
         end
       else
-	syslog("SMS: Unknown exit code #{result.inspect}! ")
-        return false
+        success = false
       end
+      
+      success
     end
 
   end

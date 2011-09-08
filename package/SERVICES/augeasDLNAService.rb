@@ -47,15 +47,11 @@ class AugeasDlnaService < DBus::Object
       nodes = augeas.match("#{AUG_PATH }*[label() != '#comment']")
       dirs = Hash.new
       settings = Hash.new
-      #puts "NODES #{nodes.inspect}\n"
-      
+     
       nodes.each do | node |
         target = node.split('/').last
-        #puts "TARGET #{target.inspect}"
         if GLOBALS.include?(target)
-          #puts "NODE #{node.inspect}"
           settings[target] = augeas.get(node)
-          #puts "NODE #{node} AND TARGET #{target}"
         end
       end
      
@@ -100,14 +96,13 @@ class AugeasDlnaService < DBus::Object
       string = status.split('..').last
        
       #puts "CMD #{cmd} and RETURN STRING #{string}"
-      #SWITCH CASE 
 
       case cmd
         when "/etc/init.d/minidlna status"
           string.match("running")? true : false
         when "/etc/init.d/minidlna start", "/etc/init.d/minidlna stop"
           string.match("done")? true : false
-        when "/etc/init.d/minidlna restart"
+        when "/etc/init.d/minidlna restart", "/etc/init.d/minidlna rescan"
           string.match("done")? true : false
         else
           puts "FAILED: CMD #{cmd} RETURN STRING #{string}"   

@@ -73,7 +73,7 @@
 </div>
 
 
-<h2 class="mheading orange">
+<h2 class="mheading grey">
   Trouble-shooting
   <!--<p style="color:#889; font-size:10px;">
     {Info} DESCRIPTION
@@ -92,7 +92,13 @@
     </div>
   
     <div class='action'>
-      RESCAN
+      <%= link_to_remote "rescan", 
+        :url=> { :controller=> "dlna", :action => "rescan" },
+        :html => {:class => "btn redBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :update => "notificationArea",        
+        :after => "notify()"
+      %>
     </div>    
   </div>
 
@@ -106,7 +112,13 @@
     </div>
   
     <div class='action'>
-      RESTART
+      <%= link_to_remote "restart", 
+        :url=> { :controller=> "dlna", :action => "restart" },
+        :html => {:class => "btn redBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :update => "notificationArea",
+        :after => "notify()"
+      %>
     </div>    
   </div>  
   
