@@ -112,4 +112,24 @@ class DlnaController < ApplicationController
     render :nothing => true
   end
   
+  def rescan
+    if DLNA.rescan
+      @message = "Rescan action was successfully completed"      
+      render :partial => '/shared/notification', :locals => { :type => "success", :message => @message }      
+    else
+      @message = "An error occurred!"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
+    end
+  end
+  
+  def restart
+    if DLNA.restart
+      @message = "Service successfully restarted!"      
+      render :partial => '/shared/notification', :locals => { :type => "success", :message => @message }      
+    else
+      @message = "An error occurred during service restart"
+      render :partial => '/shared/notification', :locals => { :type => "error", :message => @message }
+    end
+  end
+  
 end

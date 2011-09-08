@@ -150,12 +150,13 @@
 
 <script>
   function notify() {
+    $('#notificationArea').html("")
     $('#waitAnimation').fadeOut(1000);
     setTimeout( function() {
       $('#notificationArea').clearQueue().stop().slideDown(250);
       setTimeout( function() {
         $('#notificationArea').clearQueue().stop().slideUp(100);
-      }, 2000);
+      }, 2500);
     }, 500);
   }
 </script>

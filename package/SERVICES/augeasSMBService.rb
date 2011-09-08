@@ -71,23 +71,19 @@ class AugeasSMBService < DBus::Object
 
     #MATCH ALL SHARES
     dbus_method :match, "in empty:s, out paths:a{ss}" do |path|
-#      paths = Array.new
-#      shares = Array.new
       hash = Hash.new
       aug = init()
 
       tmp = aug.match("#{AUG_PATH}*[label() != '#comment']")
       
       unless tmp.length < 2
-          tmp.each do |share|
-            target = share.to_s.split('/').last
- #           paths.push(aug.get("#{share}/path")) unless target == "target[1]"
-            #shares.push({ aug.get("#{share}/path") => target}) unless target == "target[1]"
-            hash[aug.get("#{share}/path")] = target unless target == "target[1]"
-          end
-       else 
+	tmp.each do |share|
+          target = share.to_s.split('/').last
+          hash[aug.get("#{share}/path")] = target unless target == "target[1]"
+	end
+      else 
         hash["nil"] = "nil"
-       end
+      end
       
      puts hash.inspect
      #[paths]
@@ -200,31 +196,57 @@ class AugeasSMBService < DBus::Object
 
 
     dbus_method :exec, "in command:s, out status:b" do |cmd|
-      status = `#{cmd}`
-      status_string = status.split('..').last
+      status = `#{cmd}` #TODO ALLOW ONLY SMB COMMANDS
+      string = status.split('..').last
+       
+      success = false
 
-      #TODO: return result instead of boolean and handle it in smb modell ???
-      #return result      
+      case cmd
+        when "/etc/init.d/smb status", "/etc/init.d/nmb status"
+          if string.match("running")
+	    success = true
+	  end
+        when "/etc/init.d/smb start", "/etc/init.d/nmb start"
+	  if string.match("done")
+	    success = true
+	  end
+        when "/etc/init.d/smb stop", "/etc/init.d/nmb stop"
+	  if string.match("done")
+	    success = true
+	  end
+        when "/etc/init.d/smb restart", "/etc/init.d/nmb restart"
+          if string.match("done")
+	    success = true
+	  end
+        else
+          puts "FAILED: CMD #{cmd} RETURN STRING #{string}"   
+	end
       
-      if cmd == '/etc/init.d/smb status'
-        if status_string.match("running")
-          puts "\n\INFO: SAMBA is running #{status_string}"
-          return true
-        else 
-          puts "\n\INFO: SAMBA is unused #{status_string}"
-          return false
-        end
-      else
-        check = `/etc/init.d/smb status`
-        if check.match("done")
-          puts "\n\INFO: CHECK SMB status after #{cmd} and RETURN #{status_string}"
-          return true
-        else 
-          puts "\n\INFO: CHECK SMB status after #{cmd} and RETURN #{status_string}"
-          return false
-        end
+      #puts "CMD #{cmd} and RETURN STRING #{string} and SUCCESS IS #{success}"
+      success
+    end
+    
+        
+    dbus_method :permissions, "in empty:s, out status:b" do
+      puts "FIX WRITE PERMISSIONS FOR SHARED FOLDERS"
+      augeas = init()
 
+      success = false
+      nodes = augeas.match("#{AUG_PATH}*[label() != '#comment']")
+      
+      nodes.each do |node|
+	dir = augeas.get("#{node}/path")
+	unless dir.nil?
+	  #Operation not permitted
+	  output = `LANG=POSIX chmod 777 #{dir} 2>&1`
+	  puts "ERROR: #{output.inspect}" unless output.nil?
+	  success = output.match("Operation not permitted")? false : true
+	end
       end
+      
+      puts "SUC #{success}"
+      success
+      
     end
 
   end
