@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'augeas'
 require 'dbus'
-require 'syslog'
+#require 'syslog'
 
 bus = DBus::system_bus
 service = bus.request_service("augeas.smb.Service")
@@ -73,13 +73,16 @@ class AugeasSMBService < DBus::Object
     dbus_method :match, "in empty:s, out paths:a{ss}" do |path|
       hash = Hash.new
       aug = init()
-
+     
+      puts "MATCH"
       tmp = aug.match("#{AUG_PATH}*[label() != '#comment']")
       
       unless tmp.length < 2
 	tmp.each do |share|
           target = share.to_s.split('/').last
-          hash[aug.get("#{share}/path")] = target unless target == "target[1]"
+          puts "PATH #{share}/path"
+          puts "GET TARGET NAME #{aug.get("#{share}/path").inspect}"
+          hash[aug.get("#{share}/path")] = target unless target == "target[1]" || aug.get("#{share}/path").nil?
 	end
       else 
         hash["nil"] = "nil"

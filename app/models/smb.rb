@@ -43,6 +43,7 @@ class Smb
     #TODO: Detect first start and save/destroy action, cache results
     shared = Array.new
     bus = initDBusObj
+    Rails.logger.error "SMB #{shared.inspect}"
     shared = bus.match("")[0]
     return shared
   end
@@ -81,7 +82,7 @@ class Smb
   def self.running?
     smbd = System.exec("/etc/init.d/smb status")
     nmbd = System.exec("/etc/init.d/nmb status")
-    
+
     smbd && nmbd ? status = true : status = false
     Rails.logger.error "\nBOTH SERVISES ARE RUNNING #{status.inspect}"
     status
@@ -90,10 +91,10 @@ class Smb
   def self.restart
     smbd = System.exec("/etc/init.d/smb restart")
     nmbd = System.exec("/etc/init.d/nmb restart")
-    
+
     #Rails.logger.error "\nSMBD RESTART #{smbd.inspect}"
-    #Rails.logger.error "NMBD RESTART #{nmbd.inspect}"    
-    
+    #Rails.logger.error "NMBD RESTART #{nmbd.inspect}"
+
     smbd && nmbd ? true : false
   end
 
@@ -102,22 +103,22 @@ class Smb
       smbd = System.exec("/etc/init.d/smb stop")
       nmbd = System.exec("/etc/init.d/nmb stop")
       #Rails.logger.error "\nSMBD STOP #{smbd.inspect}"
-      #Rails.logger.error "NMBD STOP #{nmbd.inspect}"      
+      #Rails.logger.error "NMBD STOP #{nmbd.inspect}"
     else
       smbd = System.exec("/etc/init.d/smb start")
       nmbd = System.exec("/etc/init.d/nmb start")
       #Rails.logger.error "\nSMBD START #{smbd.inspect}"
-      #Rails.logger.error "NMBD START #{nmbd.inspect}"      
+      #Rails.logger.error "NMBD START #{nmbd.inspect}"
     end
 
     smbd && nmbd ? true : false
   end
-  
+
   def self.permissions
     #CHECK FILE OWNER: find <filnema> -printf "%u\n"
     bus = Smb.initDBusObj
     state = bus.permissions("")[0]
-    #Rails.logger.error "PERMISSIONS GRANTED #{state.inspect}"      
+    #Rails.logger.error "PERMISSIONS GRANTED #{state.inspect}"
     state
   end
 end

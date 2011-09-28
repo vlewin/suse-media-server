@@ -1,0 +1,151 @@
+<%= stylesheet_link_tag 'modules-new.css' %>
+<%= stylesheet_link_tag 'buttons.css' %>
+<%= stylesheet_link_tag 'toggle.css' %>
+
+<style>
+</style>
+
+<div id="waitAnimation"><label><img src="/images/ajax-loader.gif">please wait ...<label></div>
+
+<div class="moduleHead container_12">
+  <div class="grid_3 left">
+    <a id="back" href="/">BACK</a>
+  </div>
+
+  <div class="grid_6 middle">
+    <h2>Terminal</h2>
+    <h4 class="textCenter">SHELLINBOX - Web based AJAX terminal emulator</h4>
+  </div>
+
+  <div class="grid_3 right">
+    <div id="actionToolbar">
+      <span id="buttonCotainer">
+        <a id="current" href="#"  onclick="slideTo(0); setNumber(1);" class="abtn width33 activeSlider" onclick="slideTo(1)"><img src="/images/buttons/console.png" /></a>
+        <!--<% link_to_remote(
+          "<img src='/images/buttons/console-add.png' />",
+           :before => "slideTo(1);",
+           :html => {:id=>"list", :class => "abtn width33"},
+           :url => {:action => 'listview'})
+        %>-->
+        <a id="new" href="#"  onclick="slideTo(1); setNumber(2);" class="abtn width33"><img src="/images/buttons/console-add.png" /></a>
+        <a id="settings" href="#"  onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>
+
+        <!--<% link_to_remote(
+          "<img src='/images/buttons/settings.png' />",
+           :before => "slideTo(2);",
+           :html => {:id=>"settings", :class => "abtn width33"},
+           :update => "globalSettings",
+           :url => {:action => 'getSettings'})
+        %>-->
+      </span>
+      <a id="submit" href="#">SAVE</a>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<div id="moduleStatus" class="container_12">
+  <div class="statusWrapper">
+    <div class="grid_3 left">
+      <p class="moduleName">
+        <img src="/images/48/terminal.png" alt="Expanded" border="0" />
+        Terminal: <span id="tNumber">1</span>
+      </p>
+    </div>
+    <div class="grid_6 textCenter">
+      <span>&nbsp;</span>
+    </div>
+    <div class="grid_3 right">
+      <span>
+
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<div id="notificationArea" class="container_12"></div>
+
+<div class="clear"></div>
+
+<div class="moduleBody container_12">
+  <div>
+    <div id="slides">
+      <div id="slides-container">
+
+        <div id="console" class="slide">
+          <div style="position:relative; height:440px; padding:10px;">
+            <iframe id="iframe" src="#" width="100%" height="100%" style="overflow:hidden!important;"></iframe>
+          </div>
+        </div>
+
+        <div id="console-new" class="slide">
+          <div style="position:relative; height:440px; padding:10px;">
+            <iframe id="iframe2" src="#" width="100%" height="100%" style="overflow:hidden!important;"></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div id="globalSettings" class="grid_12">
+            <h2>Terminal Settings
+                <p style="color:#889; font-size:10px;">{Info} COMING SOON ...</p>
+            </h2>
+            <p>Color schema: black on white</p>
+            <p>Font size: 14px</p>
+            <p>Font family: Monopspace</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'toggle-new' %>
+
+<script>
+  $(document).ready(function(){
+    $("#iframe").attr("src", "http://localhost:4200");
+    $("#new").live("click", function() {
+      if ($("#iframe2").hasClass("active") != true ) {
+        $("#iframe2").addClass("active").attr("src", "http://localhost:4200");
+      }
+    });
+  });
+
+
+
+  function setNumber(number) {
+    $("#tNumber").html(number);
+  }
+
+  function slideTo(number){
+    var $abtns = $('#actionToolbar').find('a.abtn');
+    var width = 960;
+    var step = "-" + ((number * width)) + 'px';
+    $("#slides-container").stop().animate({ "margin-left": step }, 300);
+    $abtns.removeClass('activeSlider');
+
+    switch(number) {
+      case 0:
+        $('#current').addClass("activeSlider");
+        break;
+      case 1:
+        $('#new').addClass("activeSlider");
+        break;
+      case 2:
+        $('#settings').addClass("activeSlider");
+        break;
+      default:
+        console.error("ERROR")
+        break;
+    }
+  }
+
+
+
+
+</script>
+
