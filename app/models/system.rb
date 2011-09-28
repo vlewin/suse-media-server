@@ -9,8 +9,12 @@ class System
     obj.default_iface = "augeas.smb.Service.Interface"
     return obj
   end
-  
+
   def reboot
     Rails.logger.error "SYSTEM REBOOT"
-    
   end
+
+  def shutdown
+    Rails.logger.error "SYSTEM SHUTDOWN"
+  end
+
