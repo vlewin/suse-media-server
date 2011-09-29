@@ -20,23 +20,17 @@
   <div class="grid_3 right">
     <div id="actionToolbar">
       <span id="buttonCotainer">
-        <a id="current" href="#"  onclick="slideTo(0); setNumber(1);" class="abtn width33 activeSlider" onclick="slideTo(1)"><img src="/images/buttons/console.png" /></a>
-        <!--<% link_to_remote(
-          "<img src='/images/buttons/console-add.png' />",
-           :before => "slideTo(1);",
-           :html => {:id=>"list", :class => "abtn width33"},
-           :url => {:action => 'listview'})
-        %>-->
-        <a id="new" href="#"  onclick="slideTo(1); setNumber(2);" class="abtn width33"><img src="/images/buttons/console-add.png" /></a>
-        <a id="settings" href="#"  onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>
+        <a id="current" href="#"  onclick="slideTo(0); setNumber(1);" class="abtn width33 activeSlider" onclick="slideTo(1)"><img src="/images/buttons/console1.png" /></a>
+        <a id="new" href="#"  onclick="slideTo(1); setNumber(2);" class="abtn width33"><img src="/images/buttons/console2.png" /></a>
+        <!--<a id="settings" href="#"  onclick="slideTo(2)" class="abtn width33"><img src="/images/buttons/settings.png" /></a>-->
 
-        <!--<% link_to_remote(
+        <%= link_to_remote(
           "<img src='/images/buttons/settings.png' />",
            :before => "slideTo(2);",
            :html => {:id=>"settings", :class => "abtn width33"},
-           :update => "globalSettings",
-           :url => {:action => 'getSettings'})
-        %>-->
+           :update => "settingsSlider",
+           :url => {:action => 'settings'})
+        %>
       </span>
       <a id="submit" href="#">SAVE</a>
     </div>
@@ -88,7 +82,7 @@
         </div>
 
         <div class="slide">
-          <div id="globalSettings" class="grid_12">
+          <div id="settingsSlider" class="grid_12">
             <h2>Terminal Settings
                 <p style="color:#889; font-size:10px;">{Info} COMING SOON ...</p>
             </h2>
@@ -114,8 +108,6 @@
       }
     });
   });
-
-
 
   function setNumber(number) {
     $("#tNumber").html(number);
@@ -143,9 +135,5 @@
         break;
     }
   }
-
-
-
-
 </script>
 

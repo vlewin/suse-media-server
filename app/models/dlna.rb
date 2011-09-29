@@ -10,7 +10,7 @@ end
 
 class DLNA
   include System
-  
+
   PROPERTIES = [:id, :path, :type]
   SETTINGS = [:friendly_name, :inotify, :network_interface]
 
@@ -44,13 +44,13 @@ class DLNA
     dirs = bus.match("")[0]
     dirs
   end
-  
+
   def self.settings
     bus = initDBusObj
 
     args = Hash.new
     hash = bus.settings("")[0]
-    
+
     hash.each do | key, value |
       Rails.logger.debug "KEY #{key} VALUE #{value}"
       args[key] = value
@@ -59,48 +59,48 @@ class DLNA
     settings = DLNA.new(args)
     settings
   end
-  
+
   def save
     bus = DLNA.initDBusObj
     state = bus.set(self.to_hash)
     restart = DLNA.restart
-    
+
     state && restart ? true : false
   end
-  
+
   def saveSettings
     bus = DLNA.initDBusObj
     state = bus.setSettings(self.to_hash)
     restart = DLNA.restart
     state && restart ? true : false
   end
-  
+
   def destroy
     bus = DLNA.initDBusObj
     state = bus.rm(self.id)
     restart = DLNA.restart
-    
+
     state && restart ? true : false
    end
-   
+
    def self.running?
     state = System.exec("/etc/init.d/minidlna status")
     #Rails.logger.error "\nDLNA RUNNING #{state.inspect}"
     state
    end
-  
+
    def self.restart
     state = System.exec("/etc/init.d/minidlna restart")
     #Rails.logger.error "\nDLNA RESTART #{state.inspect}"
     state
    end
-   
+
    def self.rescan
     state = System.exec("/etc/init.d/minidlna rescan")
     #Rails.logger.error "\nDLNA RESCAN #{state.inspect}"
     state
    end
-   
+
    def self.control
     if DLNA.running?
       state = System.exec("/etc/init.d/minidlna stop")
@@ -109,9 +109,9 @@ class DLNA
       state = System.exec("/etc/init.d/minidlna start")
       #Rails.logger.error "\nDLNA START #{state.inspect}"
     end
-    
+
     state
   end
-  
+
 end
 
