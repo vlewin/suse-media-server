@@ -1,0 +1,95 @@
+<h2 class="mheading blue">Global settings</h2>
+
+
+<div class="clear"></div>
+
+<div class="moduleForm">
+  <div class="line">
+
+    <div class="key">
+      Use SSL
+      <span class="description">DUMMY DESCRIPTION</span>
+    </div>
+
+    <div class="value uppercase">
+
+    </div>
+
+    <div class='action'>
+      <%= link_to_remote "submit",
+        :url=> { :controller=> "smb", :action => "saveSettings" },
+        :html => {:class => "btn greenBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :with=>"'share[id]=target[1]' + '&share[workgroup]='+$('#share_workgroup').val()"
+      %>
+    </div>
+  </div>
+
+  <div class="line">
+    <div class="key">
+      Change port
+      <span class="description">DUMMY DESCRIPTION</span>
+    </div>
+
+    <div class="value uppercase">
+
+    </div>
+
+    <div class='action'>
+      <%= link_to_remote "submit",
+        :url=> { :controller=> "smb", :action => "saveSettings" },
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :html => {:class => "btn greenBtn textRight"},
+        :with=>""
+      %>
+    </div>
+  </div>
+
+  <div class="line">
+    <div class="key">
+      Disable audible-bell
+      <span class="description">Runs all services with the audible-bell permanently disabled</span>
+    </div>
+
+    <div class="value uppercase">
+    </div>
+
+    <div class='action'>
+      <%= link_to_remote "submit",
+        :url=> { :controller=> "smb", :action => "saveSettings" },
+        :loading => "$('#waitAnimation').show();",
+        :after =>  "$('#waitAnimation').fadeOut(500);",
+        :html => {:class => "btn greenBtn textRight"},
+        :with=>""
+      %>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="mheading grey"> Trouble-shooting </h2>
+
+<div class="moduleForm">
+  <div class="line">
+    <div class="key">
+      Restart SHELLINBOX deamon
+      <span class="description"></span>
+    </div>
+
+    <div class="value uppercase">
+    </div>
+
+    <div class='action'>
+      <%= link_to_remote "restart",
+        :url=> { :controller=> "smb", :action => "restart" },
+        :html => {:class => "btn redBtn textRight"},
+        :loading => "$('#waitAnimation').show();",
+        :update => "notificationArea",
+        :after => "notify()"
+      %>
+    </div>
+  </div>
+</div>
+
