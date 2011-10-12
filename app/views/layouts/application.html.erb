@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag 'reset.css' %>
     <%= stylesheet_link_tag 'layout.css' %>
     <%= stylesheet_link_tag 'flash.css' %>
-    <%= javascript_include_tag 'jquery-1.4.3' %>
+    <%= javascript_include_tag 'http://code.jquery.com/jquery-1.6.4.min.js' %>
   </head>
 
   <body style="position:relative;">
@@ -36,7 +36,7 @@
             <label style="vertical-align:middle;">Home</label>
           </a>
         </div>
-        
+
         <div class="grid_6" style="text-align:right;">
            <%= link_to_remote (
             "<label style='vertical-align:middle;'>restart</label>",
@@ -44,7 +44,7 @@
             :html => {:class=>"actions reboot"},
             :loading => "$('#waitAnimation').show();")
           %>
-          
+
            <%= link_to_remote (
             "<label style='vertical-align:middle;'>shutdown</label>",
             :url=> { :controller=> "smb", :action => "restart" },
@@ -54,7 +54,7 @@
 
 
         </div>
-        
+
       </div>
     </div>
 

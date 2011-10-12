@@ -1,0 +1,8 @@
+# DBus service activation config
+[D-BUS Service]
+Name= augeas.dlna.Service
+Exec=/usr/sbin/augeasDLNAService.rb
+User=root
+
+#use user suse-media-server
+

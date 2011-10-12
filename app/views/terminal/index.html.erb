@@ -98,10 +98,11 @@
 </div>
 
 <%= javascript_include_tag 'toggle-new' %>
-
 <script>
   $(document).ready(function(){
     $("#iframe").attr("src", "http://localhost:4200");
+    var $iframe = $("#iframe");
+
     $("#new").live("click", function() {
       if ($("#iframe2").hasClass("active") != true ) {
         $("#iframe2").addClass("active").attr("src", "http://localhost:4200");
