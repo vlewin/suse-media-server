@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
 
 
   #config.action_controller.session = { :key => "_suse_media_server_session", :secret => "2c4bde9b37b6c60357e97e05232539aee13ab67b3b9d43e8fe92e79cd7f6edcc7d9138443a8398b569342ac5ff4954390f56db0d428db172a5c8dc753599229f" }
-  
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -51,3 +51,4 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
